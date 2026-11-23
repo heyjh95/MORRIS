@@ -41,7 +41,7 @@
   transform: translateX(-50%);
 }
 
-.main-visual .swiper-pagination-bullet {
+.main-visual__card {
   display: block;
   position: relative;
   isolation: isolate;
@@ -59,7 +59,7 @@
 }
 
 // 접힌 배경 비율 = 노출 높이 120px / 전체 높이 270px.
-.main-visual .swiper-pagination-bullet::before {
+.main-visual__select::before {
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -138,18 +138,14 @@
 
 .main-visual__card-link {
   pointer-events: auto;
-  display: inline-flex;
   flex-shrink: 0;
-  align-items: center;
   margin-top: auto;
   margin-bottom: 20px;
   padding: 6px 20px;
   font-size: 20px;
   color: $white;
   border: 2px solid $white;
-  border-radius: 100px;
   cursor: pointer;
-  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .main-visual__card-link:hover {
@@ -157,18 +153,18 @@
   background-color: $white;
 }
 
-.main-visual .swiper-pagination-bullet-active::before {
+.main-visual__select[aria-pressed=true]::before {
   background-color: rgba(0, 0, 0, 0.65);
   border-bottom-color: $primary-color;
   transform: scaleY(1);
 }
 
-.swiper-pagination-bullet-active .main-visual__card-content,
-.swiper-pagination-bullet-active .main-visual__card-detail {
+.main-visual__select[aria-pressed=true] + .main-visual__card-content,
+.main-visual__select[aria-pressed=true] + .main-visual__card-content .main-visual__card-detail {
   transform: translateY(0);
 }
 
-.swiper-pagination-bullet-active .main-visual__card-detail {
+.main-visual__select[aria-pressed=true] + .main-visual__card-content .main-visual__card-detail {
   opacity: 1;
   visibility: visible;
   transition-delay: 0.12s;

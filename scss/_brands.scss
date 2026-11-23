@@ -8,13 +8,11 @@
 
 .brands__inner {
   max-width: 1600px;
-  margin: 0 auto;
 }
 
 .brands__title {
-  font-size: clamp(32px, 3vw, 48px);
+  line-height: 1.5;
   font-weight: 500;
-  color: $text-color;
 }
 
 .brands__tabs {
@@ -23,14 +21,6 @@
   gap: 10px;
   width: min(100%, 1020px);
   margin: 48px auto 34px;
-}
-
-.brands__input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
 }
 
 .brands__tab {
@@ -60,40 +50,32 @@
   opacity: 0.75;
 }
 
-.brands__input:checked + .brands__tab {
+.brands__tab[aria-pressed=true] {
   border-top-color: $text-color;
   border-bottom-color: $text-color;
 }
 
-.brands__input:checked + .brands__tab .brands__tab-image {
+.brands__tab[aria-pressed=true] .brands__tab-image {
   opacity: 1;
   filter: none;
 }
 
-.brands__input:focus-visible + .brands__tab {
+.brands__tab:focus-visible {
   outline: 2px solid $primary-color;
   outline-offset: 3px;
 }
 
-.brands__panels {
+.brands__slider {
   width: 100%;
 }
 
 .brands__panel {
-  display: none;
+  display: grid;
+  height: auto;
   align-items: stretch;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: clamp(36px, 4vw, 72px);
   width: 100%;
-}
-
-// 예: JUSTCLICK 라디오가 checked이면 JUSTCLICK 패널을 표시한다.
-// SCSS 부모 선택자 없이 실제 생성되는 선택자를 그대로 적었다.
-.brands:has(#brand-justclick:checked) .brands__panel--justclick,
-.brands:has(#brand-bamboo:checked) .brands__panel--bamboo,
-.brands:has(#brand-starflo:checked) .brands__panel--starflo,
-.brands:has(#brand-easyfluid:checked) .brands__panel--easyfluid {
-  display: grid;
 }
 
 .brands__visual {
@@ -169,8 +151,6 @@
 }
 
 .brands__link {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
   gap: 12px;
   min-width: 124px;
@@ -180,8 +160,6 @@
   font-weight: 500;
   color: $text-color;
   border: 1px solid $text-color;
-  border-radius: 100px;
-  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .brands__link .material-symbols-outlined {
@@ -191,11 +169,6 @@
 .brands__link:hover {
   color: $white;
   background-color: $text-color;
-}
-
-.brands__link:focus-visible {
-  outline: 2px solid $primary-color;
-  outline-offset: 3px;
 }
 
 @media (max-width: $bp-tablet) {

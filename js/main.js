@@ -1,25 +1,14 @@
 "use strict";
 
-// 함수 하나가 화면의 기능 하나를 맡는다.
+// 1. 메인 비주얼: 한 장씩 넘긴다.
 function initHeroSlider() {
   const hero = document.querySelector(".main-visual");
   if (!hero) return;
 
-  const cards = hero.querySelectorAll(".swiper-pagination-bullet");
+  const buttons = hero.querySelectorAll(".main-visual__select");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function showCurrentCard(index) {
-    cards.forEach((card, cardIndex) => {
-      const isCurrent = cardIndex === index;
-      card.classList.toggle("swiper-pagination-bullet-active", isCurrent);
-      card.querySelector(".main-visual__select").setAttribute("aria-current", String(isCurrent));
-    });
-  }
-
-  if (typeof window.Swiper !== "function") {
-    showCurrentCard(0);
-    return;
-  }
+  if (typeof window.Swiper !== "function") return;
 
   const slider = new Swiper(hero, {
     slidesPerView: 1,
@@ -27,20 +16,11 @@ function initHeroSlider() {
     speed: prefersReducedMotion ? 0 : 800,
     autoplay: prefersReducedMotion ? false : { delay: 4000, disableOnInteraction: false },
     grabCursor: true,
-    on: {
-      init(swiper) { showCurrentCard(swiper.realIndex); },
-      slideChange(swiper) { showCurrentCard(swiper.realIndex); },
-    },
   });
-
-  cards.forEach((card, index) => {
-    // button은 Enter와 Space도 click으로 처리한다.
-    card.querySelector(".main-visual__select").addEventListener("click", () => {
-      slider.slideToLoop(index);
-    });
-  });
+  connectSlideButtons(slider, buttons);
 }
 
+// 2. 신제품: 화면 폭에 맞춰 여러 장을 보여 준다.
 function initProductSlider() {
   const slider = document.querySelector(".new-products__slider");
   if (!slider || typeof window.Swiper !== "function") return;
@@ -69,6 +49,85 @@ function initProductSlider() {
   });
 }
 
+// 3. 제품 카테고리: 애니메이션 없이 선택한 내용을 보여 준다.
+function initCategorySlider() {
+  const categories = document.querySelector(".product-categories");
+  if (!categories || typeof window.Swiper !== "function") return;
+
+  const slider = new Swiper(categories.querySelector(".product-categories__content"), {
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+    speed: 0,
+    autoHeight: true,
+    allowTouchMove: false,
+  });
+  connectSlideButtons(slider, categories.querySelectorAll(".product-categories__button"));
+}
+
+// 4. 브랜드: 카테고리와 같은 설정으로 내용을 전환한다.
+function initBrandSlider() {
+  const brands = document.querySelector(".brands");
+  if (!brands || typeof window.Swiper !== "function") return;
+
+  const slider = new Swiper(brands.querySelector(".brands__slider"), {
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+    speed: 0,
+    autoHeight: true,
+    allowTouchMove: false,
+  });
+  connectSlideButtons(slider, brands.querySelectorAll(".brands__tab"));
+}
+
+// 공통 동작: 버튼의 aria-controls에 적힌 ID로 슬라이드를 찾는다.
+// 버튼과 슬라이드의 순서를 따로 바꿔도 연결이 유지된다.
+function connectSlideButtons(slider, buttons) {
+  function updateSelection() {
+    const currentSlide = slider.slides[slider.activeIndex];
+    buttons.forEach((button) => {
+      const isCurrent = button.getAttribute("aria-controls") === currentSlide.id;
+      button.setAttribute("aria-pressed", String(isCurrent));
+    });
+    slider.slides.forEach((slide) => {
+      const isCurrent = slide === currentSlide;
+      // 안 보이는 슬라이드의 링크에 Tab이 들어가지 않게 한다.
+      slide.inert = !isCurrent;
+      slide.setAttribute("aria-hidden", String(!isCurrent));
+    });
+  }
+
+  buttons.forEach((button, buttonIndex) => {
+    button.addEventListener("click", () => {
+      const panel = document.getElementById(button.getAttribute("aria-controls"));
+      if (!panel || !slider.slides.includes(panel)) return;
+      if (slider.params.loop) {
+        // loop는 슬라이드를 재배치하므로 Swiper가 보관한 원래 번호를 쓴다.
+        slider.slideToLoop(Number(panel.dataset.swiperSlideIndex));
+      } else {
+        slider.slideTo(slider.slides.indexOf(panel));
+      }
+    });
+    button.addEventListener("keydown", (event) => {
+      let nextIndex = buttonIndex;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex += 1;
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex -= 1;
+      else if (event.key === "Home") nextIndex = 0;
+      else if (event.key === "End") nextIndex = buttons.length - 1;
+      else return;
+
+      event.preventDefault();
+      // 마지막 다음은 첫 버튼, 첫 버튼 이전은 마지막 버튼이다.
+      if (nextIndex >= buttons.length) nextIndex = 0;
+      if (nextIndex < 0) nextIndex = buttons.length - 1;
+      buttons[nextIndex].focus();
+      buttons[nextIndex].click();
+    });
+  });
+  slider.on("slideChange", updateSelection);
+  updateSelection();
+}
+
+// 5. 고정 팝업: 닫기 버튼을 누르면 숨긴다.
 function initFloatingPanel() {
   const floating = document.querySelector(".floating");
   if (!floating) return;
@@ -81,27 +140,7 @@ function initFloatingPanel() {
   });
 }
 
-function initProductCategories() {
-  document.querySelectorAll(".product-categories").forEach((categories) => {
-    const buttons = categories.querySelectorAll(".product-categories__button");
-    const panels = categories.querySelectorAll(".product-categories__panel");
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const panelId = button.getAttribute("aria-controls");
-        const target = document.getElementById(panelId);
-        if (!target || !categories.contains(target)) return;
-
-        buttons.forEach((item) => {
-          item.setAttribute("aria-pressed", String(item === button));
-        });
-        panels.forEach((panel) => {
-          panel.hidden = panel !== target;
-        });
-      });
-    });
-  });
-}
-
+// 6. 전체 메뉴: 열기·닫기와 키보드 포커스를 처리한다.
 function initNavigation() {
   const header = document.querySelector(".header");
   if (!header) return;
@@ -109,7 +148,7 @@ function initNavigation() {
   const drawer = header.querySelector(".header__drawer");
   if (!toggle || !drawer) return;
 
-  // 언어별 문구는 템플릿이 data-* 속성으로 전달한다.
+  // 언어별 문구는 각 HTML의 data-* 속성에서 읽는다.
   const openLabel = header.dataset.openLabel;
   const closeLabel = header.dataset.closeLabel;
 
@@ -169,6 +208,7 @@ function initNavigation() {
 
 initHeroSlider();
 initProductSlider();
+initCategorySlider();
+initBrandSlider();
 initFloatingPanel();
-initProductCategories();
 initNavigation();

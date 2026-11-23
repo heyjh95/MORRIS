@@ -8,16 +8,13 @@
   column-gap: 32px;
   width: 100%;
   max-width: 1920px;
-  margin: 0 auto;
   padding: 120px clamp(20px, 3vw, 40px);
 }
 
 .new-products__title {
   font-size: 56px;
-  font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: $text-color;
 }
 
 .new-products__description {
@@ -29,8 +26,6 @@
 }
 
 .new-products__all-link {
-  display: inline-flex;
-  align-items: center;
   align-self: end;
   justify-self: end;
   gap: 6px;
@@ -41,7 +36,6 @@
   color: $text-color;
   border: 3px solid $ink-color;
   border-radius: 50px;
-  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .new-products__all-icon {

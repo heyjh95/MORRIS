@@ -27,11 +27,8 @@
 
 .brand-message__title {
   font-size: clamp(64px, 5vw, 120px);
-  font-weight: 700;
-  line-height: 1.2;
   letter-spacing: -0.045em;
   white-space: nowrap;
-  color: $text-color;
 }
 
 .brand-message__description {

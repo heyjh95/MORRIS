@@ -1,0 +1,36 @@
+@use "vars" as *;
+
+// 여러 영역이 함께 쓰는 바탕. 각 영역 파일에는 다른 값만 적는다.
+.container {
+  max-width: 1800px;
+  margin-inline: auto;
+}
+
+.section-title {
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: $text-color;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 100px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.button:focus-visible {
+  outline: 2px solid $primary-color;
+  outline-offset: 3px;
+}
+
+// 스크립트가 준비되기 전에는 첫 장만 보여 준다.
+.swiper:not(.swiper-initialized) > .swiper-wrapper > .swiper-slide:not(:first-child) {
+  display: none;
+}
+
+// fade는 투명도만 바꾸므로, 보이지 않는 내용도 함께 숨긴다.
+.swiper-fade .swiper-slide:not(.swiper-slide-active) {
+  visibility: hidden;
+}

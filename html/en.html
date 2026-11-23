@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- 자동 생성: templates/와 data/를 수정한 다음 npm run build:html을 실행하세요. -->
+<!-- 문구와 이미지는 이 HTML에서 직접 수정합니다. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -69,64 +69,73 @@
     </header>
 
     <main>
+      <!-- 메인 비주얼 -->
       <section class="main-visual swiper">
         <ul class="swiper-wrapper main-visual__slides">
-          <li class="main-visual__slide swiper-slide">
-            <a class="main-visual__image-link" href="#"><img class="main-visual__image" src="../images/main/visual01.jpg" alt="Prime Glitter Highlighter S" /></a>
+          <li class="main-visual__slide swiper-slide" id="hero-slide-1">
+            <a class="main-visual__image-link" href="#">
+              <img class="main-visual__image" src="../images/main/visual01.jpg" alt="Prime Glitter Highlighter S" />
+            </a>
           </li>
-          <li class="main-visual__slide swiper-slide">
-            <a class="main-visual__image-link" href="#"><img class="main-visual__image" src="../images/main/visual02.jpg" alt="Prime Highlighter S Antique" /></a>
+          <li class="main-visual__slide swiper-slide" id="hero-slide-2">
+            <a class="main-visual__image-link" href="#">
+              <img class="main-visual__image" src="../images/main/visual02.jpg" alt="Prime Highlighter S Antique" />
+            </a>
           </li>
-          <li class="main-visual__slide swiper-slide">
-            <a class="main-visual__image-link" href="#"><img class="main-visual__image" src="../images/main/visual03.jpg" alt="Prime Highlighter M Mild" /></a>
+          <li class="main-visual__slide swiper-slide" id="hero-slide-3">
+            <a class="main-visual__image-link" href="#">
+              <img class="main-visual__image" src="../images/main/visual03.jpg" alt="Prime Highlighter M Mild" />
+            </a>
           </li>
-          <li class="main-visual__slide swiper-slide">
-            <a class="main-visual__image-link" href="#"><img class="main-visual__image" src="../images/main/visual04.jpg" alt="Sign Pen S Plus" /></a>
+          <li class="main-visual__slide swiper-slide" id="hero-slide-4">
+            <a class="main-visual__image-link" href="#">
+              <img class="main-visual__image" src="../images/main/visual04.jpg" alt="Sign Pen S Plus" />
+            </a>
           </li>
 
         </ul>
         <div class="main-visual__pagination" aria-label="Main visual slide selection">
-          <div class="swiper-pagination-bullet swiper-pagination-bullet-active">
-            <button class="main-visual__select" type="button" aria-label="Show slide 1: Prime Glitter Highlighter S" aria-current="true"></button>
+          <div class="main-visual__card">
+            <button class="main-visual__select" type="button" aria-label="Show slide 1: Prime Glitter Highlighter S" aria-controls="hero-slide-1" aria-pressed="true"></button>
             <div class="main-visual__card-content">
               <span class="main-visual__card-no">01</span>
               <p class="main-visual__card-title">Prime Glitter Highlighter S</p>
               <div class="main-visual__card-detail">
                 <p class="main-visual__card-description">Steady in hand, JUSTCLICK Prime. Seven glitter ink colors and a comfortable hexagonal grip.</p>
-                <a class="main-visual__card-link" href="#">Find out more</a>
+                <a class="button main-visual__card-link" href="#">Find out more</a>
               </div>
             </div>
           </div>
-          <div class="swiper-pagination-bullet">
-            <button class="main-visual__select" type="button" aria-label="Show slide 2: Prime Highlighter S Antique" aria-current="false"></button>
+          <div class="main-visual__card">
+            <button class="main-visual__select" type="button" aria-label="Show slide 2: Prime Highlighter S Antique" aria-controls="hero-slide-2" aria-pressed="false"></button>
             <div class="main-visual__card-content">
               <span class="main-visual__card-no">02</span>
               <p class="main-visual__card-title">Prime Highlighter S Antique</p>
               <div class="main-visual__card-detail">
                 <p class="main-visual__card-description">Distinctive antique colors and a comfortable hexagonal grip in the JUSTCLICK Prime.</p>
-                <a class="main-visual__card-link" href="#">Find out more</a>
+                <a class="button main-visual__card-link" href="#">Find out more</a>
               </div>
             </div>
           </div>
-          <div class="swiper-pagination-bullet">
-            <button class="main-visual__select" type="button" aria-label="Show slide 3: Prime Highlighter M Mild" aria-current="false"></button>
+          <div class="main-visual__card">
+            <button class="main-visual__select" type="button" aria-label="Show slide 3: Prime Highlighter M Mild" aria-controls="hero-slide-3" aria-pressed="false"></button>
             <div class="main-visual__card-content">
               <span class="main-visual__card-no">03</span>
               <p class="main-visual__card-title">Prime Highlighter M Mild</p>
               <div class="main-visual__card-detail">
                 <p class="main-visual__card-description">Soft mild colors and a comfortable octagonal grip for a smooth highlight.</p>
-                <a class="main-visual__card-link" href="#">Find out more</a>
+                <a class="button main-visual__card-link" href="#">Find out more</a>
               </div>
             </div>
           </div>
-          <div class="swiper-pagination-bullet">
-            <button class="main-visual__select" type="button" aria-label="Show slide 4: Sign Pen S Plus" aria-current="false"></button>
+          <div class="main-visual__card">
+            <button class="main-visual__select" type="button" aria-label="Show slide 4: Sign Pen S Plus" aria-controls="hero-slide-4" aria-pressed="false"></button>
             <div class="main-visual__card-content">
               <span class="main-visual__card-no">04</span>
               <p class="main-visual__card-title">Sign Pen S Plus</p>
               <div class="main-visual__card-detail">
                 <p class="main-visual__card-description">A convenient capless water-based pen with a fine tip for effortless everyday writing.</p>
-                <a class="main-visual__card-link" href="#">Find out more</a>
+                <a class="button main-visual__card-link" href="#">Find out more</a>
               </div>
             </div>
           </div>
@@ -134,6 +143,7 @@
         </div>
       </section>
 
+      <!-- 고정 팝업 -->
       <section class="floating">
         <button class="floating__close" type="button" aria-label="Close popup">
           <img src="../images/common/floating_close.svg" alt="" />
@@ -150,41 +160,52 @@
           </div>
         </div>
       </section>
-      <section class="new-products" id="products">
+      <!-- 신제품 -->
+      <section class="new-products container" id="products">
         <div class="new-products__heading">
-          <h2 class="new-products__title">NEW PRODUCT</h2>
+          <h2 class="section-title new-products__title">NEW PRODUCT</h2>
           <p class="new-products__description">Discover new -<br />MORIS product collections</p>
         </div>
-        <a href="#" class="new-products__all-link">All products<span class="material-symbols-outlined new-products__all-icon" aria-hidden="true">arrow_outward</span></a>
+        <a href="#" class="button new-products__all-link">All products<span class="material-symbols-outlined new-products__all-icon" aria-hidden="true">arrow_outward</span></a>
         <div class="new-products__slider swiper">
           <ul class="swiper-wrapper">
             <li class="new-products__slide swiper-slide">
               <a class="new-products__card" href="#">
-                <div class="new-products__image-wrap"><img class="new-products__image" src="../images/main/grid01.jpg" alt="" /></div>
+                <div class="new-products__image-wrap">
+                  <img class="new-products__image" src="../images/main/grid01.jpg" alt="" />
+                </div>
                 <div class="new-products__info">Prime Glitter Highlighter S<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
               <a class="new-products__card" href="#">
-                <div class="new-products__image-wrap"><img class="new-products__image" src="../images/main/grid02.jpg" alt="" /></div>
+                <div class="new-products__image-wrap">
+                  <img class="new-products__image" src="../images/main/grid02.jpg" alt="" />
+                </div>
                 <div class="new-products__info">Highlighter S Antique<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
               <a class="new-products__card" href="#">
-                <div class="new-products__image-wrap"><img class="new-products__image" src="../images/main/grid03.jpg" alt="" /></div>
+                <div class="new-products__image-wrap">
+                  <img class="new-products__image" src="../images/main/grid03.jpg" alt="" />
+                </div>
                 <div class="new-products__info">Highlighter M Mild<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
               <a class="new-products__card" href="#">
-                <div class="new-products__image-wrap"><img class="new-products__image" src="../images/main/grid04.jpg" alt="" /></div>
+                <div class="new-products__image-wrap">
+                  <img class="new-products__image" src="../images/main/grid04.jpg" alt="" />
+                </div>
                 <div class="new-products__info">Sign Pen S Plus<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
               <a class="new-products__card" href="#">
-                <div class="new-products__image-wrap"><img class="new-products__image" src="../images/main/grid05.jpg" alt="" /></div>
+                <div class="new-products__image-wrap">
+                  <img class="new-products__image" src="../images/main/grid05.jpg" alt="" />
+                </div>
                 <div class="new-products__info">Sign Pen S 12-Color Set<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
               </a>
             </li>
@@ -204,16 +225,18 @@
         </div>
       </section>
 
+      <!-- 브랜드 메시지 -->
       <section class="brand-message">
         <div class="brand-message__heading">
           <span class="brand-message__line" aria-hidden="true"></span>
-          <h2 class="brand-message__title">Made to write</h2>
+          <h2 class="section-title brand-message__title">Made to write</h2>
         </div>
         <p class="brand-message__description">We enrich everyday life with creative stationery and build the future together, with every line.</p>
       </section>
+      <!-- 제품 카테고리 -->
       <section class="product-categories" id="product-categories" aria-labelledby="categories-title">
-        <h2 id="categories-title" class="product-categories__title">PRODUCT</h2>
-        <div class="product-categories__layout">
+        <h2 id="categories-title" class="section-title product-categories__title">PRODUCT</h2>
+        <div class="product-categories__layout container">
           <ul class="product-categories__list">
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-highlighter" aria-pressed="true">
@@ -277,163 +300,200 @@
             </li>
 
           </ul>
-          <div class="product-categories__content">
-            <section class="product-categories__panel" id="panel-highlighter" aria-labelledby="heading-highlighter" >
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-highlighter">Highlighter</h3>
-                <p class="product-categories__description">Keep your reading and thinking in motion. Highlight what matters with a single click and no cap to open or close.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Highlighter products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td01.png" alt="MORIS Highlighter products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-boardmarker" aria-labelledby="heading-boardmarker" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-boardmarker">Whiteboard Marker</h3>
-                <p class="product-categories__description">Capture ideas the moment they appear. Clear, vivid writing for classrooms and meetings without breaking the flow.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Whiteboard Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td02.png" alt="MORIS Whiteboard Marker products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-permanent" aria-labelledby="heading-permanent" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-permanent">Permanent Marker</h3>
-                <p class="product-categories__description">Mark clearly on a variety of surfaces when it matters. One click provides quick and reliable marking.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Permanent Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td03.png" alt="MORIS Permanent Marker products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-namepen" aria-labelledby="heading-namepen" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-namepen">Name Pen</h3>
-                <p class="product-categories__description">Label belongings and everyday essentials with precise, legible writing. Convenient identification with just one click.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Name Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td04.png" alt="MORIS Name Pen products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-signpen" aria-labelledby="heading-signpen" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-signpen">Sign Pen</h3>
-                <p class="product-categories__description">From notes and handwriting to creative sketches, enjoy a comfortable writing feel and effortless expression.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Sign Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td05.png" alt="MORIS Sign Pen products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-coloring" aria-labelledby="heading-coloring" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-coloring">Coloring / Brush</h3>
-                <p class="product-categories__description">Bring imagination to life with rich colors and versatile lines, from delicate details to broad brush strokes.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Coloring / Brush products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td06.png" alt="MORIS Coloring / Brush products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-lifestyle" aria-labelledby="heading-lifestyle" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-lifestyle">Home &amp; DIY Marker</h3>
-                <p class="product-categories__description">Make everyday organizing, decorating, and creating easier with versatile markers for home and DIY projects.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Home &amp; DIY Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td07.png" alt="MORIS Home &amp; DIY Marker products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-industrial" aria-labelledby="heading-industrial" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-industrial">Industrial Marker</h3>
-                <p class="product-categories__description">Clear, dependable marking for demanding work environments, designed for quick use and confident results.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Industrial Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td08.png" alt="MORIS Industrial Marker products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-ballpoint" aria-labelledby="heading-ballpoint" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-ballpoint">Ballpoint Pen</h3>
-                <p class="product-categories__description">Write down everyday thoughts with smooth, steady ink flow and a comfortable writing experience.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Ballpoint Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td09.png" alt="MORIS Ballpoint Pen products" /></div>
-            </section>
-            <section class="product-categories__panel" id="panel-pencil" aria-labelledby="heading-pencil" hidden>
-              <div class="product-categories__info">
-                <h3 class="product-categories__heading" id="heading-pencil">Mechanical Pencil</h3>
-                <p class="product-categories__description">From quick notes to detailed drawings, enjoy a stable grip and precise control for every line.</p>
-                <a class="product-categories__link" href="#" aria-label="View all Mechanical Pencil products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
-              </div>
-              <div class="product-categories__visual"><img class="product-categories__image" src="../images/main/td10.png" alt="MORIS Mechanical Pencil products" /></div>
-            </section>
+          <div class="product-categories__content swiper">
+            <div class="swiper-wrapper">
+              <section class="product-categories__panel swiper-slide" id="panel-highlighter" aria-labelledby="heading-highlighter">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-highlighter">Highlighter</h3>
+                  <p class="product-categories__description">Keep your reading and thinking in motion. Highlight what matters with a single click and no cap to open or close.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Highlighter products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td01.png" alt="MORIS Highlighter products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-boardmarker" aria-labelledby="heading-boardmarker">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-boardmarker">Whiteboard Marker</h3>
+                  <p class="product-categories__description">Capture ideas the moment they appear. Clear, vivid writing for classrooms and meetings without breaking the flow.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Whiteboard Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td02.png" alt="MORIS Whiteboard Marker products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-permanent" aria-labelledby="heading-permanent">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-permanent">Permanent Marker</h3>
+                  <p class="product-categories__description">Mark clearly on a variety of surfaces when it matters. One click provides quick and reliable marking.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Permanent Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td03.png" alt="MORIS Permanent Marker products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-namepen" aria-labelledby="heading-namepen">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-namepen">Name Pen</h3>
+                  <p class="product-categories__description">Label belongings and everyday essentials with precise, legible writing. Convenient identification with just one click.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Name Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td04.png" alt="MORIS Name Pen products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-signpen" aria-labelledby="heading-signpen">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-signpen">Sign Pen</h3>
+                  <p class="product-categories__description">From notes and handwriting to creative sketches, enjoy a comfortable writing feel and effortless expression.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Sign Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td05.png" alt="MORIS Sign Pen products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-coloring" aria-labelledby="heading-coloring">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-coloring">Coloring / Brush</h3>
+                  <p class="product-categories__description">Bring imagination to life with rich colors and versatile lines, from delicate details to broad brush strokes.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Coloring / Brush products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td06.png" alt="MORIS Coloring / Brush products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-lifestyle" aria-labelledby="heading-lifestyle">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-lifestyle">Home &amp; DIY Marker</h3>
+                  <p class="product-categories__description">Make everyday organizing, decorating, and creating easier with versatile markers for home and DIY projects.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Home &amp; DIY Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td07.png" alt="MORIS Home &amp; DIY Marker products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-industrial" aria-labelledby="heading-industrial">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-industrial">Industrial Marker</h3>
+                  <p class="product-categories__description">Clear, dependable marking for demanding work environments, designed for quick use and confident results.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Industrial Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td08.png" alt="MORIS Industrial Marker products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-ballpoint" aria-labelledby="heading-ballpoint">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-ballpoint">Ballpoint Pen</h3>
+                  <p class="product-categories__description">Write down everyday thoughts with smooth, steady ink flow and a comfortable writing experience.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Ballpoint Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td09.png" alt="MORIS Ballpoint Pen products" />
+                </div>
+              </section>
+              <section class="product-categories__panel swiper-slide" id="panel-pencil" aria-labelledby="heading-pencil">
+                <div class="product-categories__info">
+                  <h3 class="product-categories__heading" id="heading-pencil">Mechanical Pencil</h3>
+                  <p class="product-categories__description">From quick notes to detailed drawings, enjoy a stable grip and precise control for every line.</p>
+                  <a class="product-categories__link" href="#" aria-label="View all Mechanical Pencil products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                </div>
+                <div class="product-categories__visual">
+                  <img class="product-categories__image" src="../images/main/td10.png" alt="MORIS Mechanical Pencil products" />
+                </div>
+              </section>
+            </div>
 
           </div>
         </div>
       </section>
 
+      <!-- 브랜드 -->
       <section class="brands" id="brands" aria-labelledby="brands-title">
-        <div class="brands__inner">
-          <h2 class="brands__title" id="brands-title">BRAND</h2>
+        <div class="brands__inner container">
+          <h2 class="section-title brands__title" id="brands-title">BRAND</h2>
           <div class="brands__tabs" role="group" aria-label="Choose a brand">
-            <input class="brands__input" type="radio" name="brand" id="brand-justclick" checked />
-            <label class="brands__tab" for="brand-justclick"><img class="brands__tab-image" src="../images/main/brand01.png" alt="JUSTCLICK" /></label>
-            <input class="brands__input" type="radio" name="brand" id="brand-bamboo"  />
-            <label class="brands__tab" for="brand-bamboo"><img class="brands__tab-image" src="../images/main/brand02.png" alt="BAMBOO" /></label>
-            <input class="brands__input" type="radio" name="brand" id="brand-starflo"  />
-            <label class="brands__tab" for="brand-starflo"><img class="brands__tab-image" src="../images/main/brand03.png" alt="STARFLO" /></label>
-            <input class="brands__input" type="radio" name="brand" id="brand-easyfluid"  />
-            <label class="brands__tab" for="brand-easyfluid"><img class="brands__tab-image" src="../images/main/brand04.png" alt="Easy Fluid" /></label>
+            <button class="brands__tab" type="button" aria-controls="brand-justclick" aria-pressed="true">
+              <img class="brands__tab-image" src="../images/main/brand01.png" alt="JUSTCLICK" />
+            </button>
+            <button class="brands__tab" type="button" aria-controls="brand-bamboo" aria-pressed="false">
+              <img class="brands__tab-image" src="../images/main/brand02.png" alt="BAMBOO" />
+            </button>
+            <button class="brands__tab" type="button" aria-controls="brand-starflo" aria-pressed="false">
+              <img class="brands__tab-image" src="../images/main/brand03.png" alt="STARFLO" />
+            </button>
+            <button class="brands__tab" type="button" aria-controls="brand-easyfluid" aria-pressed="false">
+              <img class="brands__tab-image" src="../images/main/brand04.png" alt="Easy Fluid" />
+            </button>
 
           </div>
-          <div class="brands__panels">
-            <article class="brands__panel brands__panel--justclick">
-              <div class="brands__visual"><img class="brands__image" src="../images/main/brand01.jpg" alt="JUSTCLICK brand product image"  /></div>
-              <div class="brands__content">
-                <div class="brands__brand">
-                  <h3 class="brands__brand-name">JUSTCLICK</h3>
-                  <img class="brands__brand-logo" src="../images/main/brand01.png" alt="" />
+          <div class="brands__slider swiper">
+            <div class="swiper-wrapper">
+              <article class="brands__panel swiper-slide" id="brand-justclick" aria-labelledby="brand-heading-justclick">
+                <div class="brands__visual">
+                  <img class="brands__image" src="../images/main/brand01.jpg" alt="JUSTCLICK brand product image"  />
                 </div>
-                <div class="brands__info">
-                  <h4 class="brands__tagline">No cap, Just Click.</h4>
-                  <p class="brands__description">JUSTCLICK is designed for instant one-handed use without the need to open or close a cap. Built around natural hand movements, it helps keep your creative and everyday tasks flowing.</p>
-                  <a href="#" class="brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                <div class="brands__content">
+                  <div class="brands__brand">
+                    <h3 class="brands__brand-name" id="brand-heading-justclick">JUSTCLICK</h3>
+                    <img class="brands__brand-logo" src="../images/main/brand01.png" alt="" />
+                  </div>
+                  <div class="brands__info">
+                    <h4 class="brands__tagline">No cap, Just Click.</h4>
+                    <p class="brands__description">JUSTCLICK is designed for instant one-handed use without the need to open or close a cap. Built around natural hand movements, it helps keep your creative and everyday tasks flowing.</p>
+                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                  </div>
                 </div>
-              </div>
-            </article>
-            <article class="brands__panel brands__panel--bamboo">
-              <div class="brands__visual"><img class="brands__image" src="../images/main/brand02.jpg" alt="BAMBOO brand product image" loading="lazy" /></div>
-              <div class="brands__content">
-                <div class="brands__brand">
-                  <h3 class="brands__brand-name">BAMBOO</h3>
-                  <img class="brands__brand-logo" src="../images/main/brand02.png" alt="" />
+              </article>
+              <article class="brands__panel swiper-slide" id="brand-bamboo" aria-labelledby="brand-heading-bamboo">
+                <div class="brands__visual">
+                  <img class="brands__image" src="../images/main/brand02.jpg" alt="BAMBOO brand product image" loading="lazy" />
                 </div>
-                <div class="brands__info">
-                  <h4 class="brands__tagline">Twin type, One tool</h4>
-                  <p class="brands__description">Combining creative expression and comfort, BAMBOO dual-tip markers are inspired by the natural elegance of bamboo. Flexible tips support writing, illustration, and coloring.</p>
-                  <a href="#" class="brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                <div class="brands__content">
+                  <div class="brands__brand">
+                    <h3 class="brands__brand-name" id="brand-heading-bamboo">BAMBOO</h3>
+                    <img class="brands__brand-logo" src="../images/main/brand02.png" alt="" />
+                  </div>
+                  <div class="brands__info">
+                    <h4 class="brands__tagline">Twin type, One tool</h4>
+                    <p class="brands__description">Combining creative expression and comfort, BAMBOO dual-tip markers are inspired by the natural elegance of bamboo. Flexible tips support writing, illustration, and coloring.</p>
+                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                  </div>
                 </div>
-              </div>
-            </article>
-            <article class="brands__panel brands__panel--starflo">
-              <div class="brands__visual"><img class="brands__image" src="../images/main/brand03.jpg" alt="STARFLO brand product image" loading="lazy" /></div>
-              <div class="brands__content">
-                <div class="brands__brand">
-                  <h3 class="brands__brand-name">STARFLO</h3>
-                  <img class="brands__brand-logo" src="../images/main/brand03.png" alt="" />
+              </article>
+              <article class="brands__panel swiper-slide" id="brand-starflo" aria-labelledby="brand-heading-starflo">
+                <div class="brands__visual">
+                  <img class="brands__image" src="../images/main/brand03.jpg" alt="STARFLO brand product image" loading="lazy" />
                 </div>
-                <div class="brands__info">
-                  <h4 class="brands__tagline">Add Character to Everyday Writing.</h4>
-                  <p class="brands__description">STARFLO 3C reimagines the classic three-color ballpoint pen with distinctive styling. Its slim body and hybrid ink deliver a comfortable writing experience and enjoyable color selection.</p>
-                  <a href="#" class="brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                <div class="brands__content">
+                  <div class="brands__brand">
+                    <h3 class="brands__brand-name" id="brand-heading-starflo">STARFLO</h3>
+                    <img class="brands__brand-logo" src="../images/main/brand03.png" alt="" />
+                  </div>
+                  <div class="brands__info">
+                    <h4 class="brands__tagline">Add Character to Everyday Writing.</h4>
+                    <p class="brands__description">STARFLO 3C reimagines the classic three-color ballpoint pen with distinctive styling. Its slim body and hybrid ink deliver a comfortable writing experience and enjoyable color selection.</p>
+                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                  </div>
                 </div>
-              </div>
-            </article>
-            <article class="brands__panel brands__panel--easyfluid">
-              <div class="brands__visual"><img class="brands__image" src="../images/main/brand04.jpg" alt="Easy Fluid brand product image" loading="lazy" /></div>
-              <div class="brands__content">
-                <div class="brands__brand">
-                  <h3 class="brands__brand-name">Easy Fluid</h3>
-                  <img class="brands__brand-logo" src="../images/main/brand04.png" alt="" />
+              </article>
+              <article class="brands__panel swiper-slide" id="brand-easyfluid" aria-labelledby="brand-heading-easyfluid">
+                <div class="brands__visual">
+                  <img class="brands__image" src="../images/main/brand04.jpg" alt="Easy Fluid brand product image" loading="lazy" />
                 </div>
-                <div class="brands__info">
-                  <h4 class="brands__tagline">Write in a Smoother Flow.</h4>
-                  <p class="brands__description">EASYFLUID introduces smoother, more consistent writing through low-viscosity hybrid ink, designed for comfort across everyday writing situations.</p>
-                  <a href="#" class="brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                <div class="brands__content">
+                  <div class="brands__brand">
+                    <h3 class="brands__brand-name" id="brand-heading-easyfluid">Easy Fluid</h3>
+                    <img class="brands__brand-logo" src="../images/main/brand04.png" alt="" />
+                  </div>
+                  <div class="brands__info">
+                    <h4 class="brands__tagline">Write in a Smoother Flow.</h4>
+                    <p class="brands__description">EASYFLUID introduces smoother, more consistent writing through low-viscosity hybrid ink, designed for comfort across everyday writing situations.</p>
+                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
 
           </div>
         </div>
