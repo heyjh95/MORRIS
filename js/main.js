@@ -6,18 +6,53 @@ function initHeroSlider() {
   if (!hero) return;
 
   const buttons = hero.querySelectorAll(".main-visual__select");
+  const mobileScreen = window.matchMedia("(max-width: 768px)");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // 문구는 한 번만 작성한다. 모바일에서는 이미지와 같은 슬라이드로 옮긴다.
+  const cards = Array.from(hero.querySelectorAll(".main-visual__card"));
+  const contents = cards.map((card) => card.querySelector(".main-visual__card-content"));
+  function arrangeContent() {
+    cards.forEach((card, index) => {
+      const panelId = card.querySelector("button").getAttribute("aria-controls");
+      const slide = document.getElementById(panelId);
+      if (mobileScreen.matches) slide.append(contents[index]);
+      else card.append(contents[index]);
+    });
+  }
+  arrangeContent();
 
   if (typeof window.Swiper !== "function") return;
 
+  const previous = hero.querySelector(".main-visual__prev");
+  const next = hero.querySelector(".main-visual__next");
   const slider = new Swiper(hero, {
     slidesPerView: 1,
     loop: true,
     speed: prefersReducedMotion ? 0 : 800,
     autoplay: prefersReducedMotion ? false : { delay: 4000, disableOnInteraction: false },
+    autoHeight: mobileScreen.matches,
     grabCursor: true,
+    navigation: { prevEl: previous, nextEl: next },
+    a11y: {
+      prevSlideMessage: previous.getAttribute("aria-label"),
+      nextSlideMessage: next.getAttribute("aria-label"),
+    },
   });
   connectSlideButtons(slider, buttons);
+
+  function updateLayout() {
+    arrangeContent();
+    slider.params.autoHeight = mobileScreen.matches;
+    // 화면 전환 시 Swiper의 높이 관련 CSS도 같은 상태로 맞춘다.
+    hero.classList.toggle("swiper-autoheight", mobileScreen.matches);
+    if (mobileScreen.matches || prefersReducedMotion) slider.autoplay.stop();
+    else slider.autoplay.start();
+    if (!mobileScreen.matches) slider.wrapperEl.style.height = "";
+    slider.update();
+  }
+  updateLayout();
+  mobileScreen.addEventListener("change", updateLayout);
 }
 
 // 2. 신제품: 화면 폭에 맞춰 여러 장을 보여 준다.
@@ -47,6 +82,27 @@ function initProductSlider() {
       nextSlideMessage: next.getAttribute("aria-label"),
     },
   });
+}
+
+// 모바일 문구가 왼쪽 여백부터 오른쪽 여백까지 한 줄로 차도록 크기를 맞춘다.
+function initBrandMessage() {
+  const title = document.querySelector(".brand-message__title");
+  if (!title) return;
+  const mobileScreen = window.matchMedia("(max-width: 768px)");
+
+  function fitTitle() {
+    title.style.fontSize = "";
+    if (!mobileScreen.matches) return;
+    const textWidth = title.getBoundingClientRect().width;
+    const availableWidth = title.parentElement.clientWidth;
+    if (!textWidth) return;
+    const fontSize = parseFloat(getComputedStyle(title).fontSize);
+    title.style.fontSize = (fontSize * availableWidth / textWidth) + "px";
+  }
+
+  fitTitle();
+  document.fonts.ready.then(fitTitle);
+  window.addEventListener("resize", fitTitle);
 }
 
 // 3. 제품 카테고리: 애니메이션 없이 선택한 내용을 보여 준다.
@@ -127,7 +183,7 @@ function connectSlideButtons(slider, buttons) {
   updateSelection();
 }
 
-// 5. 고정 팝업: 닫기 버튼을 누르면 숨긴다.
+// 5. 모바일은 작은 버튼으로 메뉴를 펼치고, 데스크톱은 기존 팝업을 사용한다.
 function initFloatingPanel() {
   const floating = document.querySelector(".floating");
   if (!floating) return;
@@ -138,6 +194,30 @@ function initFloatingPanel() {
     // _reset.css의 [hidden] 규칙이 display:flex보다 우선해 숨긴다.
     floating.hidden = true;
   });
+
+  const toggle = floating.querySelector(".floating__toggle");
+  const mobileClose = floating.querySelector(".floating__mobile-close");
+  function closeQuickMenu(returnFocus = false) {
+    floating.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    if (returnFocus) toggle.focus();
+  }
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    floating.classList.toggle("is-open", !isOpen);
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+  });
+  mobileClose.addEventListener("click", () => closeQuickMenu(true));
+  floating.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => closeQuickMenu());
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && floating.classList.contains("is-open")) closeQuickMenu(true);
+  });
+  document.addEventListener("click", (event) => {
+    if (!floating.contains(event.target)) closeQuickMenu();
+  });
+  window.matchMedia("(max-width: 768px)").addEventListener("change", () => closeQuickMenu());
 }
 
 // 6. 전체 메뉴: 열기·닫기와 키보드 포커스를 처리한다.
@@ -208,6 +288,7 @@ function initNavigation() {
 
 initHeroSlider();
 initProductSlider();
+initBrandMessage();
 initCategorySlider();
 initBrandSlider();
 initFloatingPanel();

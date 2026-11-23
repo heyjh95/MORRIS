@@ -7,14 +7,8 @@
   row-gap: 48px;
   column-gap: 32px;
   width: 100%;
-  max-width: 1920px;
-  padding: 120px clamp(20px, 3vw, 40px);
-}
-
-.new-products__title {
-  font-size: 56px;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  max-width: $section-content-width + 80px;
+  padding: 120px $section-padding-inline;
 }
 
 .new-products__description {
@@ -39,7 +33,6 @@
 }
 
 .new-products__all-icon {
-  margin-top: 2px;
   font-size: 22px;
 }
 
@@ -109,7 +102,11 @@
   border: 1px solid $text-color;
   border-radius: 50%;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 24;
+}
+
+.new-products__icon .icon {
+  width: 24px;
+  height: 24px;
 }
 
 .new-products__slide:hover .new-products__image-wrap {
@@ -206,4 +203,36 @@
 
 .new-products__nav-icon {
   font-size: 22px;
+}
+
+@media (max-width: $bp-mobile) {
+  .new-products {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 64px 20px;
+  }
+
+  .new-products__description {
+    margin-top: 14px;
+    font-size: 18px;
+  }
+
+  .new-products__all-link {
+    justify-self: start;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-width: 1px;
+  }
+
+  .new-products__info {
+    margin-top: 16px;
+    font-size: 16px;
+  }
+
+  .new-products__nav-button {
+    width: 44px;
+    height: 44px;
+  }
 }

@@ -10,7 +10,28 @@
   font-size: clamp(32px, 3vw, 48px);
   font-weight: 700;
   line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: left;
   color: $text-color;
+}
+
+// SVG 화살표는 같은 정사각형 안에서 중앙에 그린다.
+.icon {
+  display: block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: $bp-mobile) {
+  .section-title {
+    font-size: 32px;
+  }
 }
 
 .button {

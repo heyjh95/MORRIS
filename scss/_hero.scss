@@ -8,6 +8,11 @@
   height: 100vh;
 }
 
+// 이 화살표는 모바일에서만 표시한다.
+.main-visual__arrow {
+  display: none;
+}
+
 .main-visual__slides {
   height: 100%;
 }
@@ -162,6 +167,165 @@
 .main-visual__select[aria-pressed=true] + .main-visual__card-content,
 .main-visual__select[aria-pressed=true] + .main-visual__card-content .main-visual__card-detail {
   transform: translateY(0);
+}
+
+@media (max-width: $bp-mobile) {
+  .main-visual {
+    // 아래 64px은 슬라이드 조작, 80px은 고정 메뉴를 위한 공간이다.
+    --hero-footer-height: calc(144px + env(safe-area-inset-bottom, 0px));
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: $mobile-header-height;
+    padding-bottom: var(--hero-footer-height);
+    color: $text-color;
+    background-color: $surface-color;
+  }
+
+  .main-visual__slides {
+    height: auto;
+  }
+
+  .main-visual__slide {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - #{$mobile-header-height} - var(--hero-footer-height));
+    min-height: calc(100dvh - #{$mobile-header-height} - var(--hero-footer-height));
+  }
+
+  .main-visual__image-link {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    aspect-ratio: 1;
+    height: auto;
+    padding: 0;
+  }
+
+  .main-visual__image {
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+  }
+
+  .main-visual__card-content {
+    position: static;
+    z-index: auto;
+    flex-shrink: 0;
+    height: auto;
+    padding: 24px 24px 16px;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+  }
+
+  .main-visual__card-no {
+    display: none;
+  }
+
+  .main-visual__card-title {
+    margin-top: 0;
+    font-size: clamp(24px, 7vw, 30px);
+    line-height: 1.25;
+  }
+
+  .main-visual__card-detail {
+    flex: none;
+    gap: 18px;
+    margin-top: 12px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+
+  .main-visual__card-description {
+    display: block;
+    overflow: visible;
+    font-size: 16px;
+    line-height: 1.65;
+    color: $text-muted;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
+
+  .main-visual__card-link {
+    min-height: 44px;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: $text-color;
+    border: 1px solid $text-color;
+  }
+
+  .main-visual__card-link:hover {
+    color: $white;
+    background-color: $text-color;
+  }
+
+  .main-visual__pagination {
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    grid-template-columns: repeat(4, 44px);
+    gap: 0;
+    width: auto;
+    height: 44px;
+  }
+
+  .main-visual__card {
+    width: 44px;
+    height: 44px;
+    overflow: visible;
+  }
+
+  .main-visual__select::before {
+    inset: 17px;
+    background-color: $border-color;
+    border: 0;
+    border-radius: 50%;
+    transform: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .main-visual__select[aria-pressed=true]::before {
+    background-color: $primary-color;
+    transform: none;
+  }
+
+  .main-visual__select:focus-visible {
+    outline-color: $primary-color;
+  }
+
+  .main-visual__arrow {
+    display: grid;
+    position: absolute;
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    z-index: $layer-controls;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-radius: 50%;
+  }
+
+  .main-visual__arrow:focus-visible {
+    outline: 2px solid $primary-color;
+    outline-offset: 3px;
+  }
+
+  .main-visual__arrow .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .main-visual__prev {
+    left: 20px;
+  }
+
+  .main-visual__next {
+    right: 20px;
+  }
 }
 
 .main-visual__select[aria-pressed=true] + .main-visual__card-content .main-visual__card-detail {

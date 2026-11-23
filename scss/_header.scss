@@ -251,7 +251,7 @@
 
 @media (max-width: $bp-mobile) {
   .header {
-    --header-height: 74px;
+    --header-height: #{$mobile-header-height};
     column-gap: 16px;
     padding-inline: 16px;
   }

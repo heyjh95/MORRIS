@@ -62,3 +62,14 @@ test("Both languages keep the same slide IDs and local image order", () => {
   assert.deepEqual(ids(pages[0]), ids(pages[1]));
   assert.deepEqual(images(pages[0]), images(pages[1]));
 });
+
+test("Shared SVG arrows reference existing symbols", () => {
+  for (const path of pages) {
+    const references = Array.from(read(path).matchAll(/<use href="([^"]+)#([^"]+)"/g));
+    assert.ok(references.length > 0, path);
+    for (const [, asset, symbol] of references) {
+      const source = readFileSync(resolve(dirname(path), asset), "utf8");
+      assert.ok(source.includes('id="' + symbol + '"'), path + ": missing SVG symbol " + symbol);
+    }
+  }
+});

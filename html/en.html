@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="../scss/_reset.css" />
     <link rel="stylesheet" href="../css/layout.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=favorite,home,search,settings,arrow_outward,arrow_forward_ios,arrow_back_ios" />
     <script src="../js/main.js" defer></script>
     <meta name="description" content="Explore MORIS products, brands, and innovation." />
     <meta name="theme-color" content="#ffffff" />
@@ -141,14 +140,24 @@
           </div>
 
         </div>
+        <button type="button" class="main-visual__arrow main-visual__prev" aria-label="Previous slide">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-left"></use></svg>
+        </button>
+        <button type="button" class="main-visual__arrow main-visual__next" aria-label="Next slide">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-right"></use></svg>
+        </button>
       </section>
 
       <!-- 고정 팝업 -->
       <section class="floating">
+        <button type="button" class="floating__toggle" aria-controls="quick-menu" aria-expanded="false">
+          <span>Store &amp; contact</span><span aria-hidden="true">↗</span>
+        </button>
         <button class="floating__close" type="button" aria-label="Close popup">
           <img src="../images/common/floating_close.svg" alt="" />
         </button>
-        <div class="floating__popup">
+        <div class="floating__popup" id="quick-menu">
+          <button type="button" class="floating__mobile-close" aria-label="Close menu">×</button>
           <img class="floating__logo" src="../images/common/floating_logo.svg" alt="MORIS" />
           <div class="floating__links">
             <a href="#" class="floating__store">
@@ -166,7 +175,7 @@
           <h2 class="section-title new-products__title">NEW PRODUCT</h2>
           <p class="new-products__description">Discover new -<br />MORIS product collections</p>
         </div>
-        <a href="#" class="button new-products__all-link">All products<span class="material-symbols-outlined new-products__all-icon" aria-hidden="true">arrow_outward</span></a>
+        <a href="#" class="button new-products__all-link">All products<svg class="icon new-products__all-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
         <div class="new-products__slider swiper">
           <ul class="swiper-wrapper">
             <li class="new-products__slide swiper-slide">
@@ -174,7 +183,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid01.jpg" alt="" />
                 </div>
-                <div class="new-products__info">Prime Glitter Highlighter S<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">Prime Glitter Highlighter S<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
@@ -182,7 +191,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid02.jpg" alt="" />
                 </div>
-                <div class="new-products__info">Highlighter S Antique<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">Highlighter S Antique<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
@@ -190,7 +199,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid03.jpg" alt="" />
                 </div>
-                <div class="new-products__info">Highlighter M Mild<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">Highlighter M Mild<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
@@ -198,7 +207,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid04.jpg" alt="" />
                 </div>
-                <div class="new-products__info">Sign Pen S Plus<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">Sign Pen S Plus<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
@@ -206,7 +215,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid05.jpg" alt="" />
                 </div>
-                <div class="new-products__info">Sign Pen S 12-Color Set<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">Sign Pen S 12-Color Set<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
 
@@ -215,10 +224,10 @@
             <div class="swiper-scrollbar new-products__scrollbar"></div>
             <div class="new-products__navigation">
               <button type="button" class="new-products__nav-button new-products__prev" aria-label="Previous product">
-                <span class="material-symbols-outlined new-products__nav-icon" aria-hidden="true">arrow_back_ios</span>
+                <svg class="icon new-products__nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-left"></use></svg>
               </button>
               <button type="button" class="new-products__nav-button new-products__next" aria-label="Next product">
-                <span class="material-symbols-outlined new-products__nav-icon" aria-hidden="true">arrow_forward_ios</span>
+                <svg class="icon new-products__nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-right"></use></svg>
               </button>
             </div>
           </div>
@@ -241,61 +250,61 @@
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-highlighter" aria-pressed="true">
                 <span class="product-categories__button-label">Highlighter</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-boardmarker" aria-pressed="false">
                 <span class="product-categories__button-label">Whiteboard Marker</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-permanent" aria-pressed="false">
                 <span class="product-categories__button-label">Permanent Marker</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-namepen" aria-pressed="false">
                 <span class="product-categories__button-label">Name Pen</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-signpen" aria-pressed="false">
                 <span class="product-categories__button-label">Sign Pen</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-coloring" aria-pressed="false">
                 <span class="product-categories__button-label">Coloring / Brush</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-lifestyle" aria-pressed="false">
                 <span class="product-categories__button-label">Home &amp; DIY Marker</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-industrial" aria-pressed="false">
                 <span class="product-categories__button-label">Industrial Marker</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-ballpoint" aria-pressed="false">
                 <span class="product-categories__button-label">Ballpoint Pen</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-pencil" aria-pressed="false">
                 <span class="product-categories__button-label">Mechanical Pencil</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
 
@@ -306,7 +315,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-highlighter">Highlighter</h3>
                   <p class="product-categories__description">Keep your reading and thinking in motion. Highlight what matters with a single click and no cap to open or close.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Highlighter products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Highlighter products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td01.png" alt="MORIS Highlighter products" />
@@ -316,7 +325,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-boardmarker">Whiteboard Marker</h3>
                   <p class="product-categories__description">Capture ideas the moment they appear. Clear, vivid writing for classrooms and meetings without breaking the flow.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Whiteboard Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Whiteboard Marker products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td02.png" alt="MORIS Whiteboard Marker products" />
@@ -326,7 +335,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-permanent">Permanent Marker</h3>
                   <p class="product-categories__description">Mark clearly on a variety of surfaces when it matters. One click provides quick and reliable marking.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Permanent Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Permanent Marker products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td03.png" alt="MORIS Permanent Marker products" />
@@ -336,7 +345,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-namepen">Name Pen</h3>
                   <p class="product-categories__description">Label belongings and everyday essentials with precise, legible writing. Convenient identification with just one click.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Name Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Name Pen products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td04.png" alt="MORIS Name Pen products" />
@@ -346,7 +355,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-signpen">Sign Pen</h3>
                   <p class="product-categories__description">From notes and handwriting to creative sketches, enjoy a comfortable writing feel and effortless expression.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Sign Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Sign Pen products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td05.png" alt="MORIS Sign Pen products" />
@@ -356,7 +365,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-coloring">Coloring / Brush</h3>
                   <p class="product-categories__description">Bring imagination to life with rich colors and versatile lines, from delicate details to broad brush strokes.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Coloring / Brush products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Coloring / Brush products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td06.png" alt="MORIS Coloring / Brush products" />
@@ -366,7 +375,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-lifestyle">Home &amp; DIY Marker</h3>
                   <p class="product-categories__description">Make everyday organizing, decorating, and creating easier with versatile markers for home and DIY projects.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Home &amp; DIY Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Home &amp; DIY Marker products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td07.png" alt="MORIS Home &amp; DIY Marker products" />
@@ -376,7 +385,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-industrial">Industrial Marker</h3>
                   <p class="product-categories__description">Clear, dependable marking for demanding work environments, designed for quick use and confident results.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Industrial Marker products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Industrial Marker products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td08.png" alt="MORIS Industrial Marker products" />
@@ -386,7 +395,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-ballpoint">Ballpoint Pen</h3>
                   <p class="product-categories__description">Write down everyday thoughts with smooth, steady ink flow and a comfortable writing experience.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Ballpoint Pen products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Ballpoint Pen products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td09.png" alt="MORIS Ballpoint Pen products" />
@@ -396,7 +405,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-pencil">Mechanical Pencil</h3>
                   <p class="product-categories__description">From quick notes to detailed drawings, enjoy a stable grip and precise control for every line.</p>
-                  <a class="product-categories__link" href="#" aria-label="View all Mechanical Pencil products">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="View all Mechanical Pencil products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td10.png" alt="MORIS Mechanical Pencil products" />
@@ -441,7 +450,7 @@
                   <div class="brands__info">
                     <h4 class="brands__tagline">No cap, Just Click.</h4>
                     <p class="brands__description">JUSTCLICK is designed for instant one-handed use without the need to open or close a cap. Built around natural hand movements, it helps keep your creative and everyday tasks flowing.</p>
-                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                    <a href="#" class="button brands__link">View all<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                   </div>
                 </div>
               </article>
@@ -457,7 +466,7 @@
                   <div class="brands__info">
                     <h4 class="brands__tagline">Twin type, One tool</h4>
                     <p class="brands__description">Combining creative expression and comfort, BAMBOO dual-tip markers are inspired by the natural elegance of bamboo. Flexible tips support writing, illustration, and coloring.</p>
-                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                    <a href="#" class="button brands__link">View all<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                   </div>
                 </div>
               </article>
@@ -473,7 +482,7 @@
                   <div class="brands__info">
                     <h4 class="brands__tagline">Add Character to Everyday Writing.</h4>
                     <p class="brands__description">STARFLO 3C reimagines the classic three-color ballpoint pen with distinctive styling. Its slim body and hybrid ink deliver a comfortable writing experience and enjoyable color selection.</p>
-                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                    <a href="#" class="button brands__link">View all<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                   </div>
                 </div>
               </article>
@@ -489,7 +498,7 @@
                   <div class="brands__info">
                     <h4 class="brands__tagline">Write in a Smoother Flow.</h4>
                     <p class="brands__description">EASYFLUID introduces smoother, more consistent writing through low-viscosity hybrid ink, designed for comfort across everyday writing situations.</p>
-                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                    <a href="#" class="button brands__link">View all<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                   </div>
                 </div>
               </article>

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="../scss/_reset.css" />
     <link rel="stylesheet" href="../css/layout.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=favorite,home,search,settings,arrow_outward,arrow_forward_ios,arrow_back_ios" />
     <script src="../js/main.js" defer></script>
     <meta name="description" content="MORIS의 제품과 브랜드 이야기, 연구개발 소식을 만나보세요." />
     <meta name="theme-color" content="#ffffff" />
@@ -141,14 +140,24 @@
           </div>
 
         </div>
+        <button type="button" class="main-visual__arrow main-visual__prev" aria-label="이전 슬라이드">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-left"></use></svg>
+        </button>
+        <button type="button" class="main-visual__arrow main-visual__next" aria-label="다음 슬라이드">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-right"></use></svg>
+        </button>
       </section>
 
       <!-- 고정 팝업 -->
       <section class="floating">
+        <button type="button" class="floating__toggle" aria-controls="quick-menu" aria-expanded="false">
+          <span>스토어·문의</span><span aria-hidden="true">↗</span>
+        </button>
         <button class="floating__close" type="button" aria-label="팝업 닫기">
           <img src="../images/common/floating_close.svg" alt="" />
         </button>
-        <div class="floating__popup">
+        <div class="floating__popup" id="quick-menu">
+          <button type="button" class="floating__mobile-close" aria-label="메뉴 닫기">×</button>
           <img class="floating__logo" src="../images/common/floating_logo.svg" alt="MORIS" />
           <div class="floating__links">
             <a href="#" class="floating__store">
@@ -166,7 +175,7 @@
           <h2 class="section-title new-products__title">NEW PRODUCT</h2>
           <p class="new-products__description">새롭게 선보이는 -<br />모리스의 제품 컬렉션</p>
         </div>
-        <a href="#" class="button new-products__all-link">All product<span class="material-symbols-outlined new-products__all-icon" aria-hidden="true">arrow_outward</span></a>
+        <a href="#" class="button new-products__all-link">All product<svg class="icon new-products__all-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
         <div class="new-products__slider swiper">
           <ul class="swiper-wrapper">
             <li class="new-products__slide swiper-slide">
@@ -174,7 +183,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid01.jpg" alt="" />
                 </div>
-                <div class="new-products__info">Prime 글리터 형광펜 S<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">Prime 글리터 형광펜 S<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
@@ -182,7 +191,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid02.jpg" alt="" />
                 </div>
-                <div class="new-products__info">형광펜 S 앤티크<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">형광펜 S 앤티크<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
@@ -190,7 +199,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid03.jpg" alt="" />
                 </div>
-                <div class="new-products__info">형광펜 M 마일드<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">형광펜 M 마일드<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
@@ -198,7 +207,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid04.jpg" alt="" />
                 </div>
-                <div class="new-products__info">사인펜 S 플러스<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">사인펜 S 플러스<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
             <li class="new-products__slide swiper-slide">
@@ -206,7 +215,7 @@
                 <div class="new-products__image-wrap">
                   <img class="new-products__image" src="../images/main/grid05.jpg" alt="" />
                 </div>
-                <div class="new-products__info">사인펜 S 12색 세트<span class="material-symbols-outlined new-products__icon" aria-hidden="true">arrow_outward</span></div>
+                <div class="new-products__info">사인펜 S 12색 세트<span class="new-products__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span></div>
               </a>
             </li>
 
@@ -215,10 +224,10 @@
             <div class="swiper-scrollbar new-products__scrollbar"></div>
             <div class="new-products__navigation">
               <button type="button" class="new-products__nav-button new-products__prev" aria-label="이전 제품">
-                <span class="material-symbols-outlined new-products__nav-icon" aria-hidden="true">arrow_back_ios</span>
+                <svg class="icon new-products__nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-left"></use></svg>
               </button>
               <button type="button" class="new-products__nav-button new-products__next" aria-label="다음 제품">
-                <span class="material-symbols-outlined new-products__nav-icon" aria-hidden="true">arrow_forward_ios</span>
+                <svg class="icon new-products__nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-right"></use></svg>
               </button>
             </div>
           </div>
@@ -241,61 +250,61 @@
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-highlighter" aria-pressed="true">
                 <span class="product-categories__button-label">형광펜</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-boardmarker" aria-pressed="false">
                 <span class="product-categories__button-label">보드마카</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-permanent" aria-pressed="false">
                 <span class="product-categories__button-label">유성매직</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-namepen" aria-pressed="false">
                 <span class="product-categories__button-label">네임펜</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-signpen" aria-pressed="false">
                 <span class="product-categories__button-label">사인펜</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-coloring" aria-pressed="false">
                 <span class="product-categories__button-label">컬러링/브러쉬</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-lifestyle" aria-pressed="false">
                 <span class="product-categories__button-label">생활마카</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-industrial" aria-pressed="false">
                 <span class="product-categories__button-label">산업마카</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-ballpoint" aria-pressed="false">
                 <span class="product-categories__button-label">볼펜</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
               <button type="button" class="product-categories__button" aria-controls="panel-pencil" aria-pressed="false">
                 <span class="product-categories__button-label">샤프</span>
-                <span class="material-symbols-outlined product-categories__button-icon" aria-hidden="true">arrow_outward</span>
+                <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
 
@@ -306,7 +315,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-highlighter">형광펜</h3>
                   <p class="product-categories__description">읽고 생각하는 흐름은 그대로, 중요한 문장은 더 빠르고 선명하게. 캡을 열고 닫는 동작 없이 클릭 한 번으로 시작되는 자연스러운 하이라이팅.</p>
-                  <a class="product-categories__link" href="#" aria-label="형광펜 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="형광펜 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td01.png" alt="모리스 형광펜 제품" />
@@ -316,7 +325,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-boardmarker">보드마카</h3>
                   <p class="product-categories__description">떠오른 아이디어를 놓치지 않고, 말과 생각이 오가는 순간 바로 보드 위로. 회의와 수업의 흐름을 방해하지 않는 빠른 시작과 또렷하고 선명한 필기.</p>
-                  <a class="product-categories__link" href="#" aria-label="보드마카 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="보드마카 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td02.png" alt="모리스 보드마카 제품" />
@@ -326,7 +335,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-permanent">유성매직</h3>
                   <p class="product-categories__description">남겨야 할 표시가 필요한 순간, 다양한 표면 위에 빠르고 분명하게. 캡을 찾거나 여닫을 필요 없이 클릭 한 번으로 시작되는 안정적인 마킹.</p>
-                  <a class="product-categories__link" href="#" aria-label="유성매직 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="유성매직 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td03.png" alt="모리스 유성매직 제품" />
@@ -336,7 +345,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-namepen">네임펜</h3>
                   <p class="product-categories__description">이름과 정보가 필요한 곳마다, 작은 글자와 표시까지 또렷하고 분명하게. 소지품부터 생활용품까지 클릭 한 번으로 간편해지는 일상의 구분과 기록.</p>
-                  <a class="product-categories__link" href="#" aria-label="네임펜 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="네임펜 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td04.png" alt="모리스 네임펜 제품" />
@@ -346,7 +355,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-signpen">사인펜</h3>
                   <p class="product-categories__description">메모와 필기, 가벼운 드로잉까지 손끝의 움직임을 부드럽고 자연스럽게. 생각이 떠오르는 순간 바로 시작되는 편안한 필기감과 자유로운 표현.</p>
-                  <a class="product-categories__link" href="#" aria-label="사인펜 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="사인펜 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td05.png" alt="모리스 사이펜 제품" />
@@ -356,7 +365,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-coloring">컬러링/브러쉬</h3>
                   <p class="product-categories__description">손끝에서 시작된 상상을 풍부한 색과 다양한 굵기의 선으로 다채롭게. 섬세한 디테일부터 넓은 채색까지, 그리고 칠하는 즐거움을 한층 자유롭게.</p>
-                  <a class="product-categories__link" href="#" aria-label="컬러링/브러쉬 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="컬러링/브러쉬 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td06.png" alt="모리스 컬러링 브러쉬 제품" />
@@ -366,7 +375,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-lifestyle">생활마카</h3>
                   <p class="product-categories__description">익숙한 물건과 공간에 작은 아이디어를 더해 나만의 방식으로 새롭게. 꾸미고 정리하고 만드는 일상을 더 쉽고 즐겁게 바꾸는 다양한 표현과 마킹.</p>
-                  <a class="product-categories__link" href="#" aria-label="생활마카 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="생활마카 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td07.png" alt="모리스 생활마카 제품" />
@@ -376,7 +385,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-industrial">산업마카</h3>
                   <p class="product-categories__description">빠른 판단과 정확한 표시가 필요한 현장에서도 흐트러짐 없이 선명하게. 작업의 리듬을 방해하지 않는 즉각적인 사용과 안정적이고 분명한 마킹.</p>
-                  <a class="product-categories__link" href="#" aria-label="산업마카 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="산업마카 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td08.png" alt="모리스 산업마카 제품" />
@@ -386,7 +395,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-ballpoint">볼펜</h3>
                   <p class="product-categories__description">스쳐 가는 생각과 매일의 기록을 종이 위에 부드럽고 자연스럽게. 오래 써도 편안한 균형감과 끊김 없이 이어지는 매끄럽고 안정적인 필기감.</p>
-                  <a class="product-categories__link" href="#" aria-label="볼펜 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="볼펜 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td09.png" alt="모리스 볼펜 제품" />
@@ -396,7 +405,7 @@
                 <div class="product-categories__info">
                   <h3 class="product-categories__heading" id="heading-pencil">샤프</h3>
                   <p class="product-categories__description">작은 메모부터 정교한 스케치까지, 의도한 선과 디테일을 흔들림 없이. 손끝의 미세한 움직임을 섬세하게 담아내는 안정적인 그립과 정밀한 컨트롤.</p>
-                  <a class="product-categories__link" href="#" aria-label="샤프 전체 제품 보기">All product<span class="material-symbols-outlined product-categories__link-icon" aria-hidden="true">arrow_outward</span></a>
+                  <a class="product-categories__link" href="#" aria-label="샤프 전체 제품 보기">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
                 <div class="product-categories__visual">
                   <img class="product-categories__image" src="../images/main/td10.png" alt="모리스 샤프 제품" />
@@ -441,7 +450,7 @@
                   <div class="brands__info">
                     <h4 class="brands__tagline">No cap, Just Click.</h4>
                     <p class="brands__description">JUSTCLICK은 캡을 열고 닫는 번거로움 없이 한 손으로 즉시 사용할 수 있도록 설계된 마커 브랜드입니다. 사용자의 자연스러운 움직임을 고려한 디자인으로, 짧은 순간에도 작업의 흐름을 끊지 않고 더욱 편리하고 효율적인 사용 경험을 제공합니다.</p>
-                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                    <a href="#" class="button brands__link">View all<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                   </div>
                 </div>
               </article>
@@ -457,7 +466,7 @@
                   <div class="brands__info">
                     <h4 class="brands__tagline">Twin type, One tool</h4>
                     <p class="brands__description">BAMBOO는 감성적인 표현과 편안한 사용감을 조화롭게 담아낸 모리스의 듀얼팁 컬러링 마커 브랜드입니다. 대나무에서 영감을 받은 디자인과 듀얼팁 구조를 통해 필기와 드로잉을 자연스럽게 이어주며, 다양한 창작 활동에 유연한 사용 경험을 제공합니다.</p>
-                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                    <a href="#" class="button brands__link">View all<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                   </div>
                 </div>
               </article>
@@ -473,7 +482,7 @@
                   <div class="brands__info">
                     <h4 class="brands__tagline">Add Character to Everyday Writing.</h4>
                     <p class="brands__description">STARFLO 3C는 익숙한 3색 볼펜에 개성과 디자인 감각을 더해 새롭게 재해석한 모리스의 멀티컬러 볼펜입니다. 슬림한 바디와 차별화된 헤더 디자인, 하이브리드 잉크를 적용해 편안한 필기감은 물론, 원하는 색상을 선택하는 즐거움까지 제공합니다.</p>
-                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                    <a href="#" class="button brands__link">View all<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                   </div>
                 </div>
               </article>
@@ -489,7 +498,7 @@
                   <div class="brands__info">
                     <h4 class="brands__tagline">Write in a Smoother Flow.</h4>
                     <p class="brands__description">EASYFLUID는 잉크의 흐름을 통해 새로운 필기 경험을 제안하는 모리스의 볼펜 브랜드입니다. 초저점도 하이브리드 잉크를 적용해 더욱 부드럽고 안정적인 필기감을 구현했으며, 일상 속 다양한 필기 환경에서 편안하고 일관된 사용 경험을 제공합니다.</p>
-                    <a href="#" class="button brands__link">View all<span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+                    <a href="#" class="button brands__link">View all<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                   </div>
                 </div>
               </article>

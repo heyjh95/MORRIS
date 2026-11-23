@@ -14,7 +14,10 @@ $scrollbar-track: $border-color;
 $scrollbar-thumb: $primary-color;
 
 $container-maxwidth: 1200px;
+$section-content-width: 1840px;
+$section-padding-inline: clamp(20px, 3vw, 40px);
 $bp-mobile: 768px;
+$mobile-header-height: 74px;
 $bp-tablet: 1024px;
 $bp-menu: 1100px; // 헤더의 가로 메뉴를 숨기는 기준.
 $bp-layout: 1200px; // 카테고리 배치를 한 열로 바꾸는 기준.
