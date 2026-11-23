@@ -1,40 +1,14 @@
-@use "sass:list";
-
+// 실제 레이아웃에서 사용하는 믹스인만 둔다.
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-@mixin background-cover {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-@mixin long-shadow($length, $shadow-color) {
-  $shadows: ();
-
-  @for $i from 1 through $length {
-    $shadows: list.append(
-      $shadows,
-      ($i * 1px) ($i * 1px) 0 $shadow-color,
-      comma
-    );
-  }
-  text-shadow: $shadows;
-}
-
-@mixin ellipsis($line: 2) {
+@mixin ellipsis($lines: 2) {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: $line;
-  line-clamp: $line;
-}
-
-@mixin button-base {
-  padding: 12px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
 }

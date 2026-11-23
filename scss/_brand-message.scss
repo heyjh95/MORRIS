@@ -1,0 +1,87 @@
+@use "vars" as *;
+
+.brand-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 56px);
+  width: 100%;
+  min-height: 340px;
+  margin: 0 auto;
+  padding: 100px 0 250px;
+}
+
+.brand-message__heading {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.brand-message__line {
+  position: absolute;
+  top: -32px;
+  left: 0;
+  width: 48px;
+  height: 6px;
+  background-color: $primary-color;
+}
+
+.brand-message__title {
+  font-size: clamp(64px, 5vw, 120px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+  color: $text-color;
+}
+
+.brand-message__description {
+  flex: 0 1 380px;
+  min-width: 0;
+  max-width: 380px;
+  font-size: clamp(20px, 1.6vw, 24px);
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: -0.02em;
+  text-align: left;
+  word-break: keep-all;
+  color: $text-muted;
+}
+
+@media (max-width: $bp-layout) {
+  .brand-message {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    min-height: auto;
+    padding: 120px 48px;
+  }
+  .brand-message__title {
+    font-size: clamp(36px, 5vw, 64px);
+  }
+  .brand-message__description {
+    flex: none;
+    width: 100%;
+    max-width: 680px;
+    font-size: clamp(18px, 2.2vw, 24px);
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .brand-message {
+    gap: 24px;
+    padding: 80px 20px;
+  }
+  .brand-message__line {
+    top: -24px;
+    width: 36px;
+    height: 3px;
+  }
+  .brand-message__title {
+    font-size: clamp(16px, 5vw, 36px);
+  }
+  .brand-message__description {
+    max-width: 100%;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+}

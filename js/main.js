@@ -1,21 +1,26 @@
 "use strict";
 
-// Gracefully degrade if the CDN is unavailable.
-const swiperAvailable = typeof window.Swiper === "function";
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// 함수 하나가 화면의 기능 하나를 맡는다.
+function initHeroSlider() {
+  const hero = document.querySelector(".main-visual");
+  if (!hero) return;
 
-// Main visual: pagination cards are authored in HTML.
-const hero = document.querySelector(".main-visual");
-const bullets = hero ? [...hero.querySelectorAll(".pagination .swiper-pagination-bullet")] : [];
-function syncBullets(index) {
-  bullets.forEach((bullet, i) => {
-    const active = i === index;
-    bullet.classList.toggle("swiper-pagination-bullet-active", active);
-    bullet.setAttribute("aria-current", String(active));
-  });
-}
+  const cards = hero.querySelectorAll(".swiper-pagination-bullet");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-if (hero && swiperAvailable) {
+  function showCurrentCard(index) {
+    cards.forEach((card, cardIndex) => {
+      const isCurrent = cardIndex === index;
+      card.classList.toggle("swiper-pagination-bullet-active", isCurrent);
+      card.querySelector(".main-visual__select").setAttribute("aria-current", String(isCurrent));
+    });
+  }
+
+  if (typeof window.Swiper !== "function") {
+    showCurrentCard(0);
+    return;
+  }
+
   const slider = new Swiper(hero, {
     slidesPerView: 1,
     loop: true,
@@ -23,27 +28,26 @@ if (hero && swiperAvailable) {
     autoplay: prefersReducedMotion ? false : { delay: 4000, disableOnInteraction: false },
     grabCursor: true,
     on: {
-      init(swiper) { syncBullets(swiper.realIndex); },
-      slideChange(swiper) { syncBullets(swiper.realIndex); },
+      init(swiper) { showCurrentCard(swiper.realIndex); },
+      slideChange(swiper) { showCurrentCard(swiper.realIndex); },
     },
   });
-  bullets.forEach((bullet, index) => {
-    const activate = () => slider.slideToLoop(index);
-    bullet.addEventListener("click", activate);
-    bullet.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      event.preventDefault();
-      activate();
+
+  cards.forEach((card, index) => {
+    // button은 Enter와 Space도 click으로 처리한다.
+    card.querySelector(".main-visual__select").addEventListener("click", () => {
+      slider.slideToLoop(index);
     });
   });
-} else {
-  syncBullets(0);
 }
 
-// Product carousel uses responsive slide counts.
-const productCarousel = document.querySelector(".product .slider");
-if (productCarousel && swiperAvailable) {
-  new Swiper(productCarousel, {
+function initProductSlider() {
+  const slider = document.querySelector(".new-products__slider");
+  if (!slider || typeof window.Swiper !== "function") return;
+
+  const previous = slider.querySelector(".new-products__prev");
+  const next = slider.querySelector(".new-products__next");
+  new Swiper(slider, {
     slidesPerView: 1.2,
     spaceBetween: 16,
     grabCursor: true,
@@ -53,74 +57,118 @@ if (productCarousel && swiperAvailable) {
       1200: { slidesPerView: 4, spaceBetween: 20 },
     },
     scrollbar: {
-      el: ".product .product-scrollbar",
-      draggable: true,
-      hide: false,
-      snapOnRelease: true,
+      el: slider.querySelector(".new-products__scrollbar"),
+      draggable: true, hide: false, snapOnRelease: true,
     },
-    navigation: { prevEl: ".product-prev", nextEl: ".product-next" },
+    navigation: { prevEl: previous, nextEl: next },
+    // HTML에서 번역한 이름을 Swiper 초기화 후에도 유지한다.
+    a11y: {
+      prevSlideMessage: previous.getAttribute("aria-label"),
+      nextSlideMessage: next.getAttribute("aria-label"),
+    },
   });
 }
 
-// Floating promotional panel.
-const floating = document.querySelector(".floating");
-floating?.querySelector(".floatx-btn")?.addEventListener("click", () => {
-  floating.hidden = true;
-});
+function initFloatingPanel() {
+  const floating = document.querySelector(".floating");
+  if (!floating) return;
+  const closeButton = floating.querySelector(".floating__close");
+  if (!closeButton) return;
 
-// Category controls: retain existing BEM selectors and aria-controls IDs.
-const categoryButtons = [...document.querySelectorAll(".product2__button")];
-const categoryPanels = [...document.querySelectorAll(".product2__panel")];
-categoryButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const id = button.getAttribute("aria-controls");
-    const target = id ? document.getElementById(id) : null;
-    if (!target) return;
-    categoryButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-    categoryPanels.forEach((panel) => { panel.hidden = panel !== target; });
+  closeButton.addEventListener("click", () => {
+    // _reset.css의 [hidden] 규칙이 display:flex보다 우선해 숨긴다.
+    floating.hidden = true;
   });
-});
-
-// Full-screen navigation drawer.
-const header = document.querySelector(".header");
-const toggle = header?.querySelector(".header__menu-toggle");
-const drawer = document.getElementById("site-drawer");
-const english = document.documentElement.lang === "en";
-function setMenuOpen(open, returnFocus = false) {
-  if (!header || !toggle || !drawer) return;
-  drawer.hidden = !open;
-  header.classList.toggle("is-menu-open", open);
-  document.body.classList.toggle("is-site-menu-open", open);
-  toggle.setAttribute("aria-expanded", String(open));
-  toggle.setAttribute("aria-label", open
-    ? (english ? "Close menu" : "전체 메뉴 닫기")
-    : (english ? "Open menu" : "전체 메뉴 열기"));
-  if (open) drawer.querySelector("a")?.focus();
-  else if (returnFocus) toggle.focus();
 }
-if (header && toggle && drawer) {
-  toggle.addEventListener("click", () => setMenuOpen(drawer.hidden, !drawer.hidden));
+
+function initProductCategories() {
+  document.querySelectorAll(".product-categories").forEach((categories) => {
+    const buttons = categories.querySelectorAll(".product-categories__button");
+    const panels = categories.querySelectorAll(".product-categories__panel");
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const panelId = button.getAttribute("aria-controls");
+        const target = document.getElementById(panelId);
+        if (!target || !categories.contains(target)) return;
+
+        buttons.forEach((item) => {
+          item.setAttribute("aria-pressed", String(item === button));
+        });
+        panels.forEach((panel) => {
+          panel.hidden = panel !== target;
+        });
+      });
+    });
+  });
+}
+
+function initNavigation() {
+  const header = document.querySelector(".header");
+  if (!header) return;
+  const toggle = header.querySelector(".header__menu-toggle");
+  const drawer = header.querySelector(".header__drawer");
+  if (!toggle || !drawer) return;
+
+  // 언어별 문구는 템플릿이 data-* 속성으로 전달한다.
+  const openLabel = header.dataset.openLabel;
+  const closeLabel = header.dataset.closeLabel;
+
+  function openMenu() {
+    drawer.hidden = false;
+    header.classList.add("is-menu-open");
+    document.body.classList.add("is-site-menu-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", closeLabel);
+    drawer.querySelector("a").focus();
+  }
+
+  function closeMenu(returnFocus = true) {
+    drawer.hidden = true;
+    header.classList.remove("is-menu-open");
+    document.body.classList.remove("is-site-menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", openLabel);
+    if (returnFocus) toggle.focus();
+  }
+
+  toggle.addEventListener("click", () => {
+    if (drawer.hidden) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
   drawer.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setMenuOpen(false));
+    link.addEventListener("click", () => closeMenu(false));
   });
+
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !drawer.hidden) {
-      setMenuOpen(false, true);
+    if (drawer.hidden) return;
+    if (event.key === "Escape") {
+      closeMenu();
       return;
     }
-    if (event.key !== "Tab" || drawer.hidden) return;
-    const focusable = [...drawer.querySelectorAll("a[href], button:not([disabled])")];
-    if (!focusable.length) return;
-    const first = focusable[0], last = focusable[focusable.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
+    if (event.key !== "Tab") return;
+
+    // 닫기 버튼도 메뉴의 Tab 순환에 포함한다.
+    const focusable = [toggle, ...drawer.querySelectorAll("a[href], button:not([disabled])")];
+    const firstElement = focusable[0];
+    const lastElement = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === firstElement) {
       event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
       event.preventDefault();
-      first.focus();
+      firstElement.focus();
     }
   });
   document.addEventListener("click", (event) => {
-    if (!drawer.hidden && !header.contains(event.target)) setMenuOpen(false);
+    if (!drawer.hidden && !header.contains(event.target)) closeMenu(false);
   });
 }
+
+initHeroSlider();
+initProductSlider();
+initFloatingPanel();
+initProductCategories();
+initNavigation();

@@ -1,0 +1,175 @@
+@use "vars" as *;
+@use "sass:math";
+@use "mixins" as *;
+
+.main-visual {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.main-visual__slides {
+  height: 100%;
+}
+
+.main-visual__slide {
+  height: 100%;
+}
+
+.main-visual__image-link,
+.main-visual__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.main-visual__image {
+  object-fit: cover;
+}
+
+.main-visual__pagination {
+  display: grid;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: $layer-controls;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: 20px;
+  width: min($container-maxwidth, 100% - 40px);
+  height: $hero-card-height;
+  transform: translateX(-50%);
+}
+
+.main-visual .swiper-pagination-bullet {
+  display: block;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: $hero-card-height;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  color: $white;
+  background: transparent;
+  border-radius: 0;
+  opacity: 1;
+  cursor: pointer;
+}
+
+// 접힌 배경 비율 = 노출 높이 120px / 전체 높이 270px.
+.main-visual .swiper-pagination-bullet::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.35);
+  border-bottom: 3px solid transparent;
+  content: "";
+  transform: scaleY(math.div($hero-card-peek, $hero-card-height));
+  transform-origin: bottom;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease, border-color 0.3s ease;
+}
+
+// 선택 버튼은 카드 전체를 덮고, 상세 링크는 별도로 클릭할 수 있다.
+.main-visual__select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.main-visual__select:focus-visible {
+  outline: 2px solid $white;
+  outline-offset: -4px;
+}
+
+// 이동 거리 = 전체 높이 270px - 노출 높이 120px.
+.main-visual__card-content {
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  transform: translateY($hero-card-height - $hero-card-peek);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.main-visual__card-no {
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.main-visual__card-title {
+  flex-shrink: 0;
+  margin-top: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.main-visual__card-detail {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(24px);
+  transition: opacity 0.4s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.4s;
+}
+
+.main-visual__card-description {
+  @include ellipsis(3);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.main-visual__card-link {
+  pointer-events: auto;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 20px;
+  padding: 6px 20px;
+  font-size: 20px;
+  color: $white;
+  border: 2px solid $white;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.main-visual__card-link:hover {
+  color: $text-color;
+  background-color: $white;
+}
+
+.main-visual .swiper-pagination-bullet-active::before {
+  background-color: rgba(0, 0, 0, 0.65);
+  border-bottom-color: $primary-color;
+  transform: scaleY(1);
+}
+
+.swiper-pagination-bullet-active .main-visual__card-content,
+.swiper-pagination-bullet-active .main-visual__card-detail {
+  transform: translateY(0);
+}
+
+.swiper-pagination-bullet-active .main-visual__card-detail {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.12s;
+}

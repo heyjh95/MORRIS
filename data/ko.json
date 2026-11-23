@@ -1,0 +1,159 @@
+{
+  "title": "MORIS의 이야기가 시작되는 곳",
+  "description": "MORIS의 제품과 브랜드 이야기, 연구개발 소식을 만나보세요.",
+  "ogTitle": "MORIS의 이야기가 시작되는 곳",
+  "ogDescription": "MORIS의 다양한 이야기를 만나보세요.",
+  "ogLocale": "ko_KR",
+  "twitterTitle": "MORIS | 모리스가 시작되는 곳",
+  "twitterDescription": "궁금했던 MORIS의 이야기, 지금 만나보세요!",
+  "navigation": {
+    "products": "상품소개",
+    "brands": "회사소개",
+    "research": "연구개발",
+    "press": "홍보센터",
+    "contact": "문의하기"
+  },
+  "labels": {
+    "navigation": "주 메뉴",
+    "language": "언어 선택",
+    "languageCode": "KR",
+    "openMenu": "전체 메뉴 열기",
+    "closeMenu": "전체 메뉴 닫기",
+    "drawer": "전체 메뉴",
+    "hero": "메인 비주얼 슬라이드 선택",
+    "closePopup": "팝업 닫기",
+    "storeLines": [
+      "온라인 스토어",
+      "바로가기"
+    ],
+    "inquiry": "대량 구매 문의",
+    "allProducts": "All product",
+    "previousProduct": "이전 제품",
+    "nextProduct": "다음 제품",
+    "categoryTitle": "제품 카테고리",
+    "brandTitle": "브랜드",
+    "brandSelection": "브랜드 선택",
+    "viewAll": "View all"
+  },
+  "newProductsDescription": [
+    "새롭게 선보이는 -",
+    "모리스의 제품 컬렉션"
+  ],
+  "brandMessage": {
+    "heading": "순간의 흐름을 이어가는 도구",
+    "description": "모리스는 일상의 순간을 이어주는 문구를 만듭니다. 생각과 감정의 흐름이 끊기지 않도록, 더 나은 경험을 제안합니다."
+  },
+  "hero": {
+    "01": {
+      "title": "Prime 글리터 형광펜 S",
+      "description": "안정적인 그립감의 JUSTCLICK Prime. 글리터 잉크와 손에 감기는 육각형 바디가 특징입니다.",
+      "label": "슬라이드 보기 1: Prime 글리터 형광펜 S"
+    },
+    "02": {
+      "title": "Prime 형광펜 S 앤티크",
+      "description": "안정적인 그립감의 JUSTCLICK Prime. 독보적인 컬러감의 잉크와 손에 감기는 육각형 바디가 특징입니다.",
+      "label": "슬라이드 보기 2: Prime 형광펜 S 앤티크"
+    },
+    "03": {
+      "title": "Prime 형광펜 M 마일드",
+      "description": "안정적인 그립감의 JUSTCLICK Prime. 부드러운 마일드 컬러의 잉크와 손에 감기는 팔각형 바디가 특징입니다.",
+      "label": "슬라이드 보기 3: Prime 형광펜 M 마일드"
+    },
+    "04": {
+      "title": "사인펜 S 플러스",
+      "description": "한 번의 클릭으로 바로 사용 가능한 사인펜 S 플러스. 뚜껑 없는 수성 펜으로, 부드러운 필기감을 선사하는 얇은 팁이 특징입니다.",
+      "label": "슬라이드 보기 4: 사인펜 S 플러스"
+    }
+  },
+  "products": {
+    "1": "Prime 글리터 형광펜 S",
+    "2": "형광펜 S 앤티크",
+    "3": "형광펜 M 마일드",
+    "4": "사인펜 S 플러스",
+    "5": "사인펜 S 12색 세트"
+  },
+  "categories": {
+    "highlighter": {
+      "title": "형광펜",
+      "description": "읽고 생각하는 흐름은 그대로, 중요한 문장은 더 빠르고 선명하게. 캡을 열고 닫는 동작 없이 클릭 한 번으로 시작되는 자연스러운 하이라이팅.",
+      "linkLabel": "형광펜 전체 제품 보기",
+      "imageAlt": "모리스 형광펜 제품"
+    },
+    "boardmarker": {
+      "title": "보드마카",
+      "description": "떠오른 아이디어를 놓치지 않고, 말과 생각이 오가는 순간 바로 보드 위로. 회의와 수업의 흐름을 방해하지 않는 빠른 시작과 또렷하고 선명한 필기.",
+      "linkLabel": "보드마카 전체 제품 보기",
+      "imageAlt": "모리스 보드마카 제품"
+    },
+    "permanent": {
+      "title": "유성매직",
+      "description": "남겨야 할 표시가 필요한 순간, 다양한 표면 위에 빠르고 분명하게. 캡을 찾거나 여닫을 필요 없이 클릭 한 번으로 시작되는 안정적인 마킹.",
+      "linkLabel": "유성매직 전체 제품 보기",
+      "imageAlt": "모리스 유성매직 제품"
+    },
+    "namepen": {
+      "title": "네임펜",
+      "description": "이름과 정보가 필요한 곳마다, 작은 글자와 표시까지 또렷하고 분명하게. 소지품부터 생활용품까지 클릭 한 번으로 간편해지는 일상의 구분과 기록.",
+      "linkLabel": "네임펜 전체 제품 보기",
+      "imageAlt": "모리스 네임펜 제품"
+    },
+    "signpen": {
+      "title": "사인펜",
+      "description": "메모와 필기, 가벼운 드로잉까지 손끝의 움직임을 부드럽고 자연스럽게. 생각이 떠오르는 순간 바로 시작되는 편안한 필기감과 자유로운 표현.",
+      "linkLabel": "사인펜 전체 제품 보기",
+      "imageAlt": "모리스 사이펜 제품"
+    },
+    "coloring": {
+      "title": "컬러링/브러쉬",
+      "description": "손끝에서 시작된 상상을 풍부한 색과 다양한 굵기의 선으로 다채롭게. 섬세한 디테일부터 넓은 채색까지, 그리고 칠하는 즐거움을 한층 자유롭게.",
+      "linkLabel": "컬러링/브러쉬 전체 제품 보기",
+      "imageAlt": "모리스 컬러링 브러쉬 제품"
+    },
+    "lifestyle": {
+      "title": "생활마카",
+      "description": "익숙한 물건과 공간에 작은 아이디어를 더해 나만의 방식으로 새롭게. 꾸미고 정리하고 만드는 일상을 더 쉽고 즐겁게 바꾸는 다양한 표현과 마킹.",
+      "linkLabel": "생활마카 전체 제품 보기",
+      "imageAlt": "모리스 생활마카 제품"
+    },
+    "industrial": {
+      "title": "산업마카",
+      "description": "빠른 판단과 정확한 표시가 필요한 현장에서도 흐트러짐 없이 선명하게. 작업의 리듬을 방해하지 않는 즉각적인 사용과 안정적이고 분명한 마킹.",
+      "linkLabel": "산업마카 전체 제품 보기",
+      "imageAlt": "모리스 산업마카 제품"
+    },
+    "ballpoint": {
+      "title": "볼펜",
+      "description": "스쳐 가는 생각과 매일의 기록을 종이 위에 부드럽고 자연스럽게. 오래 써도 편안한 균형감과 끊김 없이 이어지는 매끄럽고 안정적인 필기감.",
+      "linkLabel": "볼펜 전체 제품 보기",
+      "imageAlt": "모리스 볼펜 제품"
+    },
+    "pencil": {
+      "title": "샤프",
+      "description": "작은 메모부터 정교한 스케치까지, 의도한 선과 디테일을 흔들림 없이. 손끝의 미세한 움직임을 섬세하게 담아내는 안정적인 그립과 정밀한 컨트롤.",
+      "linkLabel": "샤프 전체 제품 보기",
+      "imageAlt": "모리스 샤프 제품"
+    }
+  },
+  "brands": {
+    "justclick": {
+      "tagline": "No cap, Just Click.",
+      "description": "JUSTCLICK은 캡을 열고 닫는 번거로움 없이 한 손으로 즉시 사용할 수 있도록 설계된 마커 브랜드입니다. 사용자의 자연스러운 움직임을 고려한 디자인으로, 짧은 순간에도 작업의 흐름을 끊지 않고 더욱 편리하고 효율적인 사용 경험을 제공합니다.",
+      "imageAlt": "JUSTCLICK 브랜드 제품 이미지"
+    },
+    "bamboo": {
+      "tagline": "Twin type, One tool",
+      "description": "BAMBOO는 감성적인 표현과 편안한 사용감을 조화롭게 담아낸 모리스의 듀얼팁 컬러링 마커 브랜드입니다. 대나무에서 영감을 받은 디자인과 듀얼팁 구조를 통해 필기와 드로잉을 자연스럽게 이어주며, 다양한 창작 활동에 유연한 사용 경험을 제공합니다.",
+      "imageAlt": "BAMBOO 브랜드 제품 이미지"
+    },
+    "starflo": {
+      "tagline": "Add Character to Everyday Writing.",
+      "description": "STARFLO 3C는 익숙한 3색 볼펜에 개성과 디자인 감각을 더해 새롭게 재해석한 모리스의 멀티컬러 볼펜입니다. 슬림한 바디와 차별화된 헤더 디자인, 하이브리드 잉크를 적용해 편안한 필기감은 물론, 원하는 색상을 선택하는 즐거움까지 제공합니다.",
+      "imageAlt": "STARFLO 브랜드 제품 이미지"
+    },
+    "easyfluid": {
+      "tagline": "Write in a Smoother Flow.",
+      "description": "EASYFLUID는 잉크의 흐름을 통해 새로운 필기 경험을 제안하는 모리스의 볼펜 브랜드입니다. 초저점도 하이브리드 잉크를 적용해 더욱 부드럽고 안정적인 필기감을 구현했으며, 일상 속 다양한 필기 환경에서 편안하고 일관된 사용 경험을 제공합니다.",
+      "imageAlt": "Easy Fluid 브랜드 제품 이미지"
+    }
+  }
+}
