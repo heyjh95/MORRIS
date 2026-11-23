@@ -18,20 +18,52 @@ HTML에서 내용을 고치고, JavaScript에서 동작을 읽고, SCSS에서 �
 ## 2 공통 클래스 위에 영역의 차이를 적는다
 
 ```html
-<h2 class="section-title new-products__title">NEW PRODUCT</h2>
+<h2 class="title section-title new-products__title">NEW PRODUCT</h2>
+<p class="description new-products__description">모리스의 제품 컬렉션</p>
 <a class="button new-products__all-link" href="#">All product</a>
 ```
 
 | 클래스 | 맡는 일 |
 | --- | --- |
 | `container` | 내용의 최대 폭과 가운데 정렬 |
-| `section-title` | 제목의 기본 글자 크기·굵기·줄 높이·색 |
-| `button` | 링크 버튼의 정렬·둥근 모서리·색 전환·포커스 표시 |
+| `title` | 섹션·카드·제품 타이틀의 줄 높이·자간·왼쪽 정렬·줄바꿈 |
+| `section-title` | 섹션 제목의 기존 글자 크기·굵기·색 |
+| `description` | 설명의 줄 높이·자간·색상·줄바꿈 |
+| `button` | 상세·전체 보기 링크의 정렬·여백·테두리·둥근 모서리·상태 표시 |
+| `circle-button` | 이전·다음 버튼의 44px 원형 모양·정렬·상태 표시 |
 | `new-products__title` | 신제품 제목을 찾는 이름. 기본 모양은 `section-title`에서 관리 |
 
-공통 선언은 `scss/_common.scss`에 있습니다. 신제품·제품 카테고리·브랜드 제목은 같은 크기·700 굵기·1.2 줄 높이를 사용합니다. 모바일 크기는 32px입니다. 세 영역의 가로 여백과 최대 콘텐츠 폭은 `_vars.scss`의 `$section-padding-inline`과 `$section-content-width`로 맞춥니다.
+공통 변수·믹스인·기본 스타일은 `scss/_common.scss`에 있습니다. 신제품·제품 카테고리·브랜드 제목은 같은 크기·700 굵기·1.2 줄 높이를 사용합니다. 모바일 크기는 32px입니다. 세 영역의 가로 여백과 최대 콘텐츠 폭은 이 파일 상단의 `$section-padding-inline`과 `$section-content-width`로 맞춥니다.
 
-`layout.scss`는 공통 스타일을 먼저 읽고 헤더 → 메인 → 신제품 → 카테고리 → 브랜드 순서로 읽습니다. `__` 뒤는 영역 안의 요소를 뜻합니다. `brands__image`는 브랜드 영역의 이미지입니다.
+비슷한 요소는 기존 모양에 차이가 있어도 공통 클래스의 모양으로 통일했습니다. 모든 설명은 1.7 줄 높이·같은 자간·같은 보조 글자색을 쓰고, 상세·전체 보기 링크는 같은 둥근 테두리와 안쪽 여백을 사용합니다. 기존 글자 크기와 굵기는 바꾸거나 변수로 묶지 않았습니다. 영역별 크기·굵기와 위치·바깥 여백은 `layout.scss`에서 조절합니다.
+
+히어로는 사진 위에 글씨를 놓으므로 설명에 `description--on-dark`, 링크에 `button--on-dark`를 추가합니다. 이 두 클래스는 데스크톱에서 흰색을 쓰고, 모바일에서 밝은 배경에 맞는 기본 색으로 돌아옵니다. 제목·설명·버튼을 새로 추가할 때도 공통 클래스와 영역 클래스를 함께 붙이면 됩니다. 카테고리 선택 버튼과 브랜드 로고 탭은 선택 UI이므로 각 영역의 스타일을 사용합니다.
+
+`layout.scss`는 `@use "common" as *;`로 공통 요소를 읽습니다. 그 아래에는 헤더 → 히어로 → 팝업 → 신제품 → 브랜드 메시지 → 제품 카테고리 → 브랜드 → 모션 순서로 스타일이 있습니다. 번호가 붙은 주석을 검색해 해당 영역을 찾습니다. `__` 뒤는 영역 안의 요소를 뜻합니다. `brands__image`는 브랜드 영역의 이미지입니다.
+
+### SCSS 중첩을 읽는 방법
+
+```scss
+.main-visual {
+  position: relative;
+
+  &__image {
+    object-fit: cover;
+  }
+
+  @media (max-width: $bp-mobile) {
+    height: auto;
+
+    &__image-link {
+      aspect-ratio: 1;
+    }
+  }
+}
+```
+
+`&`는 바깥의 선택자를 뜻합니다. 위의 `&__image`는 `.main-visual__image`로 빌드됩니다. `&:hover`는 현재 요소의 마우스 상태를 뜻하고, `img { ... }`처럼 `&` 없이 적으면 현재 요소 안의 하위 이미지를 뜻합니다. 기존 HTML의 클래스 이름에 맞춰 `&__요소`를 사용합니다.
+
+모바일만 바꾸려면 해당 영역의 `@media (max-width: $bp-mobile)` 안에서 수정합니다. 예를 들어 히어로의 모바일 이미지 채우기는 그 안의 `&__image`에서 `object-fit`을 바꿉니다.
 
 ## 3 네 가지 전환을 같은 방식으로 읽는다
 
@@ -98,7 +130,7 @@ Enter·Space는 기본 `button` 동작으로 처리합니다. 방향키는 앞�
 
 ## 7 숫자의 의미와 빌드 순서
 
-메인 카드의 높이는 `$hero-card-height: 270px`, 접혔을 때 보이는 높이는 `$hero-card-peek: 120px`입니다. 배경 비율은 120 ÷ 270, 내용의 이동 거리는 270 − 120 = 150px입니다. `_hero.scss`에서 이 두 변수로 계산합니다.
+메인 카드의 높이는 `$hero-card-height: 270px`, 접혔을 때 보이는 높이는 `$hero-card-peek: 120px`입니다. 두 변수는 `_common.scss`에 있습니다. 배경 비율은 120 ÷ 270, 내용의 이동 거리는 270 − 120 = 150px입니다. `layout.scss`의 ‘2. 히어로’ 영역에서 이 두 변수로 계산합니다.
 
 HTML은 직접 편집하는 원본입니다. SCSS만 `npm run build`로 CSS를 생성합니다. `npm test`는 파일 경로·ID·버튼 연결·메뉴 일치 등을 검사하므로, 실제 클릭과 키보드 동작은 브라우저에서도 확인합니다.
 
@@ -108,9 +140,9 @@ HTML은 직접 편집하는 원본입니다. SCSS만 `npm run build`로 CSS를 �
 
 `initHeroSlider()`의 `arrangeContent()`는 768px 이하에서 설명 요소를 해당 이미지의 `.main-visual__slide` 안으로 옮깁니다. 버튼의 `aria-controls`로 대상 슬라이드를 찾습니다. 화면이 넓어지면 같은 요소를 원래 선택 카드 안으로 되돌립니다. `matchMedia()`의 `change` 이벤트가 화면 크기 기준을 넘었을 때 이 작업을 실행합니다.
 
-모바일 CSS는 각 SCSS 파일 아래의 `@media (max-width: $bp-mobile)` 안에 있습니다. `_hero.scss`는 이미지 전체 표시와 한 화면 구성을, `_new-products.scss`는 제목·버튼의 세로 배치를, `_floating.scss`는 하단 메뉴와 안전 영역 여백을 담당합니다.
+모바일 CSS는 `layout.scss`의 각 영역에 있는 `@media (max-width: $bp-mobile)` 안에 있습니다. ‘2. 히어로’는 정사각형 이미지와 한 화면 구성을, ‘4. 신제품’은 제목·버튼의 세로 배치를, ‘3. 고정 팝업과 모바일 하단 메뉴’는 하단 메뉴와 안전 영역 여백을 담당합니다.
 
-메인은 최소 `100dvh`를 채우며 고정 헤더 높이도 포함합니다. 화면이 짧거나 설명이 길면 슬라이드가 내용만큼 늘어납니다. 모바일 이미지 영역에는 `aspect-ratio: 1`을 주고, 이미지에는 `contain`을 써 원본 비율을 유지합니다. 가로나 세로로 긴 원본에는 여백이 생길 수 있습니다. 데스크톱은 `cover`를 사용합니다.
+메인은 최소 `100dvh`를 채우며 고정 헤더 높이도 포함합니다. 화면이 짧거나 설명이 길면 슬라이드가 내용만큼 늘어납니다. 모바일 이미지 영역에는 `aspect-ratio: 1`을 주고, 이미지에는 `cover`를 써 원본 비율을 유지하면서 정사각형을 채웁니다. 영역 밖으로 나가는 부분은 잘립니다. 데스크톱도 `cover`를 사용합니다.
 
 모바일 자동 재생은 `slider.autoplay.stop()`으로 멈추고, 데스크톱으로 돌아오면 기존 설정에 맞춰 다시 시작합니다. 움직임 줄이기 설정에서는 자동 재생을 시작하지 않습니다.
 

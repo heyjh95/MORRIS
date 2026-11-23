@@ -1,4 +1,4 @@
-@forward "../../scss/mixins";
+@forward "../../scss/common" hide background-cover;
 @use "sass:list";
 
 // 그림자 반복문과 배경 배치는 이 학습 예제에서만 사용한다.

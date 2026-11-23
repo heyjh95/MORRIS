@@ -1,11 +1,1620 @@
-// 공통 스타일을 먼저 읽고 화면 순서대로 영역 스타일을 읽는다.
-// 기본 글꼴과 [hidden] 규칙은 HTML에서 한 번 로드하는 _reset.css에 있다.
-@use "common";
-@use "header";
-@use "hero";
-@use "floating";
-@use "new-products";
-@use "brand-message";
-@use "product-categories";
-@use "brands";
-@use "motion";
+// 화면의 영역별 스타일은 이 파일에서 수정합니다.
+// 각 영역 안의 @media에서 모바일 스타일도 함께 찾을 수 있습니다.
+// &는 바깥 선택자입니다. .main-visual 안의 &__image는 .main-visual__image가 됩니다.
+// title·description·button·circle-button의 공통 모양은 _common.scss에서 수정합니다.
+@use "sass:math";
+@use "common" as *;
+
+// ========================================
+// 1. 헤더와 전체 메뉴
+// ========================================
+.header {
+  --header-height: 100px;
+  display: grid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $layer-header;
+  align-items: center;
+  grid-template-columns: minmax(126px, 1fr) auto minmax(126px, 1fr);
+  width: 100%;
+  height: var(--header-height);
+  padding-inline: clamp(16px, 3vw, 50px);
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+
+  &__logo {
+    position: static;
+    grid-column: 1;
+    justify-self: start;
+    margin: 0;
+  }
+
+  &__home {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo-image {
+    display: block;
+    width: 126px;
+    height: auto;
+  }
+
+  &__actions {
+    display: flex;
+    position: relative;
+    z-index: 3;
+    grid-column: 3;
+    align-items: center;
+    justify-self: end;
+    gap: clamp(16px, 2vw, 32px);
+  }
+
+  &__language {
+    position: relative;
+  }
+
+  &__language-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 4px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  &__language-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  &__language-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    gap: 3px;
+    width: 146px;
+    padding: 8px;
+    background-color: $white;
+    border: 1px solid $border-color;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  }
+
+  &__language-link {
+    display: block;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: $text-color;
+  }
+
+  &__language-link:hover,
+  &__language-link[aria-current="page"] {
+    color: $primary-color;
+    background-color: $surface-color;
+  }
+
+  &__language[open] .header__language-menu {
+    display: grid;
+  }
+
+  &__menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 42px;
+    height: 42px;
+    padding: 5px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  &__menu-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: $text-color;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  // hidden 처리는 _reset.css의 전역 [hidden] 규칙을 사용한다.
+  &__drawer {
+    display: grid;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    width: 100%;
+    height: calc(100dvh - var(--header-height));
+    overflow-y: auto;
+    padding: 0;
+    color: $white;
+    background-color: $ink-color;
+    border-top: 1px solid $dark-border-color;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  &__drawer-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(10px, 2vh, 28px);
+    max-width: none;
+    margin: 0;
+    padding: clamp(32px, 5vw, 96px);
+    list-style: none;
+  }
+
+  &__drawer-item {
+    border: 0;
+  }
+
+  &__drawer-link {
+    display: inline-block;
+    padding: 0;
+    font-size: clamp(32px, 4.2vw, 64px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #929292;
+    transition: color 0.2s ease;
+  }
+
+  &__drawer-link:hover,
+  &__drawer-link:focus-visible {
+    color: $white;
+  }
+
+  &__drawer-media {
+    position: relative;
+    min-height: 100%;
+    background: url("../images/main/sec6_bg.jpg") center/cover no-repeat;
+    border-left: 1px solid $dark-border-color;
+  }
+
+  &__drawer-media::after {
+    display: grid;
+    position: absolute;
+    inset: 0;
+    place-items: center;
+    padding: 24px;
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 600;
+    text-align: center;
+    color: $white;
+    background-color: rgba(0, 0, 0, 0.18);
+    content: "Beautiful, Useful, Sustainable.";
+  }
+
+  &.is-menu-open {
+    z-index: $layer-menu;
+    background-color: $ink-color;
+    box-shadow: none;
+  }
+
+  &.is-menu-open .gnb__link,
+  &.is-menu-open .header__language-toggle {
+    color: $white;
+  }
+
+  &.is-menu-open .header__menu-line {
+    background-color: $white;
+  }
+
+  &.is-menu-open .header__menu-line:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  &.is-menu-open .header__menu-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  &.is-menu-open .header__menu-line:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  @media (max-width: $bp-menu) {
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 24px;
+
+    &__actions {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    --header-height: #{$mobile-header-height};
+    column-gap: 16px;
+    padding-inline: 16px;
+
+    &__logo-image {
+      width: 105px;
+    }
+
+    &__actions {
+      gap: 12px;
+    }
+
+    &__menu-toggle {
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+    }
+
+    &__drawer {
+      grid-template-columns: 1fr;
+    }
+
+    &__drawer-list {
+      padding: 32px 24px;
+    }
+
+    &__drawer-link {
+      font-size: clamp(30px, 8vw, 46px);
+    }
+
+    &__drawer-media {
+      display: none;
+    }
+
+    &.is-menu-open .header__menu-line:first-child {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    &.is-menu-open .header__menu-line:last-child {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+
+.gnb {
+  grid-column: 2;
+  justify-self: center;
+  min-width: 0;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 2.2vw, 36px);
+  }
+
+  &__link {
+    display: block;
+    padding: 12px 0;
+    font-size: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+
+  &__link:hover,
+  &__link:focus-visible {
+    color: $primary-color;
+  }
+
+  @media (max-width: $bp-menu) {
+    display: none;
+  }
+}
+
+body.is-site-menu-open {
+  overflow: hidden;
+}
+
+// ========================================
+// 2. 히어로
+// ========================================
+.main-visual {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+  // 이 화살표는 모바일에서만 표시한다.
+  &__arrow {
+    display: none;
+  }
+
+  &__slides {
+    height: 100%;
+  }
+
+  &__slide {
+    height: 100%;
+  }
+
+  &__image-link,
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__image {
+    object-fit: cover;
+  }
+
+  &__pagination {
+    display: grid;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    z-index: $layer-controls;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: end;
+    gap: 20px;
+    width: min($container-maxwidth, 100% - 40px);
+    height: $hero-card-height;
+    transform: translateX(-50%);
+  }
+
+  &__card {
+    display: block;
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: $hero-card-height;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    color: $white;
+    background: transparent;
+    border-radius: 0;
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  // 접힌 배경 비율 = 노출 높이 120px / 전체 높이 270px.
+  &__select::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-bottom: 3px solid transparent;
+    content: "";
+    transform: scaleY(math.div($hero-card-peek, $hero-card-height));
+    transform-origin: bottom;
+    transition:
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  // 선택 버튼은 카드 전체를 덮고, 상세 링크는 별도로 클릭할 수 있다.
+  &__select {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    cursor: pointer;
+  }
+
+  &__select:focus-visible {
+    outline: 2px solid $white;
+    outline-offset: -4px;
+  }
+
+  // 이동 거리 = 전체 높이 270px - 노출 높이 120px.
+  &__card-content {
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    transform: translateY($hero-card-height - $hero-card-peek);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &__card-no {
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__card-title {
+    flex-shrink: 0;
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__card-detail {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(24px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.4s;
+  }
+
+  &__card-description {
+    @include ellipsis(3);
+    font-size: 16px;
+  }
+
+  &__card-link {
+    pointer-events: auto;
+    flex-shrink: 0;
+    margin-top: auto;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  &__select[aria-pressed="true"]::before {
+    background-color: rgba(0, 0, 0, 0.65);
+    border-bottom-color: $primary-color;
+    transform: scaleY(1);
+  }
+
+  &__select[aria-pressed="true"] + .main-visual__card-content,
+  &__select[aria-pressed="true"]
+    + .main-visual__card-content
+    .main-visual__card-detail {
+    transform: translateY(0);
+  }
+
+  @media (max-width: $bp-mobile) {
+    // 아래 64px은 슬라이드 조작, 80px은 고정 메뉴를 위한 공간이다.
+    --hero-footer-height: calc(144px + env(safe-area-inset-bottom, 0px));
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: $mobile-header-height;
+    padding-bottom: var(--hero-footer-height);
+    color: $text-color;
+    background-color: $surface-color;
+
+    &__slides {
+      height: auto;
+    }
+
+    &__slide {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      min-height: calc(
+        100vh - #{$mobile-header-height} - var(--hero-footer-height)
+      );
+      min-height: calc(
+        100dvh - #{$mobile-header-height} - var(--hero-footer-height)
+      );
+    }
+
+    &__image-link {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      aspect-ratio: 1;
+      height: auto;
+      padding: 0;
+    }
+
+    &__image {
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+    }
+
+    &__card-content {
+      position: static;
+      z-index: auto;
+      flex-shrink: 0;
+      height: auto;
+      padding: 24px 24px 16px;
+      pointer-events: auto;
+      transform: none;
+      transition: none;
+    }
+
+    &__card-no {
+      display: none;
+    }
+
+    &__card-title {
+      margin-top: 0;
+      font-size: clamp(24px, 7vw, 30px);
+    }
+
+    &__card-detail {
+      flex: none;
+      gap: 18px;
+      margin-top: 12px;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition: none;
+    }
+
+    &__card-description {
+      display: block;
+      overflow: visible;
+      font-size: 16px;
+      -webkit-line-clamp: unset;
+      line-clamp: unset;
+    }
+
+    &__card-link {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    &__pagination {
+      bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+      grid-template-columns: repeat(4, 44px);
+      gap: 0;
+      width: auto;
+      height: 44px;
+    }
+
+    &__card {
+      width: 44px;
+      height: 44px;
+      overflow: visible;
+    }
+
+    &__select::before {
+      inset: 17px;
+      background-color: $border-color;
+      border: 0;
+      border-radius: 50%;
+      transform: none;
+      transition: background-color 0.2s ease;
+    }
+
+    &__select[aria-pressed="true"]::before {
+      background-color: $primary-color;
+      transform: none;
+    }
+
+    &__select:focus-visible {
+      outline-color: $primary-color;
+    }
+
+    &__arrow {
+      display: grid;
+      position: absolute;
+      bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+      z-index: $layer-controls;
+    }
+
+    &__arrow .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    &__prev {
+      left: 20px;
+    }
+
+    &__next {
+      right: 20px;
+    }
+  }
+
+  &__select[aria-pressed="true"]
+    + .main-visual__card-content
+    .main-visual__card-detail {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.12s;
+  }
+}
+
+// ========================================
+// 3. 고정 팝업과 모바일 하단 메뉴
+// ========================================
+.floating {
+  display: flex;
+  position: fixed;
+  top: 118px;
+  right: 16px;
+  z-index: $layer-floating;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+
+  &__toggle,
+  &__mobile-close {
+    display: none;
+  }
+
+  &__close {
+    @include flex-center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    cursor: pointer;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 240px;
+    height: 240px;
+    padding: 33px;
+    color: $white;
+    background-color: $ink-color;
+    border-radius: 50%;
+  }
+
+  &__logo {
+    display: block;
+    width: 92px;
+    height: auto;
+  }
+
+  &__links {
+    width: 100%;
+    max-width: 160px;
+  }
+
+  &__store {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 14px;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: $white;
+    border-bottom: 1px solid #666;
+  }
+
+  &__store:hover {
+    color: $accent-color;
+  }
+
+  &__inquiry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #ddd;
+  }
+
+  &__inquiry:hover {
+    color: $accent-color;
+  }
+
+  &__arrow {
+    font-size: 24px;
+  }
+
+  @media (max-width: $bp-mobile) {
+    body.is-site-menu-open & {
+      visibility: hidden;
+    }
+
+    top: auto;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    gap: 0;
+
+    &__toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: $white;
+      background-color: $ink-color;
+      border-radius: 100px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    &__toggle:focus-visible,
+    &__mobile-close:focus-visible {
+      outline: 2px solid $primary-color;
+      outline-offset: 3px;
+    }
+
+    &__close {
+      display: none;
+    }
+
+    &__popup {
+      display: none;
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 12px);
+      gap: 18px;
+      width: min(280px, calc(100vw - 32px));
+      height: auto;
+      max-height: calc(100dvh - #{$mobile-header-height} - 100px);
+      overflow-y: auto;
+      padding: 28px 24px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    &.is-open .floating__popup {
+      display: flex;
+    }
+
+    &__mobile-close {
+      display: grid;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      font-size: 28px;
+      line-height: 1;
+      color: $white;
+    }
+
+    &__logo {
+      width: 80px;
+    }
+
+    &__links {
+      max-width: none;
+    }
+
+    &__store,
+    &__inquiry {
+      min-height: 44px;
+    }
+
+    &__store {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  // 마지막 본문이 고정 버튼 뒤에 가려지지 않도록 여백을 남긴다.
+  body {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+// ========================================
+// 4. 신제품
+// ========================================
+.new-products {
+  display: grid;
+  position: relative;
+  grid-template-columns: minmax(0, 1fr) auto;
+  row-gap: 48px;
+  column-gap: 32px;
+  width: 100%;
+  max-width: $section-content-width + 80px;
+  padding: 120px $section-padding-inline;
+
+  &__description {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  &__all-link {
+    align-self: end;
+    justify-self: end;
+    margin-bottom: 6px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  &__all-icon {
+    font-size: 22px;
+  }
+
+  &__slider {
+    position: relative;
+    grid-column: 1/-1;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    padding-bottom: 72px;
+  }
+
+  &__slide {
+    height: auto;
+  }
+
+  &__card {
+    display: block;
+    height: 100%;
+  }
+
+  &__image-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background-color: $surface-color;
+    border-radius: 0;
+    transition: border-radius 0.4s ease;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-color;
+    transition: color 0.3s ease;
+  }
+
+  &__icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: $text-color;
+    background-color: transparent;
+    border: 1px solid $text-color;
+    border-radius: 50%;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  &__icon .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__slide:hover .new-products__image-wrap {
+    border-radius: 50px 0;
+  }
+
+  &__slide:hover .new-products__image {
+    transform: scale(1.15);
+  }
+
+  &__slide:hover .new-products__info {
+    color: $primary-color;
+  }
+
+  &__slide:hover .new-products__icon {
+    color: $white;
+    background-color: $text-color;
+    border-color: $text-color;
+  }
+
+  &__controls {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: $layer-controls;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: 44px;
+  }
+
+  &__scrollbar {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    height: 5px;
+    margin: 0;
+    background-color: $scrollbar-track;
+    border-radius: 100px;
+    opacity: 1;
+  }
+
+  &__scrollbar .swiper-scrollbar-drag {
+    height: 100%;
+    background-color: $scrollbar-thumb;
+    border-radius: 100px;
+    cursor: grab;
+  }
+
+  &__scrollbar .swiper-scrollbar-drag:active {
+    cursor: grabbing;
+  }
+
+  &__navigation {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__nav-icon {
+    font-size: 22px;
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 64px 20px;
+
+    &__description {
+      margin-top: 14px;
+      font-size: 18px;
+    }
+
+    &__all-link {
+      justify-self: start;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    &__info {
+      margin-top: 16px;
+      font-size: 16px;
+    }
+
+  }
+}
+
+// ========================================
+// 5. 브랜드 메시지
+// ========================================
+.brand-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 56px);
+  width: 100%;
+  min-height: 340px;
+  margin: 0 auto;
+  padding: 100px 0 250px;
+
+  &__heading {
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  &__line {
+    position: absolute;
+    top: -32px;
+    left: 0;
+    width: 48px;
+    height: 6px;
+    background-color: $primary-color;
+  }
+
+  &__title {
+    font-size: clamp(64px, 5vw, 120px);
+    white-space: nowrap;
+  }
+
+  &__description {
+    flex: 0 1 380px;
+    min-width: 0;
+    max-width: 380px;
+    font-size: clamp(20px, 1.6vw, 24px);
+    font-weight: 400;
+  }
+
+  @media (max-width: $bp-layout) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    min-height: auto;
+    padding: 120px 48px;
+
+    &__title {
+      font-size: clamp(36px, 5vw, 64px);
+    }
+
+    &__description {
+      flex: none;
+      width: 100%;
+      max-width: 680px;
+      font-size: clamp(18px, 2.2vw, 24px);
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    gap: 24px;
+    padding: 80px 20px;
+
+    &__line {
+      top: -24px;
+      width: 36px;
+      height: 3px;
+    }
+
+    &__heading {
+      width: 100%;
+    }
+
+    &__title {
+      display: inline-block;
+      font-size: clamp(24px, 8vw, 60px);
+    }
+
+    &__description {
+      max-width: 100%;
+      font-size: 17px;
+    }
+  }
+}
+
+// ========================================
+// 6. 제품 카테고리
+// ========================================
+.product-categories {
+  width: 100%;
+  padding: 120px $section-padding-inline;
+  background-color: #e8eaed;
+
+  &__title {
+    max-width: $section-content-width;
+    margin: 0 auto 48px;
+  }
+
+  &__layout {
+    display: grid;
+    position: relative;
+    isolation: isolate;
+    grid-template-columns: 270px minmax(0, 1fr);
+    align-items: start;
+    gap: 30px;
+    width: 100%;
+    max-width: $section-content-width;
+  }
+
+  &__list {
+    position: relative;
+    z-index: 2;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  &__item {
+    border-bottom: 1px solid #cbd0d5;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-height: 60px;
+    padding: 10px 8px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    color: $text-color;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: color 0.25s ease;
+
+    &:hover,
+    &[aria-pressed="true"] {
+      color: $primary-color;
+    }
+
+    &[aria-pressed="true"] .product-categories__button-icon {
+      color: $white;
+      background-color: $text-color;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary-color;
+      outline-offset: 3px;
+    }
+  }
+
+  &__button[aria-pressed="true"] {
+    font-weight: 700;
+  }
+
+  &__button-icon {
+    display: grid;
+    flex: 0 0 36px;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+    font-size: 21px;
+    color: $text-color;
+    background: transparent;
+    border-radius: 50%;
+    transition:
+      color 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  // 메뉴는 왼쪽 열, 설명과 이미지는 오른쪽 열에 둔다.
+  &__content {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+    width: 100%;
+    min-height: 680px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    width: 100%;
+    max-width: 680px;
+    min-width: 0;
+  }
+
+  // 확대나 절대 배치 없이 이미지 전체가 설명 아래에 들어가게 한다.
+  &__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: clamp(360px, 32vw, 560px);
+    min-width: 0;
+    pointer-events: none;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  &__heading {
+    font-size: clamp(32px, 2.9vw, 52px);
+    font-weight: 700;
+  }
+
+  &__description {
+    font-size: clamp(16px, 1.1vw, 18px);
+    font-weight: 400;
+  }
+
+  &__link {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  &__link-icon {
+    font-size: 22px;
+  }
+
+  @media (max-width: $bp-layout) {
+    &__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    &__content {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    &__panel {
+      gap: 24px;
+      min-height: 0;
+    }
+
+    &__visual {
+      height: 360px;
+    }
+
+    &__info {
+      width: 100%;
+      max-width: none;
+    }
+
+    &__button {
+      font-size: 17px;
+    }
+  }
+
+  @media (max-width: $bp-tablet) {
+    padding: 90px $section-padding-inline;
+
+    &__layout {
+      gap: 28px;
+    }
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap; // 넘치는 버튼은 다음 줄로
+      min-width: 0;
+      gap: 8px;
+      padding-bottom: 12px;
+    }
+
+    &__list::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__item {
+      flex-shrink: 0;
+      border-bottom: 0;
+    }
+
+    &__button {
+      width: auto;
+      min-height: 46px;
+      padding: 8px 12px;
+      white-space: nowrap;
+      border: 1px solid #cbd0d5;
+      border-radius: 100px;
+    }
+
+    &__button-icon {
+      flex-basis: 28px;
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
+    }
+
+    &__heading {
+      font-size: 36px;
+    }
+
+    &__description {
+      font-size: 17px;
+    }
+
+    &__image {
+      max-height: 480px;
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding: 72px 20px;
+
+    &__title {
+      margin-bottom: 28px;
+    }
+
+    &__layout {
+      gap: 24px;
+    }
+
+    &__panel {
+      gap: 12px;
+    }
+
+    &__visual {
+      height: auto;
+      aspect-ratio: 4/3;
+    }
+
+    &__image {
+      max-height: 100%;
+    }
+
+    &__info {
+      gap: 16px;
+      padding: 8px 0;
+    }
+
+    &__heading {
+      font-size: 32px;
+    }
+
+    &__description {
+      font-size: 16px;
+    }
+
+    &__button-icon {
+      display: none;
+    }
+  }
+}
+
+// ========================================
+// 7. 브랜드
+// ========================================
+.brands {
+  width: 100%;
+  padding: 100px $section-padding-inline;
+  background-color: #e2e2e2;
+
+  &__inner {
+    max-width: $section-content-width;
+  }
+
+  &__tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    width: min(100%, 1020px);
+    margin: 48px auto 34px;
+  }
+
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    height: 64px;
+    padding: 8px 12px;
+    border-top: 1px solid #b9b9b9;
+    border-bottom: 1px solid #b9b9b9;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+
+    &:hover .brands__tab-image {
+      opacity: 0.75;
+    }
+
+    &[aria-pressed="true"] {
+      border-top-color: $text-color;
+      border-bottom-color: $text-color;
+    }
+
+    &[aria-pressed="true"] .brands__tab-image {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary-color;
+      outline-offset: 3px;
+    }
+  }
+
+  &__tab-image {
+    display: block;
+    width: 100%;
+    height: 44px;
+    opacity: 0.4;
+    filter: grayscale(1);
+    object-fit: contain;
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  &__tab[aria-pressed="true"] .brands__tab-image {
+    filter: none;
+  }
+
+  &__slider {
+    width: 100%;
+  }
+
+  &__panel {
+    display: grid;
+    height: auto;
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(36px, 4vw, 72px);
+    width: 100%;
+  }
+
+  &__visual {
+    width: 100%;
+    min-width: 0;
+    height: clamp(360px, 32vw, 500px);
+    overflow: hidden;
+    background-color: #d4d4d4;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    min-width: 0;
+    padding: 24px 0 28px;
+  }
+
+  &__brand {
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__brand-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  &__brand-logo {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: clamp(90px, 10vw, 150px);
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    max-width: 650px;
+  }
+
+  &__tagline {
+    font-size: clamp(22px, 1.8vw, 28px);
+    font-weight: 600;
+  }
+
+  &__description {
+    font-size: clamp(15px, 1vw, 17px);
+    font-weight: 400;
+  }
+
+  &__link {
+    min-width: 124px;
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__link .icon {
+    font-size: 18px;
+  }
+
+  @media (max-width: $bp-tablet) {
+    padding: 80px $section-padding-inline;
+
+    &__tabs {
+      margin: 40px auto 28px;
+    }
+
+    &__panel {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+    }
+
+    &__visual {
+      height: auto;
+      aspect-ratio: 3/2;
+    }
+
+    &__content {
+      gap: 36px;
+      padding: 0;
+    }
+
+    &__brand-logo {
+      height: 110px;
+    }
+
+    &__info {
+      max-width: 680px;
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding: 64px 20px;
+
+    &__tabs {
+      gap: 6px;
+      margin: 28px auto 24px;
+    }
+
+    &__tab {
+      height: 48px;
+      padding: 6px 4px;
+    }
+
+    &__tab-image {
+      height: 30px;
+    }
+
+    &__panel {
+      gap: 24px;
+    }
+
+    &__visual {
+      aspect-ratio: 4/3;
+    }
+
+    &__content {
+      gap: 24px;
+    }
+
+    &__brand-logo {
+      height: 80px;
+    }
+
+    &__info {
+      gap: 12px;
+    }
+
+    &__tagline {
+      font-size: 22px;
+    }
+
+    &__description {
+      font-size: 15px;
+    }
+
+    &__link {
+      font-size: 14px;
+    }
+  }
+}
+
+// ========================================
+// 8. 움직임 줄이기
+// ========================================
+@media (prefers-reduced-motion: reduce) {
+  .main-visual__card,
+  .main-visual__select::before,
+  .main-visual__card-content,
+  .main-visual__card-detail,
+  .new-products__image {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,6 +1,5 @@
 // 별도 학습 예제. 실제 사이트의 layout.scss에서 불러오지 않는다.
 @use "mixins" as *;
-@use "../../scss/vars" as *;
 
 .center {
   @include flex-center();

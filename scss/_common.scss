@@ -1,21 +1,183 @@
-@use "vars" as *;
+// 공통 요소는 이 파일에서 수정합니다.
+// 1. 색상·화면 크기·겹침 순서 등의 변수
 
-// 여러 영역이 함께 쓰는 바탕. 각 영역 파일에는 다른 값만 적는다.
+// 실제 사이트에서 사용하는 디자인 값만 모은다.
+$primary-color: #c91846;
+$accent-color: #6ab8b5;
+$text-color: #24262b;
+$text-muted: #737780;
+$white: #ffffff;
+$surface-color: #f5f5f3;
+$border-color: #dadde0;
+$ink-color: #242424;
+$dark-border-color: #515151;
+
+// 슬라이더에서 실제 사용하는 색.
+$scrollbar-track: $border-color;
+$scrollbar-thumb: $primary-color;
+
+$container-maxwidth: 1200px;
+$section-content-width: 1840px;
+$section-padding-inline: clamp(20px, 3vw, 40px);
+$bp-mobile: 768px;
+$mobile-header-height: 74px;
+$bp-tablet: 1024px;
+$bp-menu: 1100px; // 헤더의 가로 메뉴를 숨기는 기준.
+$bp-layout: 1200px; // 카테고리 배치를 한 열로 바꾸는 기준.
+
+$layer-header: 99;
+$layer-floating: 100;
+$layer-menu: 110;
+$layer-controls: 10;
+
+$hero-card-height: 270px;
+$hero-card-peek: 120px;
+
+// 2. 반복해서 사용하는 믹스인
+
+// 레이아웃에서 재사용할 믹스인.
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin ellipsis($lines: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+}
+
+@mixin background-cover {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+}
+
+// 3. 공통 컴포넌트
+// HTML에서 공통 클래스와 영역 클래스를 함께 사용합니다.
+// 공통 모양은 여기서, 영역별 배치와 기존 글자 크기·굵기는 layout.scss에서 수정합니다.
+
 .container {
   max-width: 1800px;
   margin-inline: auto;
 }
 
-.section-title {
-  font-size: clamp(32px, 3vw, 48px);
-  font-weight: 700;
+// 타이틀: 섹션 제목과 카드·제품 제목에 함께 사용합니다.
+.title {
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-align: left;
-  color: $text-color;
+  word-break: keep-all;
 }
 
-// SVG 화살표는 같은 정사각형 안에서 중앙에 그린다.
+// 섹션 제목의 기존 크기와 굵기는 그대로 둡니다.
+.section-title {
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 700;
+  color: $text-color;
+
+  @media (max-width: $bp-mobile) {
+    font-size: 32px;
+  }
+}
+
+// 설명: 모든 영역에서 줄 높이·자간·색상·줄바꿈을 통일합니다.
+.description {
+  line-height: 1.7;
+  letter-spacing: -0.02em;
+  color: $text-muted;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+
+  // 사진 위에서는 흰색, 모바일의 밝은 배경에서는 기본 설명 색상입니다.
+  &--on-dark {
+    color: $white;
+
+    @media (max-width: $bp-mobile) {
+      color: $text-muted;
+    }
+  }
+}
+
+// 텍스트 버튼: 전체 보기와 상세 보기 링크에 같은 모양을 사용합니다.
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 20px;
+  color: $text-color;
+  background-color: transparent;
+  border: 1px solid $text-color;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    color: $white;
+    background-color: $text-color;
+  }
+
+  &--on-dark {
+    color: $white;
+    border-color: $white;
+
+    &:hover {
+      color: $text-color;
+      background-color: $white;
+    }
+
+    @media (max-width: $bp-mobile) {
+      color: $text-color;
+      border-color: $text-color;
+
+      &:hover {
+        color: $white;
+        background-color: $text-color;
+      }
+    }
+  }
+}
+
+// 원형 버튼: 히어로와 신제품의 이전·다음 버튼을 통일합니다.
+.circle-button {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: $text-color;
+  background-color: transparent;
+  border: 1px solid $border-color;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+
+  &.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+.button,
+.circle-button {
+  &:focus-visible {
+    outline: 2px solid $primary-color;
+    outline-offset: 3px;
+  }
+}
+
+// SVG 화살표는 같은 정사각형 안에서 중앙에 그립니다.
 .icon {
   display: block;
   flex-shrink: 0;
@@ -28,30 +190,16 @@
   stroke-linejoin: round;
 }
 
-@media (max-width: $bp-mobile) {
-  .section-title {
-    font-size: 32px;
+// 스크립트가 준비되기 전에는 첫 장만 보여 줍니다.
+.swiper:not(.swiper-initialized) {
+  > .swiper-wrapper > .swiper-slide:not(:first-child) {
+    display: none;
   }
 }
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 100px;
-  transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-.button:focus-visible {
-  outline: 2px solid $primary-color;
-  outline-offset: 3px;
-}
-
-// 스크립트가 준비되기 전에는 첫 장만 보여 준다.
-.swiper:not(.swiper-initialized) > .swiper-wrapper > .swiper-slide:not(:first-child) {
-  display: none;
-}
-
-// fade는 투명도만 바꾸므로, 보이지 않는 내용도 함께 숨긴다.
-.swiper-fade .swiper-slide:not(.swiper-slide-active) {
-  visibility: hidden;
+// fade는 투명도만 바꾸므로, 보이지 않는 내용도 함께 숨깁니다.
+.swiper-fade {
+  .swiper-slide:not(.swiper-slide-active) {
+    visibility: hidden;
+  }
 }

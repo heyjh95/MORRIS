@@ -10,19 +10,14 @@ html/index.html 또는 html/en.html   문구·이미지·링크
   ├─ css/layout.min.css            빌드한 화면 스타일
   └─ js/main.js                    기능별 Swiper와 메뉴
 
-scss/layout.scss                  CSS 빌드 진입점
-  ├─ _common.scss                 공통 컨테이너·제목·버튼
-  ├─ _header.scss                 헤더와 전체 메뉴
-  ├─ _hero.scss                   메인 비주얼
-  ├─ _floating.scss               고정 팝업
-  ├─ _new-products.scss           신제품
-  ├─ _brand-message.scss          브랜드 메시지
-  ├─ _product-categories.scss     제품 카테고리
-  ├─ _brands.scss                 브랜드
-  └─ _motion.scss                 움직임 줄이기 설정
+scss/_common.scss                 공통 변수·믹스인·기본 스타일
+  └─ scss/layout.scss             영역별 스타일과 모바일 설정
+       └─ css/layout.css와 css/layout.min.css
 ```
 
 HTML은 저장 후 새로고침합니다. SCSS는 수정 후 `npm run build`를 실행합니다. 구조를 변경하면 `npm test`로 연결을 검사하고 브라우저에서도 직접 눌러 봅니다.
+
+`layout.scss`의 번호가 붙은 주석으로 영역을 찾습니다. 헤더 → 히어로 → 팝업 → 신제품 → 브랜드 메시지 → 제품 카테고리 → 브랜드 → 모션 순서입니다. 각 영역의 모바일 규칙도 같은 위치에 모여 있습니다.
 
 ## 변경 전 코드의 줄별 해설
 
