@@ -80,25 +80,33 @@ HTML에서 내용을 고치고, JavaScript에서 동작을 읽고, SCSS에서 �
 
 카테고리와 브랜드는 `effect: "fade"`, `speed: 0`으로 제자리에서 바로 바뀝니다. `autoHeight: true`는 선택한 내용에 높이를 맞추고, `allowTouchMove: false`는 드래그 대신 선택 버튼으로 전환하게 합니다.
 
-## 4 버튼과 패널은 ID로 연결한다
+## 4 반복되는 ID는 JavaScript가 자동으로 연결한다
 
 ```html
-<button class="brands__tab" type="button"
-        aria-controls="brand-bamboo" aria-pressed="false">
+<button class="brands__tab" type="button" aria-pressed="false">
   <img class="brands__tab-image" src="../images/main/brand02.png" alt="BAMBOO" />
 </button>
 
-<article class="brands__panel swiper-slide" id="brand-bamboo"
-         aria-labelledby="brand-heading-bamboo">
-  <!-- 이곳에 BAMBOO 제목·설명·이미지를 둡니다. -->
+<article class="brands__panel swiper-slide">
+  <h3 class="brands__brand-name">BAMBOO</h3>
+  <!-- 이곳에 BAMBOO 설명·이미지를 둡니다. -->
 </article>
 ```
 
-`aria-controls="brand-bamboo"`가 `id="brand-bamboo"`를 가리킵니다. 선택 버튼과 패널의 순서를 따로 바꿔도 이 연결은 유지됩니다. 실제 패널의 제목에는 `id="brand-heading-bamboo"`가 있어야 합니다.
+HTML에서는 반복되는 `id`, `aria-controls`, `aria-labelledby`를 직접 작성하지 않습니다. 위 버튼과 패널을 각각 두 번째 위치에 넣으면 자동으로 서로 연결됩니다. 버튼과 패널을 추가하거나 옮길 때는 두 목록의 순서를 함께 맞춥니다.
+
+`prepareSlidePanels(buttons, panels, titles, prefix)`가 Swiper 초기화 전에 한 번 실행됩니다.
+
+1. 버튼·패널·제목의 개수가 같은지 확인합니다. 다르면 경고하고 해당 슬라이더의 초기화를 멈춥니다.
+2. 첫 패널에는 `brand-panel-1`, 두 번째에는 `brand-panel-2`처럼 ID를 붙입니다.
+3. 제목에도 `brand-title-1`처럼 ID를 붙이고 패널의 `aria-labelledby`로 연결합니다.
+4. 각 버튼의 `aria-controls`를 같은 순서의 패널 ID에 연결합니다.
+
+`prefix`는 영역 이름입니다. 히어로는 `hero`, 카테고리는 `category`, 브랜드는 `brand`를 사용하므로 영역 사이에 ID가 겹치지 않습니다. 번호는 개수에 맞춰 자동으로 생성됩니다. 메뉴 이동용 `products`, `brands`와 고정 메뉴·팝업·영역 제목의 ID는 HTML에 유지합니다.
 
 `connectSlideButtons()`가 메인·카테고리·브랜드에서 공통으로 하는 일은 다음과 같습니다.
 
-1. 버튼을 누르면 `aria-controls`의 ID로 패널을 찾습니다.
+1. 버튼을 누르면 자동으로 붙인 `aria-controls`의 ID로 패널을 찾습니다.
 2. 그 패널의 위치로 Swiper를 이동합니다.
 3. 현재 버튼의 `aria-pressed`를 `true`, 나머지는 `false`로 바꿉니다.
 4. 안 보이는 슬라이드에는 `inert`를 적용해 숨은 링크로 Tab이 들어가지 않게 합니다.
@@ -111,9 +119,9 @@ Enter·Space는 기본 `button` 동작으로 처리합니다. 방향키는 앞�
 
 1. 같은 영역의 선택 버튼 하나를 복사합니다.
 2. 해당 패널 하나를 `swiper-wrapper` 안에 복사합니다.
-3. 새 ID를 만들고 버튼의 `aria-controls`, 패널의 `id`, 제목의 ID와 `aria-labelledby`를 맞춥니다.
+3. 버튼과 패널을 각각 같은 순서에 놓고 패널의 제목을 수정합니다. ID와 연결 속성은 자동 생성됩니다.
 4. 처음 선택할 버튼 하나만 `aria-pressed="true"`로 둡니다.
-5. 한국어·영어에 같은 ID와 이미지 구성을 추가하고 문구는 각각 번역합니다.
+5. 한국어·영어에 같은 순서와 이미지 구성을 추가하고 문구는 각각 번역합니다.
 6. `npm test`를 실행하고 브라우저에서 새 버튼을 눌러 봅니다.
 
 번호나 전체 개수를 JavaScript에 추가하지 않아도 됩니다. 메인 카드의 열 개수처럼 개수를 고정한 디자인은 해당 SCSS도 확인합니다.
@@ -138,7 +146,7 @@ HTML은 직접 편집하는 원본입니다. SCSS만 `npm run build`로 CSS를 �
 
 메인 제목·설명은 HTML의 `.main-visual__card-content`에서 수정합니다. 모바일용 문구를 따로 복사하지 않습니다.
 
-`initHeroSlider()`의 `arrangeContent()`는 768px 이하에서 설명 요소를 해당 이미지의 `.main-visual__slide` 안으로 옮깁니다. 버튼의 `aria-controls`로 대상 슬라이드를 찾습니다. 화면이 넓어지면 같은 요소를 원래 선택 카드 안으로 되돌립니다. `matchMedia()`의 `change` 이벤트가 화면 크기 기준을 넘었을 때 이 작업을 실행합니다.
+`initHeroSlider()`는 먼저 `prepareSlidePanels()`로 이미지 슬라이드와 선택 카드의 제목을 연결합니다. 그다음 `arrangeContent()`가 768px 이하에서 설명 요소를 해당 이미지의 `.main-visual__slide` 안으로 옮깁니다. 자동으로 붙인 버튼의 `aria-controls`로 대상 슬라이드를 찾습니다. 화면이 넓어지면 같은 요소를 원래 선택 카드 안으로 되돌립니다. 화면 크기가 바뀔 때 ID를 다시 생성하지 않습니다. `matchMedia()`의 `change` 이벤트는 문구의 위치만 바꿉니다.
 
 모바일 CSS는 `layout.scss`의 각 영역에 있는 `@media (max-width: $bp-mobile)` 안에 있습니다. ‘2. 히어로’는 정사각형 이미지와 한 화면 구성을, ‘4. 신제품’은 제목·버튼의 세로 배치를, ‘3. 고정 팝업과 모바일 하단 메뉴’는 하단 메뉴와 안전 영역 여백을 담당합니다.
 

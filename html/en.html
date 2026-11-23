@@ -68,25 +68,25 @@
     </header>
 
     <main>
-      <!-- 메인 비주얼 -->
+      <!-- 메인 비주얼: 이미지 슬라이드와 선택 카드의 순서를 맞춥니다. ID는 JS에서 자동 생성합니다. -->
       <section class="main-visual swiper">
         <ul class="swiper-wrapper main-visual__slides">
-          <li class="main-visual__slide swiper-slide" id="hero-slide-1">
+          <li class="main-visual__slide swiper-slide">
             <a class="main-visual__image-link" href="#">
               <img class="main-visual__image" src="../images/main/visual01.jpg" alt="Prime Glitter Highlighter S" />
             </a>
           </li>
-          <li class="main-visual__slide swiper-slide" id="hero-slide-2">
+          <li class="main-visual__slide swiper-slide">
             <a class="main-visual__image-link" href="#">
               <img class="main-visual__image" src="../images/main/visual02.jpg" alt="Prime Highlighter S Antique" />
             </a>
           </li>
-          <li class="main-visual__slide swiper-slide" id="hero-slide-3">
+          <li class="main-visual__slide swiper-slide">
             <a class="main-visual__image-link" href="#">
               <img class="main-visual__image" src="../images/main/visual03.jpg" alt="Prime Highlighter M Mild" />
             </a>
           </li>
-          <li class="main-visual__slide swiper-slide" id="hero-slide-4">
+          <li class="main-visual__slide swiper-slide">
             <a class="main-visual__image-link" href="#">
               <img class="main-visual__image" src="../images/main/visual04.jpg" alt="Sign Pen S Plus" />
             </a>
@@ -95,7 +95,7 @@
         </ul>
         <div class="main-visual__pagination" aria-label="Main visual slide selection">
           <div class="main-visual__card">
-            <button class="main-visual__select" type="button" aria-label="Show slide 1: Prime Glitter Highlighter S" aria-controls="hero-slide-1" aria-pressed="true"></button>
+            <button class="main-visual__select" type="button" aria-label="Show slide 1: Prime Glitter Highlighter S" aria-pressed="true"></button>
             <div class="main-visual__card-content">
               <span class="main-visual__card-no">01</span>
               <p class="title main-visual__card-title">Prime Glitter Highlighter S</p>
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="main-visual__card">
-            <button class="main-visual__select" type="button" aria-label="Show slide 2: Prime Highlighter S Antique" aria-controls="hero-slide-2" aria-pressed="false"></button>
+            <button class="main-visual__select" type="button" aria-label="Show slide 2: Prime Highlighter S Antique" aria-pressed="false"></button>
             <div class="main-visual__card-content">
               <span class="main-visual__card-no">02</span>
               <p class="title main-visual__card-title">Prime Highlighter S Antique</p>
@@ -117,7 +117,7 @@
             </div>
           </div>
           <div class="main-visual__card">
-            <button class="main-visual__select" type="button" aria-label="Show slide 3: Prime Highlighter M Mild" aria-controls="hero-slide-3" aria-pressed="false"></button>
+            <button class="main-visual__select" type="button" aria-label="Show slide 3: Prime Highlighter M Mild" aria-pressed="false"></button>
             <div class="main-visual__card-content">
               <span class="main-visual__card-no">03</span>
               <p class="title main-visual__card-title">Prime Highlighter M Mild</p>
@@ -128,7 +128,7 @@
             </div>
           </div>
           <div class="main-visual__card">
-            <button class="main-visual__select" type="button" aria-label="Show slide 4: Sign Pen S Plus" aria-controls="hero-slide-4" aria-pressed="false"></button>
+            <button class="main-visual__select" type="button" aria-label="Show slide 4: Sign Pen S Plus" aria-pressed="false"></button>
             <div class="main-visual__card-content">
               <span class="main-visual__card-no">04</span>
               <p class="title main-visual__card-title">Sign Pen S Plus</p>
@@ -242,67 +242,67 @@
         </div>
         <p class="description brand-message__description">We enrich everyday life with creative stationery and build the future together, with every line.</p>
       </section>
-      <!-- 제품 카테고리 -->
+      <!-- 제품 카테고리: 버튼과 패널을 같은 순서로 추가합니다. ID는 JS에서 자동 생성합니다. -->
       <section class="product-categories" id="product-categories" aria-labelledby="categories-title">
         <h2 id="categories-title" class="title section-title product-categories__title">PRODUCT</h2>
         <div class="product-categories__layout container">
           <ul class="product-categories__list">
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-highlighter" aria-pressed="true">
+              <button type="button" class="product-categories__button" aria-pressed="true">
                 <span class="product-categories__button-label">Highlighter</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-boardmarker" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Whiteboard Marker</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-permanent" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Permanent Marker</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-namepen" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Name Pen</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-signpen" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Sign Pen</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-coloring" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Coloring / Brush</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-lifestyle" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Home &amp; DIY Marker</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-industrial" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Industrial Marker</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-ballpoint" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Ballpoint Pen</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
             </li>
             <li class="product-categories__item">
-              <button type="button" class="product-categories__button" aria-controls="panel-pencil" aria-pressed="false">
+              <button type="button" class="product-categories__button" aria-pressed="false">
                 <span class="product-categories__button-label">Mechanical Pencil</span>
                 <span class="product-categories__button-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></span>
               </button>
@@ -311,9 +311,9 @@
           </ul>
           <div class="product-categories__content swiper">
             <div class="swiper-wrapper">
-              <section class="product-categories__panel swiper-slide" id="panel-highlighter" aria-labelledby="heading-highlighter">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-highlighter">Highlighter</h3>
+                  <h3 class="title product-categories__heading">Highlighter</h3>
                   <p class="description product-categories__description">Keep your reading and thinking in motion. Highlight what matters with a single click and no cap to open or close.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Highlighter products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -321,9 +321,9 @@
                   <img class="product-categories__image" src="../images/main/td01.png" alt="MORIS Highlighter products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-boardmarker" aria-labelledby="heading-boardmarker">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-boardmarker">Whiteboard Marker</h3>
+                  <h3 class="title product-categories__heading">Whiteboard Marker</h3>
                   <p class="description product-categories__description">Capture ideas the moment they appear. Clear, vivid writing for classrooms and meetings without breaking the flow.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Whiteboard Marker products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -331,9 +331,9 @@
                   <img class="product-categories__image" src="../images/main/td02.png" alt="MORIS Whiteboard Marker products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-permanent" aria-labelledby="heading-permanent">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-permanent">Permanent Marker</h3>
+                  <h3 class="title product-categories__heading">Permanent Marker</h3>
                   <p class="description product-categories__description">Mark clearly on a variety of surfaces when it matters. One click provides quick and reliable marking.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Permanent Marker products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -341,9 +341,9 @@
                   <img class="product-categories__image" src="../images/main/td03.png" alt="MORIS Permanent Marker products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-namepen" aria-labelledby="heading-namepen">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-namepen">Name Pen</h3>
+                  <h3 class="title product-categories__heading">Name Pen</h3>
                   <p class="description product-categories__description">Label belongings and everyday essentials with precise, legible writing. Convenient identification with just one click.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Name Pen products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -351,9 +351,9 @@
                   <img class="product-categories__image" src="../images/main/td04.png" alt="MORIS Name Pen products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-signpen" aria-labelledby="heading-signpen">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-signpen">Sign Pen</h3>
+                  <h3 class="title product-categories__heading">Sign Pen</h3>
                   <p class="description product-categories__description">From notes and handwriting to creative sketches, enjoy a comfortable writing feel and effortless expression.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Sign Pen products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -361,9 +361,9 @@
                   <img class="product-categories__image" src="../images/main/td05.png" alt="MORIS Sign Pen products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-coloring" aria-labelledby="heading-coloring">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-coloring">Coloring / Brush</h3>
+                  <h3 class="title product-categories__heading">Coloring / Brush</h3>
                   <p class="description product-categories__description">Bring imagination to life with rich colors and versatile lines, from delicate details to broad brush strokes.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Coloring / Brush products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -371,9 +371,9 @@
                   <img class="product-categories__image" src="../images/main/td06.png" alt="MORIS Coloring / Brush products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-lifestyle" aria-labelledby="heading-lifestyle">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-lifestyle">Home &amp; DIY Marker</h3>
+                  <h3 class="title product-categories__heading">Home &amp; DIY Marker</h3>
                   <p class="description product-categories__description">Make everyday organizing, decorating, and creating easier with versatile markers for home and DIY projects.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Home &amp; DIY Marker products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -381,9 +381,9 @@
                   <img class="product-categories__image" src="../images/main/td07.png" alt="MORIS Home &amp; DIY Marker products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-industrial" aria-labelledby="heading-industrial">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-industrial">Industrial Marker</h3>
+                  <h3 class="title product-categories__heading">Industrial Marker</h3>
                   <p class="description product-categories__description">Clear, dependable marking for demanding work environments, designed for quick use and confident results.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Industrial Marker products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -391,9 +391,9 @@
                   <img class="product-categories__image" src="../images/main/td08.png" alt="MORIS Industrial Marker products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-ballpoint" aria-labelledby="heading-ballpoint">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-ballpoint">Ballpoint Pen</h3>
+                  <h3 class="title product-categories__heading">Ballpoint Pen</h3>
                   <p class="description product-categories__description">Write down everyday thoughts with smooth, steady ink flow and a comfortable writing experience.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Ballpoint Pen products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -401,9 +401,9 @@
                   <img class="product-categories__image" src="../images/main/td09.png" alt="MORIS Ballpoint Pen products" />
                 </div>
               </section>
-              <section class="product-categories__panel swiper-slide" id="panel-pencil" aria-labelledby="heading-pencil">
+              <section class="product-categories__panel swiper-slide">
                 <div class="product-categories__info">
-                  <h3 class="title product-categories__heading" id="heading-pencil">Mechanical Pencil</h3>
+                  <h3 class="title product-categories__heading">Mechanical Pencil</h3>
                   <p class="description product-categories__description">From quick notes to detailed drawings, enjoy a stable grip and precise control for every line.</p>
                   <a class="button product-categories__link" href="#" aria-label="View all Mechanical Pencil products">All product<svg class="icon product-categories__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="../images/common/icons.svg#arrow-outward"></use></svg></a>
                 </div>
@@ -417,34 +417,34 @@
         </div>
       </section>
 
-      <!-- 브랜드 -->
+      <!-- 브랜드: 버튼과 패널을 같은 순서로 추가합니다. ID는 JS에서 자동 생성합니다. -->
       <section class="brands" id="brands" aria-labelledby="brands-title">
         <div class="brands__inner container">
           <h2 class="title section-title brands__title" id="brands-title">BRAND</h2>
           <div class="brands__tabs" role="group" aria-label="Choose a brand">
-            <button class="brands__tab" type="button" aria-controls="brand-justclick" aria-pressed="true">
+            <button class="brands__tab" type="button" aria-pressed="true">
               <img class="brands__tab-image" src="../images/main/brand01.png" alt="JUSTCLICK" />
             </button>
-            <button class="brands__tab" type="button" aria-controls="brand-bamboo" aria-pressed="false">
+            <button class="brands__tab" type="button" aria-pressed="false">
               <img class="brands__tab-image" src="../images/main/brand02.png" alt="BAMBOO" />
             </button>
-            <button class="brands__tab" type="button" aria-controls="brand-starflo" aria-pressed="false">
+            <button class="brands__tab" type="button" aria-pressed="false">
               <img class="brands__tab-image" src="../images/main/brand03.png" alt="STARFLO" />
             </button>
-            <button class="brands__tab" type="button" aria-controls="brand-easyfluid" aria-pressed="false">
+            <button class="brands__tab" type="button" aria-pressed="false">
               <img class="brands__tab-image" src="../images/main/brand04.png" alt="Easy Fluid" />
             </button>
 
           </div>
           <div class="brands__slider swiper">
             <div class="swiper-wrapper">
-              <article class="brands__panel swiper-slide" id="brand-justclick" aria-labelledby="brand-heading-justclick">
+              <article class="brands__panel swiper-slide">
                 <div class="brands__visual">
                   <img class="brands__image" src="../images/main/brand01.jpg" alt="JUSTCLICK brand product image"  />
                 </div>
                 <div class="brands__content">
                   <div class="brands__brand">
-                    <h3 class="brands__brand-name" id="brand-heading-justclick">JUSTCLICK</h3>
+                    <h3 class="brands__brand-name">JUSTCLICK</h3>
                     <img class="brands__brand-logo" src="../images/main/brand01.png" alt="" />
                   </div>
                   <div class="brands__info">
@@ -454,13 +454,13 @@
                   </div>
                 </div>
               </article>
-              <article class="brands__panel swiper-slide" id="brand-bamboo" aria-labelledby="brand-heading-bamboo">
+              <article class="brands__panel swiper-slide">
                 <div class="brands__visual">
                   <img class="brands__image" src="../images/main/brand02.jpg" alt="BAMBOO brand product image" loading="lazy" />
                 </div>
                 <div class="brands__content">
                   <div class="brands__brand">
-                    <h3 class="brands__brand-name" id="brand-heading-bamboo">BAMBOO</h3>
+                    <h3 class="brands__brand-name">BAMBOO</h3>
                     <img class="brands__brand-logo" src="../images/main/brand02.png" alt="" />
                   </div>
                   <div class="brands__info">
@@ -470,13 +470,13 @@
                   </div>
                 </div>
               </article>
-              <article class="brands__panel swiper-slide" id="brand-starflo" aria-labelledby="brand-heading-starflo">
+              <article class="brands__panel swiper-slide">
                 <div class="brands__visual">
                   <img class="brands__image" src="../images/main/brand03.jpg" alt="STARFLO brand product image" loading="lazy" />
                 </div>
                 <div class="brands__content">
                   <div class="brands__brand">
-                    <h3 class="brands__brand-name" id="brand-heading-starflo">STARFLO</h3>
+                    <h3 class="brands__brand-name">STARFLO</h3>
                     <img class="brands__brand-logo" src="../images/main/brand03.png" alt="" />
                   </div>
                   <div class="brands__info">
@@ -486,13 +486,13 @@
                   </div>
                 </div>
               </article>
-              <article class="brands__panel swiper-slide" id="brand-easyfluid" aria-labelledby="brand-heading-easyfluid">
+              <article class="brands__panel swiper-slide">
                 <div class="brands__visual">
                   <img class="brands__image" src="../images/main/brand04.jpg" alt="Easy Fluid brand product image" loading="lazy" />
                 </div>
                 <div class="brands__content">
                   <div class="brands__brand">
-                    <h3 class="brands__brand-name" id="brand-heading-easyfluid">Easy Fluid</h3>
+                    <h3 class="brands__brand-name">Easy Fluid</h3>
                     <img class="brands__brand-logo" src="../images/main/brand04.png" alt="" />
                   </div>
                   <div class="brands__info">

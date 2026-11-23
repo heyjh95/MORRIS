@@ -2,7 +2,9 @@
 // 각 영역 안의 @media에서 모바일 스타일도 함께 찾을 수 있습니다.
 // &는 바깥 선택자입니다. .main-visual 안의 &__image는 .main-visual__image가 됩니다.
 // title·description·button·circle-button의 공통 모양은 _common.scss에서 수정합니다.
+// _reset.scss도 이 진입점에서 한 번만 불러옵니다.
 @use "sass:math";
+@use "reset";
 @use "common" as *;
 
 // ========================================
@@ -25,10 +27,8 @@
   backdrop-filter: blur(20px);
 
   &__logo {
-    position: static;
     grid-column: 1;
     justify-self: start;
-    margin: 0;
   }
 
   &__home {
@@ -109,10 +109,7 @@
     gap: 6px;
     width: 42px;
     height: 42px;
-    padding: 5px;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
+    padding: 5px; // 버튼 기본 배경·테두리·커서는 reset에서 처리
   }
 
   &__menu-line {
@@ -125,7 +122,7 @@
       opacity 0.3s ease;
   }
 
-  // hidden 처리는 _reset.css의 전역 [hidden] 규칙을 사용한다.
+  // hidden 처리는 _reset.scss의 전역 [hidden] 규칙을 사용한다.
   &__drawer {
     display: grid;
     position: absolute;
@@ -148,19 +145,11 @@
     flex-direction: column;
     justify-content: center;
     gap: clamp(10px, 2vh, 28px);
-    max-width: none;
-    margin: 0;
     padding: clamp(32px, 5vw, 96px);
-    list-style: none;
-  }
-
-  &__drawer-item {
-    border: 0;
   }
 
   &__drawer-link {
     display: inline-block;
-    padding: 0;
     font-size: clamp(32px, 4.2vw, 64px);
     font-weight: 700;
     line-height: 1.2;
@@ -281,9 +270,7 @@
   min-width: 0;
 
   &__list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     gap: clamp(16px, 2.2vw, 36px);
   }
 
@@ -323,6 +310,22 @@ body.is-site-menu-open {
     display: none;
   }
 
+  // 재생/일시정지 버튼: 자동재생 접근성을 위해 모든 화면에서 제공합니다.
+  &__autoplay {
+    position: absolute;
+    right: 24px;
+    bottom: calc(#{$hero-card-height} + 40px);
+    z-index: $layer-controls;
+    color: $white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.7);
+
+    &:hover {
+      color: $white;
+      border-color: $white;
+    }
+  }
+
   &__slides {
     height: 100%;
   }
@@ -351,7 +354,7 @@ body.is-site-menu-open {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: end;
     gap: 20px;
-    width: min($container-maxwidth, 100% - 40px);
+    width: min($hero-pagination-maxwidth, 100% - 40px);
     height: $hero-card-height;
     transform: translateX(-50%);
   }
@@ -363,13 +366,8 @@ body.is-site-menu-open {
     width: 100%;
     height: $hero-card-height;
     overflow: hidden;
-    margin: 0;
-    padding: 0;
     text-align: left;
     color: $white;
-    background: transparent;
-    border-radius: 0;
-    opacity: 1;
     cursor: pointer;
   }
 
@@ -551,6 +549,7 @@ body.is-site-menu-open {
     &__card-description {
       display: block;
       overflow: visible;
+      color: $text-muted;
       font-size: 16px;
       -webkit-line-clamp: unset;
       line-clamp: unset;
@@ -598,6 +597,12 @@ body.is-site-menu-open {
       position: absolute;
       bottom: calc(84px + env(safe-area-inset-bottom, 0px));
       z-index: $layer-controls;
+    }
+
+    // 페이지네이션과 겹치지 않도록 재생 버튼은 슬라이드 이미지 위에 둡니다.
+    &__autoplay {
+      right: 20px;
+      bottom: calc(154px + env(safe-area-inset-bottom, 0px));
     }
 
     &__arrow .icon {
@@ -824,7 +829,6 @@ body.is-site-menu-open {
   &__description {
     margin-top: 20px;
     font-size: 24px;
-    font-weight: 400;
   }
 
   &__all-link {
@@ -858,13 +862,10 @@ body.is-site-menu-open {
   }
 
   &__image-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     aspect-ratio: 4/5;
     overflow: hidden;
     background-color: $surface-color;
-    border-radius: 0;
     transition: border-radius 0.4s ease;
   }
 
@@ -998,7 +999,6 @@ body.is-site-menu-open {
       margin-top: 16px;
       font-size: 16px;
     }
-
   }
 }
 
@@ -1006,9 +1006,7 @@ body.is-site-menu-open {
 // 5. 브랜드 메시지
 // ========================================
 .brand-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   gap: clamp(24px, 3vw, 56px);
   width: 100%;
   min-height: 340px;
@@ -1039,7 +1037,6 @@ body.is-site-menu-open {
     min-width: 0;
     max-width: 380px;
     font-size: clamp(20px, 1.6vw, 24px);
-    font-weight: 400;
   }
 
   @media (max-width: $bp-layout) {
@@ -1134,9 +1131,6 @@ body.is-site-menu-open {
     font-weight: 500;
     text-align: left;
     color: $text-color;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
     transition: color 0.25s ease;
 
     &:hover,
@@ -1204,9 +1198,7 @@ body.is-site-menu-open {
 
   // 확대나 절대 배치 없이 이미지 전체가 설명 아래에 들어가게 한다.
   &__visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     width: 100%;
     height: clamp(360px, 32vw, 560px);
     min-width: 0;
@@ -1217,7 +1209,6 @@ body.is-site-menu-open {
     display: block;
     width: 100%;
     height: 100%;
-    max-width: 100%;
     object-fit: contain;
     object-position: center;
   }
@@ -1229,7 +1220,6 @@ body.is-site-menu-open {
 
   &__description {
     font-size: clamp(16px, 1.1vw, 18px);
-    font-weight: 400;
   }
 
   &__link {
@@ -1388,9 +1378,7 @@ body.is-site-menu-open {
   }
 
   &__tab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     min-width: 0;
     height: 64px;
     padding: 8px 12px;
@@ -1477,15 +1465,6 @@ body.is-site-menu-open {
     min-width: 0;
   }
 
-  &__brand-name {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    white-space: nowrap;
-    clip-path: inset(50%);
-  }
-
   &__brand-logo {
     display: block;
     width: 100%;
@@ -1510,7 +1489,6 @@ body.is-site-menu-open {
 
   &__description {
     font-size: clamp(15px, 1vw, 17px);
-    font-weight: 400;
   }
 
   &__link {

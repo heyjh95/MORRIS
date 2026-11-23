@@ -6,23 +6,41 @@ function initHeroSlider() {
   if (!hero) return;
 
   const buttons = hero.querySelectorAll(".main-visual__select");
+  const panels = hero.querySelectorAll(".main-visual__slide");
+  const titles = hero.querySelectorAll(".main-visual__card-title");
+  if (!prepareSlidePanels(buttons, panels, titles, "hero")) return;
   const mobileScreen = window.matchMedia("(max-width: 768px)");
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
 
   // 문구는 한 번만 작성한다. 모바일에서는 이미지와 같은 슬라이드로 옮긴다.
   const cards = Array.from(hero.querySelectorAll(".main-visual__card"));
-  const contents = cards.map((card) => card.querySelector(".main-visual__card-content"));
+  const contents = cards.map((card) =>
+    card.querySelector(".main-visual__card-content"),
+  );
   function arrangeContent() {
     cards.forEach((card, index) => {
-      const panelId = card.querySelector("button").getAttribute("aria-controls");
+      const panelId = card
+        .querySelector("button")
+        .getAttribute("aria-controls");
       const slide = document.getElementById(panelId);
-      if (mobileScreen.matches) slide.append(contents[index]);
-      else card.append(contents[index]);
+      if (!slide || !contents[index]) return;
+      if (mobileScreen.matches) {
+        slide.append(contents[index]);
+      } else {
+        card.append(contents[index]);
+      }
     });
   }
   arrangeContent();
 
-  if (typeof window.Swiper !== "function") return;
+  if (typeof window.Swiper !== "function") {
+    // 외부 Swiper가 로드되지 않았다면 동작하지 않는 자동재생 버튼을 숨깁니다.
+    const autoplayButton = hero.querySelector(".main-visual__autoplay");
+    if (autoplayButton) autoplayButton.hidden = true;
+    return;
+  }
 
   const previous = hero.querySelector(".main-visual__prev");
   const next = hero.querySelector(".main-visual__next");
@@ -30,7 +48,9 @@ function initHeroSlider() {
     slidesPerView: 1,
     loop: true,
     speed: prefersReducedMotion ? 0 : 800,
-    autoplay: prefersReducedMotion ? false : { delay: 4000, disableOnInteraction: false },
+    autoplay: prefersReducedMotion
+      ? false
+      : { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
     autoHeight: mobileScreen.matches,
     grabCursor: true,
     navigation: { prevEl: previous, nextEl: next },
@@ -41,15 +61,46 @@ function initHeroSlider() {
   });
   connectSlideButtons(slider, buttons);
 
+  // 자동재생을 언제든 정지할 수 있도록 버튼 상태를 Swiper와 동기화합니다.
+  const autoplayButton = hero.querySelector(".main-visual__autoplay");
+  let autoplayPausedByUser = false;
+
+  function syncAutoplayButton() {
+    if (!autoplayButton) return;
+    const isPaused = !slider.autoplay.running;
+    autoplayButton.setAttribute("aria-pressed", String(isPaused));
+    autoplayButton.setAttribute(
+      "aria-label",
+      isPaused ? "슬라이드 자동재생 시작" : "슬라이드 자동재생 일시정지",
+    );
+    autoplayButton.querySelector("span").textContent = isPaused ? "▶" : "Ⅱ";
+  }
+
+  if (autoplayButton) {
+    autoplayButton.addEventListener("click", () => {
+      if (slider.autoplay.running) {
+        autoplayPausedByUser = true;
+        slider.autoplay.stop();
+      } else {
+        autoplayPausedByUser = false;
+        slider.autoplay.start();
+      }
+      syncAutoplayButton();
+    });
+  }
+
   function updateLayout() {
     arrangeContent();
     slider.params.autoHeight = mobileScreen.matches;
     // 화면 전환 시 Swiper의 높이 관련 CSS도 같은 상태로 맞춘다.
     hero.classList.toggle("swiper-autoheight", mobileScreen.matches);
-    if (mobileScreen.matches || prefersReducedMotion) slider.autoplay.stop();
+    // 모바일은 기존처럼 자동 정지하고, 사용자가 정지한 상태는 화면 변경 후에도 유지합니다.
+    if (mobileScreen.matches || prefersReducedMotion || autoplayPausedByUser)
+      slider.autoplay.stop();
     else slider.autoplay.start();
     if (!mobileScreen.matches) slider.wrapperEl.style.height = "";
     slider.update();
+    syncAutoplayButton();
   }
   updateLayout();
   mobileScreen.addEventListener("change", updateLayout);
@@ -73,7 +124,9 @@ function initProductSlider() {
     },
     scrollbar: {
       el: slider.querySelector(".new-products__scrollbar"),
-      draggable: true, hide: false, snapOnRelease: true,
+      draggable: true,
+      hide: false,
+      snapOnRelease: true,
     },
     navigation: { prevEl: previous, nextEl: next },
     // HTML에서 번역한 이름을 Swiper 초기화 후에도 유지한다.
@@ -97,7 +150,7 @@ function initBrandMessage() {
     const availableWidth = title.parentElement.clientWidth;
     if (!textWidth) return;
     const fontSize = parseFloat(getComputedStyle(title).fontSize);
-    title.style.fontSize = (fontSize * availableWidth / textWidth) + "px";
+    title.style.fontSize = (fontSize * availableWidth) / textWidth + "px";
   }
 
   fitTitle();
@@ -108,22 +161,37 @@ function initBrandMessage() {
 // 3. 제품 카테고리: 애니메이션 없이 선택한 내용을 보여 준다.
 function initCategorySlider() {
   const categories = document.querySelector(".product-categories");
-  if (!categories || typeof window.Swiper !== "function") return;
+  if (!categories) return;
 
-  const slider = new Swiper(categories.querySelector(".product-categories__content"), {
-    effect: "fade",
-    fadeEffect: { crossFade: true },
-    speed: 0,
-    autoHeight: true,
-    allowTouchMove: false,
-  });
-  connectSlideButtons(slider, categories.querySelectorAll(".product-categories__button"));
+  const buttons = categories.querySelectorAll(".product-categories__button");
+  const panels = categories.querySelectorAll(".product-categories__panel");
+  const titles = categories.querySelectorAll(".product-categories__heading");
+  if (!prepareSlidePanels(buttons, panels, titles, "category")) return;
+  if (typeof window.Swiper !== "function") return;
+
+  const slider = new Swiper(
+    categories.querySelector(".product-categories__content"),
+    {
+      effect: "fade",
+      fadeEffect: { crossFade: true },
+      speed: 0,
+      autoHeight: true,
+      allowTouchMove: false,
+    },
+  );
+  connectSlideButtons(slider, buttons);
 }
 
 // 4. 브랜드: 카테고리와 같은 설정으로 내용을 전환한다.
 function initBrandSlider() {
   const brands = document.querySelector(".brands");
-  if (!brands || typeof window.Swiper !== "function") return;
+  if (!brands) return;
+
+  const buttons = brands.querySelectorAll(".brands__tab");
+  const panels = brands.querySelectorAll(".brands__panel");
+  const titles = brands.querySelectorAll(".brands__brand-name");
+  if (!prepareSlidePanels(buttons, panels, titles, "brand")) return;
+  if (typeof window.Swiper !== "function") return;
 
   const slider = new Swiper(brands.querySelector(".brands__slider"), {
     effect: "fade",
@@ -132,16 +200,44 @@ function initBrandSlider() {
     autoHeight: true,
     allowTouchMove: false,
   });
-  connectSlideButtons(slider, brands.querySelectorAll(".brands__tab"));
+  connectSlideButtons(slider, buttons);
 }
 
-// 공통 동작: 버튼의 aria-controls에 적힌 ID로 슬라이드를 찾는다.
-// 버튼과 슬라이드의 순서를 따로 바꿔도 연결이 유지된다.
+// 공통 준비: HTML에 적힌 순서대로 버튼·패널·제목을 연결한다.
+// Swiper가 슬라이드를 재배치하기 전에 한 번만 호출한다.
+function prepareSlidePanels(buttons, panels, titles, prefix) {
+  if (
+    panels.length === 0 ||
+    buttons.length !== panels.length ||
+    titles.length !== panels.length
+  ) {
+    console.warn(
+      prefix +
+        ": 버튼·패널·제목의 개수가 맞지 않습니다. HTML을 같은 순서와 개수로 작성하세요.",
+    );
+    return false;
+  }
+
+  panels.forEach((panel, index) => {
+    const panelId = prefix + "-panel-" + (index + 1);
+    const titleId = prefix + "-title-" + (index + 1);
+    panel.id = panelId;
+    titles[index].id = titleId;
+    buttons[index].setAttribute("aria-controls", panelId);
+    panel.setAttribute("aria-labelledby", titleId);
+  });
+  return true;
+}
+
+// 공통 동작: 자동으로 연결한 ID로 대상을 찾는다.
+// 초기화 후에는 Swiper가 슬라이드 순서를 바꿔도 연결이 유지된다.
 function connectSlideButtons(slider, buttons) {
   function updateSelection() {
     const currentSlide = slider.slides[slider.activeIndex];
+    if (!currentSlide) return;
     buttons.forEach((button) => {
-      const isCurrent = button.getAttribute("aria-controls") === currentSlide.id;
+      const isCurrent =
+        button.getAttribute("aria-controls") === currentSlide.id;
       button.setAttribute("aria-pressed", String(isCurrent));
     });
     slider.slides.forEach((slide) => {
@@ -154,7 +250,9 @@ function connectSlideButtons(slider, buttons) {
 
   buttons.forEach((button, buttonIndex) => {
     button.addEventListener("click", () => {
-      const panel = document.getElementById(button.getAttribute("aria-controls"));
+      const panel = document.getElementById(
+        button.getAttribute("aria-controls"),
+      );
       if (!panel || !slider.slides.includes(panel)) return;
       if (slider.params.loop) {
         // loop는 슬라이드를 재배치하므로 Swiper가 보관한 원래 번호를 쓴다.
@@ -165,8 +263,10 @@ function connectSlideButtons(slider, buttons) {
     });
     button.addEventListener("keydown", (event) => {
       let nextIndex = buttonIndex;
-      if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex += 1;
-      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex -= 1;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown")
+        nextIndex += 1;
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp")
+        nextIndex -= 1;
       else if (event.key === "Home") nextIndex = 0;
       else if (event.key === "End") nextIndex = buttons.length - 1;
       else return;
@@ -191,7 +291,7 @@ function initFloatingPanel() {
   if (!closeButton) return;
 
   closeButton.addEventListener("click", () => {
-    // _reset.css의 [hidden] 규칙이 display:flex보다 우선해 숨긴다.
+    // _reset.scss의 [hidden] 규칙이 display:flex보다 우선해 숨긴다.
     floating.hidden = true;
   });
 
@@ -212,12 +312,15 @@ function initFloatingPanel() {
     link.addEventListener("click", () => closeQuickMenu());
   });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && floating.classList.contains("is-open")) closeQuickMenu(true);
+    if (event.key === "Escape" && floating.classList.contains("is-open"))
+      closeQuickMenu(true);
   });
   document.addEventListener("click", (event) => {
     if (!floating.contains(event.target)) closeQuickMenu();
   });
-  window.matchMedia("(max-width: 768px)").addEventListener("change", () => closeQuickMenu());
+  window
+    .matchMedia("(max-width: 768px)")
+    .addEventListener("change", () => closeQuickMenu());
 }
 
 // 6. 전체 메뉴: 열기·닫기와 키보드 포커스를 처리한다.
@@ -270,7 +373,10 @@ function initNavigation() {
     if (event.key !== "Tab") return;
 
     // 닫기 버튼도 메뉴의 Tab 순환에 포함한다.
-    const focusable = [toggle, ...drawer.querySelectorAll("a[href], button:not([disabled])")];
+    const focusable = [
+      toggle,
+      ...drawer.querySelectorAll("a[href], button:not([disabled])"),
+    ];
     const firstElement = focusable[0];
     const lastElement = focusable[focusable.length - 1];
     if (event.shiftKey && document.activeElement === firstElement) {

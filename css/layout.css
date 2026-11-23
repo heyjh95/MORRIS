@@ -1,3 +1,172 @@
+@charset "UTF-8";
+/* ===========================
+   1. 기본 초기화
+=========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===========================
+   2. HTML / BODY
+=========================== */
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  word-break: keep-all;
+}
+
+/* ===========================
+   3. 제목 / 텍스트
+=========================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+strong,
+b {
+  font-weight: 700;
+}
+
+/* ===========================
+   4. 목록
+=========================== */
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+/* ===========================
+   5. 링크
+=========================== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===========================
+   6. 이미지 / 미디어
+=========================== */
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+img {
+  vertical-align: top;
+}
+
+video,
+canvas {
+  display: block;
+}
+
+/* ===========================
+   7. 버튼 / 폼 요소
+=========================== */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  border-radius: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button,
+input,
+select,
+textarea {
+  outline-offset: 2px;
+}
+
+/* ===========================
+   8. 테이블
+=========================== */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  padding: 0;
+}
+
+/* ===========================
+   9. 기타 태그
+=========================== */
+address,
+em,
+i {
+  font-style: normal;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  padding: 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+/* ===========================
+   10. 접근성 / 모션
+=========================== */
+[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 .container {
   max-width: 1800px;
   margin-inline: auto;
@@ -30,11 +199,6 @@
 }
 .description--on-dark {
   color: #ffffff;
-}
-@media (max-width: 768px) {
-  .description--on-dark {
-    color: #737780;
-  }
 }
 
 .button {
@@ -123,6 +287,15 @@
   visibility: hidden;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
 .header {
   --header-height: 100px;
   display: grid;
@@ -140,10 +313,8 @@
   backdrop-filter: blur(20px);
 }
 .header__logo {
-  position: static;
   grid-column: 1;
   justify-self: start;
-  margin: 0;
 }
 .header__home {
   display: flex;
@@ -213,9 +384,6 @@
   width: 42px;
   height: 42px;
   padding: 5px;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
 }
 .header__menu-line {
   display: block;
@@ -245,17 +413,10 @@
   flex-direction: column;
   justify-content: center;
   gap: clamp(10px, 2vh, 28px);
-  max-width: none;
-  margin: 0;
   padding: clamp(32px, 5vw, 96px);
-  list-style: none;
-}
-.header__drawer-item {
-  border: 0;
 }
 .header__drawer-link {
   display: inline-block;
-  padding: 0;
   font-size: clamp(32px, 4.2vw, 64px);
   font-weight: 700;
   line-height: 1.2;
@@ -307,7 +468,8 @@
 @media (max-width: 1100px) {
   .header {
     grid-template-columns: auto minmax(0, 1fr);
-    column-gap: 24px;
+    -moz-column-gap: 24px;
+         column-gap: 24px;
   }
   .header__actions {
     grid-column: 2;
@@ -316,7 +478,8 @@
 @media (max-width: 768px) {
   .header {
     --header-height: 74px;
-    column-gap: 16px;
+    -moz-column-gap: 16px;
+         column-gap: 16px;
     padding-inline: 16px;
   }
   .header__logo-image {
@@ -390,6 +553,19 @@ body.is-site-menu-open {
 .main-visual__arrow {
   display: none;
 }
+.main-visual__autoplay {
+  position: absolute;
+  right: 24px;
+  bottom: calc(270px + 40px);
+  z-index: 10;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.main-visual__autoplay:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
 .main-visual__slides {
   height: 100%;
 }
@@ -402,7 +578,8 @@ body.is-site-menu-open {
   height: 100%;
 }
 .main-visual__image {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .main-visual__pagination {
   display: grid;
@@ -424,13 +601,8 @@ body.is-site-menu-open {
   width: 100%;
   height: 270px;
   overflow: hidden;
-  margin: 0;
-  padding: 0;
   text-align: left;
   color: #ffffff;
-  background: transparent;
-  border-radius: 0;
-  opacity: 1;
   cursor: pointer;
 }
 .main-visual__select::before {
@@ -549,7 +721,8 @@ body.is-site-menu-open {
   .main-visual__image {
     height: 100%;
     min-height: 0;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .main-visual__card-content {
     position: static;
@@ -580,6 +753,7 @@ body.is-site-menu-open {
   .main-visual__card-description {
     display: block;
     overflow: visible;
+    color: #737780;
     font-size: 16px;
     -webkit-line-clamp: unset;
     line-clamp: unset;
@@ -620,6 +794,10 @@ body.is-site-menu-open {
     position: absolute;
     bottom: calc(84px + env(safe-area-inset-bottom, 0px));
     z-index: 10;
+  }
+  .main-visual__autoplay {
+    right: 20px;
+    bottom: calc(154px + env(safe-area-inset-bottom, 0px));
   }
   .main-visual__arrow .icon {
     width: 20px;
@@ -801,7 +979,8 @@ body.is-site-menu-open {
   position: relative;
   grid-template-columns: minmax(0, 1fr) auto;
   row-gap: 48px;
-  column-gap: 32px;
+  -moz-column-gap: 32px;
+       column-gap: 32px;
   width: 100%;
   max-width: 1920px;
   padding: 120px clamp(20px, 3vw, 40px);
@@ -809,7 +988,6 @@ body.is-site-menu-open {
 .new-products__description {
   margin-top: 20px;
   font-size: 24px;
-  font-weight: 400;
 }
 .new-products__all-link {
   align-self: end;
@@ -843,14 +1021,14 @@ body.is-site-menu-open {
   aspect-ratio: 4/5;
   overflow: hidden;
   background-color: #f5f5f3;
-  border-radius: 0;
   transition: border-radius 0.4s ease;
 }
 .new-products__image {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   transition: transform 0.5s ease;
 }
 .new-products__info {
@@ -991,7 +1169,6 @@ body.is-site-menu-open {
   min-width: 0;
   max-width: 380px;
   font-size: clamp(20px, 1.6vw, 24px);
-  font-weight: 400;
 }
 @media (max-width: 1200px) {
   .brand-message {
@@ -1074,9 +1251,6 @@ body.is-site-menu-open {
   font-weight: 500;
   text-align: left;
   color: #24262b;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
   transition: color 0.25s ease;
 }
 .product-categories__button:hover, .product-categories__button[aria-pressed=true] {
@@ -1142,9 +1316,10 @@ body.is-site-menu-open {
   display: block;
   width: 100%;
   height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: center;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
 }
 .product-categories__heading {
   font-size: clamp(32px, 2.9vw, 52px);
@@ -1152,7 +1327,6 @@ body.is-site-menu-open {
 }
 .product-categories__description {
   font-size: clamp(16px, 1.1vw, 18px);
-  font-weight: 400;
 }
 .product-categories__link {
   font-size: 17px;
@@ -1312,7 +1486,8 @@ body.is-site-menu-open {
   height: 44px;
   opacity: 0.4;
   filter: grayscale(1);
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   transition: filter 0.3s ease, opacity 0.3s ease;
 }
 .brands__tab[aria-pressed=true] .brands__tab-image {
@@ -1340,8 +1515,10 @@ body.is-site-menu-open {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 .brands__content {
   display: flex;
@@ -1355,21 +1532,15 @@ body.is-site-menu-open {
   width: 100%;
   min-width: 0;
 }
-.brands__brand-name {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  white-space: nowrap;
-  clip-path: inset(50%);
-}
 .brands__brand-logo {
   display: block;
   width: 100%;
   max-width: 600px;
   height: clamp(90px, 10vw, 150px);
-  object-fit: contain;
-  object-position: left center;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: left center;
+     object-position: left center;
 }
 .brands__info {
   display: flex;
@@ -1384,7 +1555,6 @@ body.is-site-menu-open {
 }
 .brands__description {
   font-size: clamp(15px, 1vw, 17px);
-  font-weight: 400;
 }
 .brands__link {
   min-width: 124px;

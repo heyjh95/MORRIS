@@ -16,7 +16,9 @@ $dark-border-color: #515151;
 $scrollbar-track: $border-color;
 $scrollbar-thumb: $primary-color;
 
-$container-maxwidth: 1200px;
+// 히어로 카드 폭과 본문 컨테이너 폭은 목적이 다릅니다.
+$hero-pagination-maxwidth: 1200px;
+$container-maxwidth: 1800px;
 $section-content-width: 1840px;
 $section-padding-inline: clamp(20px, 3vw, 40px);
 $bp-mobile: 768px;
@@ -50,18 +52,12 @@ $hero-card-peek: 120px;
   line-clamp: $lines;
 }
 
-@mixin background-cover {
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: cover;
-}
-
 // 3. 공통 컴포넌트
 // HTML에서 공통 클래스와 영역 클래스를 함께 사용합니다.
 // 공통 모양은 여기서, 영역별 배치와 기존 글자 크기·굵기는 layout.scss에서 수정합니다.
 
 .container {
-  max-width: 1800px;
+  max-width: $container-maxwidth;
   margin-inline: auto;
 }
 
@@ -92,13 +88,9 @@ $hero-card-peek: 120px;
   word-break: keep-all;
   overflow-wrap: break-word;
 
-  // 사진 위에서는 흰색, 모바일의 밝은 배경에서는 기본 설명 색상입니다.
+  // 사진 위 등 어두운 배경에 사용합니다. 모바일 배경색 변경은 해당 섹션에서 처리합니다.
   &--on-dark {
     color: $white;
-
-    @media (max-width: $bp-mobile) {
-      color: $text-muted;
-    }
   }
 }
 
@@ -115,7 +107,10 @@ $hero-card-peek: 120px;
   border: 1px solid $text-color;
   border-radius: 100px;
   cursor: pointer;
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 
   &:hover {
     color: $white;
@@ -156,7 +151,9 @@ $hero-card-peek: 120px;
   border: 1px solid $border-color;
   border-radius: 50%;
   cursor: pointer;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
 
   &:hover {
     color: $primary-color;
@@ -202,4 +199,14 @@ $hero-card-peek: 120px;
   .swiper-slide:not(.swiper-slide-active) {
     visibility: hidden;
   }
+}
+
+// 화면에는 보이지 않지만 스크린리더가 읽을 제목에 사용합니다.
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
 }
