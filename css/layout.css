@@ -468,7 +468,8 @@ hr {
 @media (max-width: 1100px) {
   .header {
     grid-template-columns: auto minmax(0, 1fr);
-    column-gap: 24px;
+    -moz-column-gap: 24px;
+         column-gap: 24px;
   }
   .header-actions {
     grid-column: 2;
@@ -477,7 +478,8 @@ hr {
 @media (max-width: 768px) {
   .header {
     --header-height: 74px;
-    column-gap: 16px;
+    -moz-column-gap: 16px;
+         column-gap: 16px;
     padding-inline: 16px;
   }
   .header-logo-image {
@@ -576,7 +578,8 @@ body.is-site-menu-open {
   height: 100%;
 }
 .main-visual-image {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .main-visual-pagination {
   display: grid;
@@ -718,7 +721,8 @@ body.is-site-menu-open {
   .main-visual-image {
     height: 100%;
     min-height: 0;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .main-visual-card-content {
     position: static;
@@ -975,7 +979,8 @@ body.is-site-menu-open {
   position: relative;
   grid-template-columns: minmax(0, 1fr) auto;
   row-gap: 48px;
-  column-gap: 32px;
+  -moz-column-gap: 32px;
+       column-gap: 32px;
   width: 100%;
   max-width: 1920px;
   padding: 120px clamp(20px, 3vw, 40px);
@@ -1022,7 +1027,8 @@ body.is-site-menu-open {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   transition: transform 0.5s ease;
 }
 .new-products-info {
@@ -1310,8 +1316,10 @@ body.is-site-menu-open {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
 }
 .product-categories-heading {
   font-size: clamp(32px, 2.9vw, 52px);
@@ -1478,7 +1486,8 @@ body.is-site-menu-open {
   height: 44px;
   opacity: 0.4;
   filter: grayscale(1);
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   transition: filter 0.3s ease, opacity 0.3s ease;
 }
 .brands-tab[aria-pressed=true] .brands-tab-image {
@@ -1506,8 +1515,10 @@ body.is-site-menu-open {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 .brands-content {
   display: flex;
@@ -1526,8 +1537,10 @@ body.is-site-menu-open {
   width: 100%;
   max-width: 600px;
   height: clamp(90px, 10vw, 150px);
-  object-fit: contain;
-  object-position: left center;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: left center;
+     object-position: left center;
 }
 .brands-info {
   display: flex;
