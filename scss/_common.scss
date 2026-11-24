@@ -89,7 +89,7 @@ $hero-card-peek: 120px;
   overflow-wrap: break-word;
 
   // 사진 위 등 어두운 배경에 사용합니다. 모바일 배경색 변경은 해당 섹션에서 처리합니다.
-  &--on-dark {
+  &.on-dark {
     color: $white;
   }
 }
@@ -117,7 +117,7 @@ $hero-card-peek: 120px;
     background-color: $text-color;
   }
 
-  &--on-dark {
+  &.on-dark {
     color: $white;
     border-color: $white;
 

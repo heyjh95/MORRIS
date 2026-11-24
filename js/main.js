@@ -5,9 +5,9 @@ function initHeroSlider() {
   const hero = document.querySelector(".main-visual");
   if (!hero) return;
 
-  const buttons = hero.querySelectorAll(".main-visual__select");
-  const panels = hero.querySelectorAll(".main-visual__slide");
-  const titles = hero.querySelectorAll(".main-visual__card-title");
+  const buttons = hero.querySelectorAll(".main-visual-select");
+  const panels = hero.querySelectorAll(".main-visual-slide");
+  const titles = hero.querySelectorAll(".main-visual-card-title");
   if (!prepareSlidePanels(buttons, panels, titles, "hero")) return;
   const mobileScreen = window.matchMedia("(max-width: 768px)");
   const prefersReducedMotion = window.matchMedia(
@@ -15,9 +15,9 @@ function initHeroSlider() {
   ).matches;
 
   // 문구는 한 번만 작성한다. 모바일에서는 이미지와 같은 슬라이드로 옮긴다.
-  const cards = Array.from(hero.querySelectorAll(".main-visual__card"));
+  const cards = Array.from(hero.querySelectorAll(".main-visual-card"));
   const contents = cards.map((card) =>
-    card.querySelector(".main-visual__card-content"),
+    card.querySelector(".main-visual-card-content"),
   );
   function arrangeContent() {
     cards.forEach((card, index) => {
@@ -37,13 +37,13 @@ function initHeroSlider() {
 
   if (typeof window.Swiper !== "function") {
     // 외부 Swiper가 로드되지 않았다면 동작하지 않는 자동재생 버튼을 숨깁니다.
-    const autoplayButton = hero.querySelector(".main-visual__autoplay");
+    const autoplayButton = hero.querySelector(".main-visual-autoplay");
     if (autoplayButton) autoplayButton.hidden = true;
     return;
   }
 
-  const previous = hero.querySelector(".main-visual__prev");
-  const next = hero.querySelector(".main-visual__next");
+  const previous = hero.querySelector(".main-visual-prev");
+  const next = hero.querySelector(".main-visual-next");
   const slider = new Swiper(hero, {
     slidesPerView: 1,
     loop: true,
@@ -62,7 +62,7 @@ function initHeroSlider() {
   connectSlideButtons(slider, buttons);
 
   // 자동재생을 언제든 정지할 수 있도록 버튼 상태를 Swiper와 동기화합니다.
-  const autoplayButton = hero.querySelector(".main-visual__autoplay");
+  const autoplayButton = hero.querySelector(".main-visual-autoplay");
   let autoplayPausedByUser = false;
 
   function syncAutoplayButton() {
@@ -108,11 +108,11 @@ function initHeroSlider() {
 
 // 2. 신제품: 화면 폭에 맞춰 여러 장을 보여 준다.
 function initProductSlider() {
-  const slider = document.querySelector(".new-products__slider");
+  const slider = document.querySelector(".new-products-slider");
   if (!slider || typeof window.Swiper !== "function") return;
 
-  const previous = slider.querySelector(".new-products__prev");
-  const next = slider.querySelector(".new-products__next");
+  const previous = slider.querySelector(".new-products-prev");
+  const next = slider.querySelector(".new-products-next");
   new Swiper(slider, {
     slidesPerView: 1.2,
     spaceBetween: 16,
@@ -123,7 +123,7 @@ function initProductSlider() {
       1200: { slidesPerView: 4, spaceBetween: 20 },
     },
     scrollbar: {
-      el: slider.querySelector(".new-products__scrollbar"),
+      el: slider.querySelector(".new-products-scrollbar"),
       draggable: true,
       hide: false,
       snapOnRelease: true,
@@ -139,7 +139,7 @@ function initProductSlider() {
 
 // 모바일 문구가 왼쪽 여백부터 오른쪽 여백까지 한 줄로 차도록 크기를 맞춘다.
 function initBrandMessage() {
-  const title = document.querySelector(".brand-message__title");
+  const title = document.querySelector(".brand-message-title");
   if (!title) return;
   const mobileScreen = window.matchMedia("(max-width: 768px)");
 
@@ -163,14 +163,14 @@ function initCategorySlider() {
   const categories = document.querySelector(".product-categories");
   if (!categories) return;
 
-  const buttons = categories.querySelectorAll(".product-categories__button");
-  const panels = categories.querySelectorAll(".product-categories__panel");
-  const titles = categories.querySelectorAll(".product-categories__heading");
+  const buttons = categories.querySelectorAll(".product-categories-button");
+  const panels = categories.querySelectorAll(".product-categories-panel");
+  const titles = categories.querySelectorAll(".product-categories-heading");
   if (!prepareSlidePanels(buttons, panels, titles, "category")) return;
   if (typeof window.Swiper !== "function") return;
 
   const slider = new Swiper(
-    categories.querySelector(".product-categories__content"),
+    categories.querySelector(".product-categories-content"),
     {
       effect: "fade",
       fadeEffect: { crossFade: true },
@@ -187,13 +187,13 @@ function initBrandSlider() {
   const brands = document.querySelector(".brands");
   if (!brands) return;
 
-  const buttons = brands.querySelectorAll(".brands__tab");
-  const panels = brands.querySelectorAll(".brands__panel");
-  const titles = brands.querySelectorAll(".brands__brand-name");
+  const buttons = brands.querySelectorAll(".brands-tab");
+  const panels = brands.querySelectorAll(".brands-panel");
+  const titles = brands.querySelectorAll(".brands-brand-name");
   if (!prepareSlidePanels(buttons, panels, titles, "brand")) return;
   if (typeof window.Swiper !== "function") return;
 
-  const slider = new Swiper(brands.querySelector(".brands__slider"), {
+  const slider = new Swiper(brands.querySelector(".brands-slider"), {
     effect: "fade",
     fadeEffect: { crossFade: true },
     speed: 0,
@@ -287,7 +287,7 @@ function connectSlideButtons(slider, buttons) {
 function initFloatingPanel() {
   const floating = document.querySelector(".floating");
   if (!floating) return;
-  const closeButton = floating.querySelector(".floating__close");
+  const closeButton = floating.querySelector(".floating-close");
   if (!closeButton) return;
 
   closeButton.addEventListener("click", () => {
@@ -295,8 +295,8 @@ function initFloatingPanel() {
     floating.hidden = true;
   });
 
-  const toggle = floating.querySelector(".floating__toggle");
-  const mobileClose = floating.querySelector(".floating__mobile-close");
+  const toggle = floating.querySelector(".floating-toggle");
+  const mobileClose = floating.querySelector(".floating-mobile-close");
   function closeQuickMenu(returnFocus = false) {
     floating.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
@@ -327,8 +327,8 @@ function initFloatingPanel() {
 function initNavigation() {
   const header = document.querySelector(".header");
   if (!header) return;
-  const toggle = header.querySelector(".header__menu-toggle");
-  const drawer = header.querySelector(".header__drawer");
+  const toggle = header.querySelector(".header-menu-toggle");
+  const drawer = header.querySelector(".header-drawer");
   if (!toggle || !drawer) return;
 
   // 언어별 문구는 각 HTML의 data-* 속성에서 읽는다.

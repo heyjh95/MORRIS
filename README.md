@@ -38,7 +38,7 @@ SCSS를 수정했을 때만 CSS를 다시 빌드합니다. `scss/layout.scss`가
 
 실제 사이트의 SCSS는 위 두 파일입니다. `layout.scss`에서 ‘1. 헤더’, ‘2. 히어로’, ‘6. 제품 카테고리’ 등의 주석을 검색하면 해당 영역으로 이동합니다. 모바일 스타일은 각 영역 안의 `@media`에서 함께 수정합니다. 공통 색이나 화면 크기 기준을 바꿀 때는 `_common.scss` 상단의 변수를 수정합니다.
 
-영역 안의 하위 요소는 SCSS 중첩으로 묶습니다. `.main-visual` 안의 `&__image`는 `.main-visual__image`가 됩니다. `&:hover`는 현재 요소에 마우스를 올린 상태이며, `img { ... }`는 현재 요소 안의 이미지에 적용합니다.
+영역 안의 하위 요소는 SCSS 중첩으로 묶습니다. `.main-visual` 안의 `&-image`는 `.main-visual-image`가 됩니다. `&:hover`는 현재 요소에 마우스를 올린 상태이며, `img { ... }`는 현재 요소 안의 이미지에 적용합니다.
 
 비슷한 요소에는 공통 클래스를 함께 붙입니다. `_common.scss`에서 아래 클래스를 고치면 한국어·영어의 해당 요소에 함께 적용됩니다.
 
@@ -49,7 +49,7 @@ SCSS를 수정했을 때만 CSS를 다시 빌드합니다. `scss/layout.scss`가
 | `button` | 상세·전체 보기 링크의 여백·테두리·둥근 모서리·상태 표시 |
 | `circle-button` | 이전·다음 버튼의 원형 모양·크기·정렬·상태 표시 |
 
-예를 들어 `class="description product-categories__description"`은 공통 설명 모양과 카테고리 영역의 설정을 함께 사용합니다. 글자 크기와 굵기는 기존 값을 유지하며 공통 변수로 만들지 않았습니다. 사진 위의 설명과 버튼만 `description--on-dark`, `button--on-dark`로 색상을 구분합니다. 카테고리 선택 버튼과 브랜드 탭의 배치는 각 영역에서 관리합니다.
+예를 들어 `class="description product-categories-description"`은 공통 설명 모양과 카테고리 영역의 설정을 함께 사용합니다. 글자 크기와 굵기는 기존 값을 유지하며 공통 변수로 만들지 않았습니다. 사진 위의 설명과 버튼만 `on-dark` 클래스를 추가해 색상을 구분합니다 (`description on-dark`, `on-dark button`). 카테고리 선택 버튼과 브랜드 탭의 배치는 각 영역에서 관리합니다.
 
 반복되는 슬라이드·패널·제목의 ID는 `js/main.js`의 `prepareSlidePanels()`가 자동으로 붙입니다. 버튼의 `aria-controls`와 패널의 `aria-labelledby`도 함께 연결합니다. 카테고리나 브랜드를 추가할 때는 버튼과 제목이 있는 패널을 같은 순서로 추가합니다. 첫 버튼은 첫 패널, 두 번째 버튼은 두 번째 패널에 연결됩니다. HTML에 ID 이름이나 연결 속성을 직접 적지 않습니다. 히어로도 이미지 슬라이드와 선택 카드를 같은 순서로 작성합니다.
 

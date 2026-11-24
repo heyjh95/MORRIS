@@ -29,9 +29,9 @@ test("IDs, ARIA references, fragment links and local assets resolve", () => {
 
 test("Slide buttons, panels and titles have matching counts for automatic ID pairing", () => {
   const groups = [
-    ["main-visual__select", "main-visual__slide", "main-visual__card-title"],
-    ["product-categories__button", "product-categories__panel", "product-categories__heading"],
-    ["brands__tab", "brands__panel", "brands__brand-name"],
+    ["main-visual-select", "main-visual-slide", "main-visual-card-title"],
+    ["product-categories-button", "product-categories-panel", "product-categories-heading"],
+    ["brands-tab", "brands-panel", "brands-brand-name"],
   ];
   const tagsWithClass = (html, cls) => Array.from(html.matchAll(/<[a-z][^>]*\bclass="([^"]+)"[^>]*>/g))
     .filter(match => match[1].split(/\s+/).includes(cls)).map(match => match[0]);
@@ -56,8 +56,8 @@ test("Primary menu and drawer have matching addresses and labels", () => {
   for (const path of pages) {
     const html = read(path);
     const links = (cls) => Array.from(html.matchAll(new RegExp('<a class="' + cls + '" href="([^"]+)">([^<]+)</a>', "g")), m => [m[1], m[2]]);
-    assert.ok(links("gnb__link").length > 0, path);
-    assert.deepEqual(links("gnb__link"), links("header__drawer-link"), path);
+    assert.ok(links("gnb-link").length > 0, path);
+    assert.deepEqual(links("gnb-link"), links("header-drawer-link"), path);
   }
 });
 

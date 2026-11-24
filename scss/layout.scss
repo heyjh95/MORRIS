@@ -1,6 +1,6 @@
 // 화면의 영역별 스타일은 이 파일에서 수정합니다.
 // 각 영역 안의 @media에서 모바일 스타일도 함께 찾을 수 있습니다.
-// &는 바깥 선택자입니다. .main-visual 안의 &__image는 .main-visual__image가 됩니다.
+// &는 바깥 선택자입니다. .main-visual 안의 &-image는 .main-visual-image가 됩니다.
 // title·description·button·circle-button의 공통 모양은 _common.scss에서 수정합니다.
 // _reset.scss도 이 진입점에서 한 번만 불러옵니다.
 @use "sass:math";
@@ -26,23 +26,23 @@
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);
 
-  &__logo {
+  &-logo {
     grid-column: 1;
     justify-self: start;
   }
 
-  &__home {
+  &-home {
     display: flex;
     align-items: center;
   }
 
-  &__logo-image {
+  &-logo-image {
     display: block;
     width: 126px;
     height: auto;
   }
 
-  &__actions {
+  &-actions {
     display: flex;
     position: relative;
     z-index: 3;
@@ -52,11 +52,11 @@
     gap: clamp(16px, 2vw, 32px);
   }
 
-  &__language {
+  &-language {
     position: relative;
   }
 
-  &__language-toggle {
+  &-language-toggle {
     display: flex;
     align-items: center;
     gap: 7px;
@@ -68,11 +68,11 @@
     list-style: none;
   }
 
-  &__language-toggle::-webkit-details-marker {
+  &-language-toggle::-webkit-details-marker {
     display: none;
   }
 
-  &__language-menu {
+  &-language-menu {
     display: none;
     position: absolute;
     top: calc(100% + 8px);
@@ -85,24 +85,24 @@
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
   }
 
-  &__language-link {
+  &-language-link {
     display: block;
     padding: 10px 12px;
     font-size: 14px;
     color: $text-color;
   }
 
-  &__language-link:hover,
-  &__language-link[aria-current="page"] {
+  &-language-link:hover,
+  &-language-link[aria-current="page"] {
     color: $primary-color;
     background-color: $surface-color;
   }
 
-  &__language[open] .header__language-menu {
+  &-language[open] .header-language-menu {
     display: grid;
   }
 
-  &__menu-toggle {
+  &-menu-toggle {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,7 +112,7 @@
     padding: 5px; // 버튼 기본 배경·테두리·커서는 reset에서 처리
   }
 
-  &__menu-line {
+  &-menu-line {
     display: block;
     width: 100%;
     height: 2px;
@@ -123,7 +123,7 @@
   }
 
   // hidden 처리는 _reset.scss의 전역 [hidden] 규칙을 사용한다.
-  &__drawer {
+  &-drawer {
     display: grid;
     position: absolute;
     top: 100%;
@@ -140,7 +140,7 @@
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   }
 
-  &__drawer-list {
+  &-drawer-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,7 +148,7 @@
     padding: clamp(32px, 5vw, 96px);
   }
 
-  &__drawer-link {
+  &-drawer-link {
     display: inline-block;
     font-size: clamp(32px, 4.2vw, 64px);
     font-weight: 700;
@@ -157,19 +157,19 @@
     transition: color 0.2s ease;
   }
 
-  &__drawer-link:hover,
-  &__drawer-link:focus-visible {
+  &-drawer-link:hover,
+  &-drawer-link:focus-visible {
     color: $white;
   }
 
-  &__drawer-media {
+  &-drawer-media {
     position: relative;
     min-height: 100%;
     background: url("../images/main/sec6_bg.jpg") center/cover no-repeat;
     border-left: 1px solid $dark-border-color;
   }
 
-  &__drawer-media::after {
+  &-drawer-media::after {
     display: grid;
     position: absolute;
     inset: 0;
@@ -189,24 +189,24 @@
     box-shadow: none;
   }
 
-  &.is-menu-open .gnb__link,
-  &.is-menu-open .header__language-toggle {
+  &.is-menu-open .gnb-link,
+  &.is-menu-open .header-language-toggle {
     color: $white;
   }
 
-  &.is-menu-open .header__menu-line {
+  &.is-menu-open .header-menu-line {
     background-color: $white;
   }
 
-  &.is-menu-open .header__menu-line:first-child {
+  &.is-menu-open .header-menu-line:first-child {
     transform: translateY(8px) rotate(45deg);
   }
 
-  &.is-menu-open .header__menu-line:nth-child(2) {
+  &.is-menu-open .header-menu-line:nth-child(2) {
     opacity: 0;
   }
 
-  &.is-menu-open .header__menu-line:last-child {
+  &.is-menu-open .header-menu-line:last-child {
     transform: translateY(-8px) rotate(-45deg);
   }
 
@@ -214,7 +214,7 @@
     grid-template-columns: auto minmax(0, 1fr);
     column-gap: 24px;
 
-    &__actions {
+    &-actions {
       grid-column: 2;
     }
   }
@@ -224,41 +224,41 @@
     column-gap: 16px;
     padding-inline: 16px;
 
-    &__logo-image {
+    &-logo-image {
       width: 105px;
     }
 
-    &__actions {
+    &-actions {
       gap: 12px;
     }
 
-    &__menu-toggle {
+    &-menu-toggle {
       gap: 5px;
       width: 36px;
       height: 36px;
     }
 
-    &__drawer {
+    &-drawer {
       grid-template-columns: 1fr;
     }
 
-    &__drawer-list {
+    &-drawer-list {
       padding: 32px 24px;
     }
 
-    &__drawer-link {
+    &-drawer-link {
       font-size: clamp(30px, 8vw, 46px);
     }
 
-    &__drawer-media {
+    &-drawer-media {
       display: none;
     }
 
-    &.is-menu-open .header__menu-line:first-child {
+    &.is-menu-open .header-menu-line:first-child {
       transform: translateY(7px) rotate(45deg);
     }
 
-    &.is-menu-open .header__menu-line:last-child {
+    &.is-menu-open .header-menu-line:last-child {
       transform: translateY(-7px) rotate(-45deg);
     }
   }
@@ -269,12 +269,12 @@
   justify-self: center;
   min-width: 0;
 
-  &__list {
+  &-list {
     @include flex-center;
     gap: clamp(16px, 2.2vw, 36px);
   }
 
-  &__link {
+  &-link {
     display: block;
     padding: 12px 0;
     font-size: 18px;
@@ -283,8 +283,8 @@
     transition: color 0.3s ease;
   }
 
-  &__link:hover,
-  &__link:focus-visible {
+  &-link:hover,
+  &-link:focus-visible {
     color: $primary-color;
   }
 
@@ -306,12 +306,12 @@ body.is-site-menu-open {
   height: 100vh;
 
   // 이 화살표는 모바일에서만 표시한다.
-  &__arrow {
+  &-arrow {
     display: none;
   }
 
   // 재생/일시정지 버튼: 자동재생 접근성을 위해 모든 화면에서 제공합니다.
-  &__autoplay {
+  &-autoplay {
     position: absolute;
     right: 24px;
     bottom: calc(#{$hero-card-height} + 40px);
@@ -326,26 +326,26 @@ body.is-site-menu-open {
     }
   }
 
-  &__slides {
+  &-slides {
     height: 100%;
   }
 
-  &__slide {
+  &-slide {
     height: 100%;
   }
 
-  &__image-link,
-  &__image {
+  &-image-link,
+  &-image {
     display: block;
     width: 100%;
     height: 100%;
   }
 
-  &__image {
+  &-image {
     object-fit: cover;
   }
 
-  &__pagination {
+  &-pagination {
     display: grid;
     position: absolute;
     bottom: 20px;
@@ -359,7 +359,7 @@ body.is-site-menu-open {
     transform: translateX(-50%);
   }
 
-  &__card {
+  &-card {
     display: block;
     position: relative;
     isolation: isolate;
@@ -372,7 +372,7 @@ body.is-site-menu-open {
   }
 
   // 접힌 배경 비율 = 노출 높이 120px / 전체 높이 270px.
-  &__select::before {
+  &-select::before {
     position: absolute;
     inset: 0;
     z-index: -1;
@@ -388,7 +388,7 @@ body.is-site-menu-open {
   }
 
   // 선택 버튼은 카드 전체를 덮고, 상세 링크는 별도로 클릭할 수 있다.
-  &__select {
+  &-select {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -397,13 +397,13 @@ body.is-site-menu-open {
     cursor: pointer;
   }
 
-  &__select:focus-visible {
+  &-select:focus-visible {
     outline: 2px solid $white;
     outline-offset: -4px;
   }
 
   // 이동 거리 = 전체 높이 270px - 노출 높이 120px.
-  &__card-content {
+  &-card-content {
     z-index: 1;
     pointer-events: none;
     display: flex;
@@ -419,20 +419,20 @@ body.is-site-menu-open {
     transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  &__card-no {
+  &-card-no {
     flex-shrink: 0;
     font-size: 16px;
     font-weight: 700;
   }
 
-  &__card-title {
+  &-card-title {
     flex-shrink: 0;
     margin-top: 8px;
     font-size: 24px;
     font-weight: 700;
   }
 
-  &__card-detail {
+  &-card-detail {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -448,12 +448,12 @@ body.is-site-menu-open {
       visibility 0.4s;
   }
 
-  &__card-description {
+  &-card-description {
     @include ellipsis(3);
     font-size: 16px;
   }
 
-  &__card-link {
+  &-card-link {
     pointer-events: auto;
     flex-shrink: 0;
     margin-top: auto;
@@ -461,16 +461,16 @@ body.is-site-menu-open {
     font-size: 20px;
   }
 
-  &__select[aria-pressed="true"]::before {
+  &-select[aria-pressed="true"]::before {
     background-color: rgba(0, 0, 0, 0.65);
     border-bottom-color: $primary-color;
     transform: scaleY(1);
   }
 
-  &__select[aria-pressed="true"] + .main-visual__card-content,
-  &__select[aria-pressed="true"]
-    + .main-visual__card-content
-    .main-visual__card-detail {
+  &-select[aria-pressed="true"] + .main-visual-card-content,
+  &-select[aria-pressed="true"]
+    + .main-visual-card-content
+    .main-visual-card-detail {
     transform: translateY(0);
   }
 
@@ -485,11 +485,11 @@ body.is-site-menu-open {
     color: $text-color;
     background-color: $surface-color;
 
-    &__slides {
+    &-slides {
       height: auto;
     }
 
-    &__slide {
+    &-slide {
       display: flex;
       flex-direction: column;
       height: auto;
@@ -501,7 +501,7 @@ body.is-site-menu-open {
       );
     }
 
-    &__image-link {
+    &-image-link {
       display: grid;
       flex: 0 0 auto;
       place-items: center;
@@ -510,13 +510,13 @@ body.is-site-menu-open {
       padding: 0;
     }
 
-    &__image {
+    &-image {
       height: 100%;
       min-height: 0;
       object-fit: cover;
     }
 
-    &__card-content {
+    &-card-content {
       position: static;
       z-index: auto;
       flex-shrink: 0;
@@ -527,16 +527,16 @@ body.is-site-menu-open {
       transition: none;
     }
 
-    &__card-no {
+    &-card-no {
       display: none;
     }
 
-    &__card-title {
+    &-card-title {
       margin-top: 0;
       font-size: clamp(24px, 7vw, 30px);
     }
 
-    &__card-detail {
+    &-card-detail {
       flex: none;
       gap: 18px;
       margin-top: 12px;
@@ -546,7 +546,7 @@ body.is-site-menu-open {
       transition: none;
     }
 
-    &__card-description {
+    &-card-description {
       display: block;
       overflow: visible;
       color: $text-muted;
@@ -555,12 +555,12 @@ body.is-site-menu-open {
       line-clamp: unset;
     }
 
-    &__card-link {
+    &-card-link {
       margin: 0;
       font-size: 16px;
     }
 
-    &__pagination {
+    &-pagination {
       bottom: calc(84px + env(safe-area-inset-bottom, 0px));
       grid-template-columns: repeat(4, 44px);
       gap: 0;
@@ -568,13 +568,13 @@ body.is-site-menu-open {
       height: 44px;
     }
 
-    &__card {
+    &-card {
       width: 44px;
       height: 44px;
       overflow: visible;
     }
 
-    &__select::before {
+    &-select::before {
       inset: 17px;
       background-color: $border-color;
       border: 0;
@@ -583,16 +583,16 @@ body.is-site-menu-open {
       transition: background-color 0.2s ease;
     }
 
-    &__select[aria-pressed="true"]::before {
+    &-select[aria-pressed="true"]::before {
       background-color: $primary-color;
       transform: none;
     }
 
-    &__select:focus-visible {
+    &-select:focus-visible {
       outline-color: $primary-color;
     }
 
-    &__arrow {
+    &-arrow {
       display: grid;
       position: absolute;
       bottom: calc(84px + env(safe-area-inset-bottom, 0px));
@@ -600,28 +600,28 @@ body.is-site-menu-open {
     }
 
     // 페이지네이션과 겹치지 않도록 재생 버튼은 슬라이드 이미지 위에 둡니다.
-    &__autoplay {
+    &-autoplay {
       right: 20px;
       bottom: calc(154px + env(safe-area-inset-bottom, 0px));
     }
 
-    &__arrow .icon {
+    &-arrow .icon {
       width: 20px;
       height: 20px;
     }
 
-    &__prev {
+    &-prev {
       left: 20px;
     }
 
-    &__next {
+    &-next {
       right: 20px;
     }
   }
 
-  &__select[aria-pressed="true"]
-    + .main-visual__card-content
-    .main-visual__card-detail {
+  &-select[aria-pressed="true"]
+    + .main-visual-card-content
+    .main-visual-card-detail {
     opacity: 1;
     visibility: visible;
     transition-delay: 0.12s;
@@ -641,12 +641,12 @@ body.is-site-menu-open {
   align-items: flex-end;
   gap: 5px;
 
-  &__toggle,
-  &__mobile-close {
+  &-toggle,
+  &-mobile-close {
     display: none;
   }
 
-  &__close {
+  &-close {
     @include flex-center;
     width: 24px;
     height: 24px;
@@ -660,7 +660,7 @@ body.is-site-menu-open {
     }
   }
 
-  &__popup {
+  &-popup {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -674,18 +674,18 @@ body.is-site-menu-open {
     border-radius: 50%;
   }
 
-  &__logo {
+  &-logo {
     display: block;
     width: 92px;
     height: auto;
   }
 
-  &__links {
+  &-links {
     width: 100%;
     max-width: 160px;
   }
 
-  &__store {
+  &-store {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -698,11 +698,11 @@ body.is-site-menu-open {
     border-bottom: 1px solid #666;
   }
 
-  &__store:hover {
+  &-store:hover {
     color: $accent-color;
   }
 
-  &__inquiry {
+  &-inquiry {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -713,11 +713,11 @@ body.is-site-menu-open {
     color: #ddd;
   }
 
-  &__inquiry:hover {
+  &-inquiry:hover {
     color: $accent-color;
   }
 
-  &__arrow {
+  &-arrow {
     font-size: 24px;
   }
 
@@ -730,7 +730,7 @@ body.is-site-menu-open {
     bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     gap: 0;
 
-    &__toggle {
+    &-toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -745,17 +745,17 @@ body.is-site-menu-open {
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     }
 
-    &__toggle:focus-visible,
-    &__mobile-close:focus-visible {
+    &-toggle:focus-visible,
+    &-mobile-close:focus-visible {
       outline: 2px solid $primary-color;
       outline-offset: 3px;
     }
 
-    &__close {
+    &-close {
       display: none;
     }
 
-    &__popup {
+    &-popup {
       display: none;
       position: absolute;
       right: 0;
@@ -770,11 +770,11 @@ body.is-site-menu-open {
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     }
 
-    &.is-open .floating__popup {
+    &.is-open .floating-popup {
       display: flex;
     }
 
-    &__mobile-close {
+    &-mobile-close {
       display: grid;
       position: absolute;
       top: 4px;
@@ -787,20 +787,20 @@ body.is-site-menu-open {
       color: $white;
     }
 
-    &__logo {
+    &-logo {
       width: 80px;
     }
 
-    &__links {
+    &-links {
       max-width: none;
     }
 
-    &__store,
-    &__inquiry {
+    &-store,
+    &-inquiry {
       min-height: 44px;
     }
 
-    &__store {
+    &-store {
       font-size: 18px;
     }
   }
@@ -826,12 +826,12 @@ body.is-site-menu-open {
   max-width: $section-content-width + 80px;
   padding: 120px $section-padding-inline;
 
-  &__description {
+  &-description {
     margin-top: 20px;
     font-size: 24px;
   }
 
-  &__all-link {
+  &-all-link {
     align-self: end;
     justify-self: end;
     margin-bottom: 6px;
@@ -839,11 +839,11 @@ body.is-site-menu-open {
     font-weight: 500;
   }
 
-  &__all-icon {
+  &-all-icon {
     font-size: 22px;
   }
 
-  &__slider {
+  &-slider {
     position: relative;
     grid-column: 1/-1;
     width: 100%;
@@ -852,16 +852,16 @@ body.is-site-menu-open {
     padding-bottom: 72px;
   }
 
-  &__slide {
+  &-slide {
     height: auto;
   }
 
-  &__card {
+  &-card {
     display: block;
     height: 100%;
   }
 
-  &__image-wrap {
+  &-image-wrap {
     @include flex-center;
     aspect-ratio: 4/5;
     overflow: hidden;
@@ -869,7 +869,7 @@ body.is-site-menu-open {
     transition: border-radius 0.4s ease;
   }
 
-  &__image {
+  &-image {
     display: block;
     width: 100%;
     height: 100%;
@@ -877,7 +877,7 @@ body.is-site-menu-open {
     transition: transform 0.5s ease;
   }
 
-  &__info {
+  &-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -889,7 +889,7 @@ body.is-site-menu-open {
     transition: color 0.3s ease;
   }
 
-  &__icon {
+  &-icon {
     display: flex;
     flex-shrink: 0;
     align-items: center;
@@ -906,30 +906,30 @@ body.is-site-menu-open {
       border-color 0.3s ease;
   }
 
-  &__icon .icon {
+  &-icon .icon {
     width: 24px;
     height: 24px;
   }
 
-  &__slide:hover .new-products__image-wrap {
+  &-slide:hover .new-products-image-wrap {
     border-radius: 50px 0;
   }
 
-  &__slide:hover .new-products__image {
+  &-slide:hover .new-products-image {
     transform: scale(1.15);
   }
 
-  &__slide:hover .new-products__info {
+  &-slide:hover .new-products-info {
     color: $primary-color;
   }
 
-  &__slide:hover .new-products__icon {
+  &-slide:hover .new-products-icon {
     color: $white;
     background-color: $text-color;
     border-color: $text-color;
   }
 
-  &__controls {
+  &-controls {
     display: flex;
     position: absolute;
     bottom: 0;
@@ -941,7 +941,7 @@ body.is-site-menu-open {
     height: 44px;
   }
 
-  &__scrollbar {
+  &-scrollbar {
     position: relative;
     top: auto;
     right: auto;
@@ -957,25 +957,25 @@ body.is-site-menu-open {
     opacity: 1;
   }
 
-  &__scrollbar .swiper-scrollbar-drag {
+  &-scrollbar .swiper-scrollbar-drag {
     height: 100%;
     background-color: $scrollbar-thumb;
     border-radius: 100px;
     cursor: grab;
   }
 
-  &__scrollbar .swiper-scrollbar-drag:active {
+  &-scrollbar .swiper-scrollbar-drag:active {
     cursor: grabbing;
   }
 
-  &__navigation {
+  &-navigation {
     display: flex;
     flex-shrink: 0;
     align-items: center;
     gap: 12px;
   }
 
-  &__nav-icon {
+  &-nav-icon {
     font-size: 22px;
   }
 
@@ -984,18 +984,18 @@ body.is-site-menu-open {
     gap: 24px;
     padding: 64px 20px;
 
-    &__description {
+    &-description {
       margin-top: 14px;
       font-size: 18px;
     }
 
-    &__all-link {
+    &-all-link {
       justify-self: start;
       margin: 0;
       font-size: 16px;
     }
 
-    &__info {
+    &-info {
       margin-top: 16px;
       font-size: 16px;
     }
@@ -1013,12 +1013,12 @@ body.is-site-menu-open {
   margin: 0 auto;
   padding: 100px 0 250px;
 
-  &__heading {
+  &-heading {
     position: relative;
     flex: 0 0 auto;
   }
 
-  &__line {
+  &-line {
     position: absolute;
     top: -32px;
     left: 0;
@@ -1027,12 +1027,12 @@ body.is-site-menu-open {
     background-color: $primary-color;
   }
 
-  &__title {
+  &-title {
     font-size: clamp(64px, 5vw, 120px);
     white-space: nowrap;
   }
 
-  &__description {
+  &-description {
     flex: 0 1 380px;
     min-width: 0;
     max-width: 380px;
@@ -1046,11 +1046,11 @@ body.is-site-menu-open {
     min-height: auto;
     padding: 120px 48px;
 
-    &__title {
+    &-title {
       font-size: clamp(36px, 5vw, 64px);
     }
 
-    &__description {
+    &-description {
       flex: none;
       width: 100%;
       max-width: 680px;
@@ -1062,22 +1062,22 @@ body.is-site-menu-open {
     gap: 24px;
     padding: 80px 20px;
 
-    &__line {
+    &-line {
       top: -24px;
       width: 36px;
       height: 3px;
     }
 
-    &__heading {
+    &-heading {
       width: 100%;
     }
 
-    &__title {
+    &-title {
       display: inline-block;
       font-size: clamp(24px, 8vw, 60px);
     }
 
-    &__description {
+    &-description {
       max-width: 100%;
       font-size: 17px;
     }
@@ -1092,12 +1092,12 @@ body.is-site-menu-open {
   padding: 120px $section-padding-inline;
   background-color: #e8eaed;
 
-  &__title {
+  &-title {
     max-width: $section-content-width;
     margin: 0 auto 48px;
   }
 
-  &__layout {
+  &-layout {
     display: grid;
     position: relative;
     isolation: isolate;
@@ -1108,18 +1108,18 @@ body.is-site-menu-open {
     max-width: $section-content-width;
   }
 
-  &__list {
+  &-list {
     position: relative;
     z-index: 2;
     grid-column: 1;
     grid-row: 1;
   }
 
-  &__item {
+  &-item {
     border-bottom: 1px solid #cbd0d5;
   }
 
-  &__button {
+  &-button {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1138,7 +1138,7 @@ body.is-site-menu-open {
       color: $primary-color;
     }
 
-    &[aria-pressed="true"] .product-categories__button-icon {
+    &[aria-pressed="true"] .product-categories-button-icon {
       color: $white;
       background-color: $text-color;
     }
@@ -1149,11 +1149,11 @@ body.is-site-menu-open {
     }
   }
 
-  &__button[aria-pressed="true"] {
+  &-button[aria-pressed="true"] {
     font-weight: 700;
   }
 
-  &__button-icon {
+  &-button-icon {
     display: grid;
     flex: 0 0 36px;
     place-items: center;
@@ -1170,14 +1170,14 @@ body.is-site-menu-open {
   }
 
   // 메뉴는 왼쪽 열, 설명과 이미지는 오른쪽 열에 둔다.
-  &__content {
+  &-content {
     grid-column: 2;
     grid-row: 1;
     width: 100%;
     min-width: 0;
   }
 
-  &__panel {
+  &-panel {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -1186,7 +1186,7 @@ body.is-site-menu-open {
     min-height: 680px;
   }
 
-  &__info {
+  &-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1197,7 +1197,7 @@ body.is-site-menu-open {
   }
 
   // 확대나 절대 배치 없이 이미지 전체가 설명 아래에 들어가게 한다.
-  &__visual {
+  &-visual {
     @include flex-center;
     width: 100%;
     height: clamp(360px, 32vw, 560px);
@@ -1205,7 +1205,7 @@ body.is-site-menu-open {
     pointer-events: none;
   }
 
-  &__image {
+  &-image {
     display: block;
     width: 100%;
     height: 100%;
@@ -1213,50 +1213,50 @@ body.is-site-menu-open {
     object-position: center;
   }
 
-  &__heading {
+  &-heading {
     font-size: clamp(32px, 2.9vw, 52px);
     font-weight: 700;
   }
 
-  &__description {
+  &-description {
     font-size: clamp(16px, 1.1vw, 18px);
   }
 
-  &__link {
+  &-link {
     font-size: 17px;
     font-weight: 600;
   }
 
-  &__link-icon {
+  &-link-icon {
     font-size: 22px;
   }
 
   @media (max-width: $bp-layout) {
-    &__layout {
+    &-layout {
       grid-template-columns: minmax(0, 1fr);
       gap: 24px;
     }
 
-    &__content {
+    &-content {
       grid-column: 1;
       grid-row: 2;
     }
 
-    &__panel {
+    &-panel {
       gap: 24px;
       min-height: 0;
     }
 
-    &__visual {
+    &-visual {
       height: 360px;
     }
 
-    &__info {
+    &-info {
       width: 100%;
       max-width: none;
     }
 
-    &__button {
+    &-button {
       font-size: 17px;
     }
   }
@@ -1264,11 +1264,11 @@ body.is-site-menu-open {
   @media (max-width: $bp-tablet) {
     padding: 90px $section-padding-inline;
 
-    &__layout {
+    &-layout {
       gap: 28px;
     }
 
-    &__list {
+    &-list {
       display: flex;
       flex-wrap: wrap; // 넘치는 버튼은 다음 줄로
       min-width: 0;
@@ -1276,16 +1276,16 @@ body.is-site-menu-open {
       padding-bottom: 12px;
     }
 
-    &__list::-webkit-scrollbar {
+    &-list::-webkit-scrollbar {
       display: none;
     }
 
-    &__item {
+    &-item {
       flex-shrink: 0;
       border-bottom: 0;
     }
 
-    &__button {
+    &-button {
       width: auto;
       min-height: 46px;
       padding: 8px 12px;
@@ -1294,22 +1294,22 @@ body.is-site-menu-open {
       border-radius: 100px;
     }
 
-    &__button-icon {
+    &-button-icon {
       flex-basis: 28px;
       width: 28px;
       height: 28px;
       font-size: 18px;
     }
 
-    &__heading {
+    &-heading {
       font-size: 36px;
     }
 
-    &__description {
+    &-description {
       font-size: 17px;
     }
 
-    &__image {
+    &-image {
       max-height: 480px;
     }
   }
@@ -1317,41 +1317,41 @@ body.is-site-menu-open {
   @media (max-width: $bp-mobile) {
     padding: 72px 20px;
 
-    &__title {
+    &-title {
       margin-bottom: 28px;
     }
 
-    &__layout {
+    &-layout {
       gap: 24px;
     }
 
-    &__panel {
+    &-panel {
       gap: 12px;
     }
 
-    &__visual {
+    &-visual {
       height: auto;
       aspect-ratio: 4/3;
     }
 
-    &__image {
+    &-image {
       max-height: 100%;
     }
 
-    &__info {
+    &-info {
       gap: 16px;
       padding: 8px 0;
     }
 
-    &__heading {
+    &-heading {
       font-size: 32px;
     }
 
-    &__description {
+    &-description {
       font-size: 16px;
     }
 
-    &__button-icon {
+    &-button-icon {
       display: none;
     }
   }
@@ -1365,11 +1365,11 @@ body.is-site-menu-open {
   padding: 100px $section-padding-inline;
   background-color: #e2e2e2;
 
-  &__inner {
+  &-inner {
     max-width: $section-content-width;
   }
 
-  &__tabs {
+  &-tabs {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
@@ -1377,7 +1377,7 @@ body.is-site-menu-open {
     margin: 48px auto 34px;
   }
 
-  &__tab {
+  &-tab {
     @include flex-center;
     min-width: 0;
     height: 64px;
@@ -1387,7 +1387,7 @@ body.is-site-menu-open {
     cursor: pointer;
     transition: border-color 0.3s ease;
 
-    &:hover .brands__tab-image {
+    &:hover .brands-tab-image {
       opacity: 0.75;
     }
 
@@ -1396,7 +1396,7 @@ body.is-site-menu-open {
       border-bottom-color: $text-color;
     }
 
-    &[aria-pressed="true"] .brands__tab-image {
+    &[aria-pressed="true"] .brands-tab-image {
       opacity: 1;
     }
 
@@ -1406,7 +1406,7 @@ body.is-site-menu-open {
     }
   }
 
-  &__tab-image {
+  &-tab-image {
     display: block;
     width: 100%;
     height: 44px;
@@ -1418,15 +1418,15 @@ body.is-site-menu-open {
       opacity 0.3s ease;
   }
 
-  &__tab[aria-pressed="true"] .brands__tab-image {
+  &-tab[aria-pressed="true"] .brands-tab-image {
     filter: none;
   }
 
-  &__slider {
+  &-slider {
     width: 100%;
   }
 
-  &__panel {
+  &-panel {
     display: grid;
     height: auto;
     align-items: stretch;
@@ -1435,7 +1435,7 @@ body.is-site-menu-open {
     width: 100%;
   }
 
-  &__visual {
+  &-visual {
     width: 100%;
     min-width: 0;
     height: clamp(360px, 32vw, 500px);
@@ -1443,7 +1443,7 @@ body.is-site-menu-open {
     background-color: #d4d4d4;
   }
 
-  &__image {
+  &-image {
     display: block;
     width: 100%;
     height: 100%;
@@ -1451,7 +1451,7 @@ body.is-site-menu-open {
     object-position: center;
   }
 
-  &__content {
+  &-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1460,12 +1460,12 @@ body.is-site-menu-open {
     padding: 24px 0 28px;
   }
 
-  &__brand {
+  &-brand {
     width: 100%;
     min-width: 0;
   }
 
-  &__brand-logo {
+  &-brand-logo {
     display: block;
     width: 100%;
     max-width: 600px;
@@ -1474,7 +1474,7 @@ body.is-site-menu-open {
     object-position: left center;
   }
 
-  &__info {
+  &-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1482,53 +1482,53 @@ body.is-site-menu-open {
     max-width: 650px;
   }
 
-  &__tagline {
+  &-tagline {
     font-size: clamp(22px, 1.8vw, 28px);
     font-weight: 600;
   }
 
-  &__description {
+  &-description {
     font-size: clamp(15px, 1vw, 17px);
   }
 
-  &__link {
+  &-link {
     min-width: 124px;
     margin-top: 6px;
     font-size: 16px;
     font-weight: 500;
   }
 
-  &__link .icon {
+  &-link .icon {
     font-size: 18px;
   }
 
   @media (max-width: $bp-tablet) {
     padding: 80px $section-padding-inline;
 
-    &__tabs {
+    &-tabs {
       margin: 40px auto 28px;
     }
 
-    &__panel {
+    &-panel {
       grid-template-columns: minmax(0, 1fr);
       gap: 32px;
     }
 
-    &__visual {
+    &-visual {
       height: auto;
       aspect-ratio: 3/2;
     }
 
-    &__content {
+    &-content {
       gap: 36px;
       padding: 0;
     }
 
-    &__brand-logo {
+    &-brand-logo {
       height: 110px;
     }
 
-    &__info {
+    &-info {
       max-width: 680px;
     }
   }
@@ -1536,49 +1536,49 @@ body.is-site-menu-open {
   @media (max-width: $bp-mobile) {
     padding: 64px 20px;
 
-    &__tabs {
+    &-tabs {
       gap: 6px;
       margin: 28px auto 24px;
     }
 
-    &__tab {
+    &-tab {
       height: 48px;
       padding: 6px 4px;
     }
 
-    &__tab-image {
+    &-tab-image {
       height: 30px;
     }
 
-    &__panel {
+    &-panel {
       gap: 24px;
     }
 
-    &__visual {
+    &-visual {
       aspect-ratio: 4/3;
     }
 
-    &__content {
+    &-content {
       gap: 24px;
     }
 
-    &__brand-logo {
+    &-brand-logo {
       height: 80px;
     }
 
-    &__info {
+    &-info {
       gap: 12px;
     }
 
-    &__tagline {
+    &-tagline {
       font-size: 22px;
     }
 
-    &__description {
+    &-description {
       font-size: 15px;
     }
 
-    &__link {
+    &-link {
       font-size: 14px;
     }
   }
@@ -1588,11 +1588,11 @@ body.is-site-menu-open {
 // 8. 움직임 줄이기
 // ========================================
 @media (prefers-reduced-motion: reduce) {
-  .main-visual__card,
-  .main-visual__select::before,
-  .main-visual__card-content,
-  .main-visual__card-detail,
-  .new-products__image {
+  .main-visual-card,
+  .main-visual-select::before,
+  .main-visual-card-content,
+  .main-visual-card-detail,
+  .new-products-image {
     transition-duration: 0.01ms !important;
   }
 }
